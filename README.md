@@ -1,23 +1,27 @@
-# React & Firebase Web, Android, IOS Chat Bot
+## React Web Native Firebase Chatbot
+Chatbot application based on React Native. Works on Web, Android and Ios. Supports Firebase.
 
+## Demo
+
+http://react-firebase-chatbot.surge.sh/
 
 ### Installation
 
 ```
-npm install
+yarn
 ```
 
 ### Running
 
 ```
-npm start
+yarn start
 Open http://127.0.0.1:8090
 ```
 
 ### Building
 
 ```
-npm run build
+yarn build
 ```
 
 ### Linting
@@ -25,5 +29,5 @@ npm run build
 ESLint with React linting options have been enabled.
 
 ```
-npm run lint
+yarn lint
 ```
