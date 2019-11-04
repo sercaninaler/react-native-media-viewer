@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "824972688539",
+    "firebase_url": "https://chatbot-12de2.firebaseio.com",
+    "project_id": "chatbot-12de2",
+    "storage_bucket": "chatbot-12de2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824972688539:android:0413213f7da44c3b",
+        "android_client_info": {
+          "package_name": "com.reactnativefirebasechatbot.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824972688539-niq93qbc71bbin9pov0p37ujf3st167i.apps.googleusercontent.com",
+          "client_type": 3,
+          "android_info": {
+            "package_name": "com.reactnativefirebasechatbot.android",
+            "certificate_hash": "AIzaSyB1qdfiGXIWtxzawhE4vG_BB-p1UymwXcY"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1qdfiGXIWtxzawhE4vG_BB-p1UymwXcY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
