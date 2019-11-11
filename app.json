@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "React Web Native Firebase Chatbot",
-    "slug": "react-web-native-firebase-chatbot",
+    "name": "React Native Web Chatbot",
+    "slug": "react-native-web-chatbot",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
