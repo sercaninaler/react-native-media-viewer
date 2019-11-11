@@ -3,7 +3,7 @@ Chatbot application based on React Native. Works on Web, Android and Ios. Suppor
 
 ## Demo
 
-http://react-firebase-chatbot.surge.sh/
+https://sercaninaler.github.io/react-native-web-chatbot
 
 ### Installation
 
