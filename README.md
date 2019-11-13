@@ -1,9 +1,9 @@
-## React Web Native Firebase Chatbot
-Chatbot application based on React Native. Works on Web, Android and Ios. Supports Firebase.
+## React Native Web Kids Learn
+Learning application for kids based on React Native. Works on Web, Android and Ios
 
 ## Demo
 
-https://sercaninaler.github.io/react-native-web-chatbot
+https://sercaninaler.github.io/react-native-web-kids-learn
 
 ### Installation
 
