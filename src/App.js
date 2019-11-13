@@ -49,7 +49,7 @@ const App = () => {
           ))}
         </div> : <div>
           <button onClick={getTrees} className="App-tree-item-button">
-            Load awesome trees
+            Load some pictures
           </button>
         </div>}
       </div>
