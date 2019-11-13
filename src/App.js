@@ -1,55 +1,55 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './index.css';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import './index.css'
+import './App.css'
+import { API_URL, API_KEY } from '../config'
 
-export const treesURL = 'https://s3.eu-central-1.amazonaws.com/ecosia-frontend-developer/trees.json';
+export const pixabayApi = `${API_URL}?key=${API_KEY}&q=animals&image_type=photo`
 
 const App = () => {
-  const [ trees, setTrees ] = useState([]);
+  const [ pictures, setPictures ] = useState([])
 
-  const getTrees = async () => {
-    const response = await axios.get(treesURL)
-    const trees = response.data.trees
-    setTrees(trees);
+  const getPictures = async () => {
+    const response = await axios.get(pixabayApi)
+    const pictures = response.data.hits
+    console.log(pictures)
+    setPictures(pictures)
   }
 
-  /*
   useEffect(() => {
-    getTrees();
-  }, []);
-  */
+    getPictures()
+  }, [])
 
-  const toggleTree = id => {
-    const newTrees = [...trees];
-    newTrees[id].showImage = !newTrees[id].showImage;
-    setTrees(newTrees);
+  const togglePicture = id => {
+    const newPictures = [...pictures]
+    newPictures[id].showImage = !newPictures[id].showImage
+    setPictures(newPictures)
   }
 
   return (
     <div className="App">
-      <div className="App-tree-items-holder">
-        {trees && trees.length !== 0 ? <div className="App-tree-items">
-          {trees.map((tree, index) => (
-            <div className="App-tree-item" key={tree.name} data-testid="row">
-              <h1 className="App-tree-item-title">{tree.name}</h1>
-              <div className="App-tree-item-subtitle">{tree.species_name}</div>
+      <div className="App-picture-items-holder">
+        {pictures && pictures.length !== 0 ? <div className="App-picture-items">
+          {pictures.map((picture, index) => (
+            <div className="App-picture-item" key={picture.id} data-testid="row">
+              <h2 className="App-picture-item-title">{picture.tags}</h2>
 
-              {tree.showImage && <img src={tree.image} alt={tree.name} className="App-tree-item-image" />}
-
-              <button
-                name={index}
-                type="submit"
-                className="App-tree-item-button"
-                onClick={() => toggleTree(index)}
-              >
-                {tree.showImage ? 'Hide' : 'Show' } Image
-              </button>
+              {!picture.showImage && <img src={picture.webformatURL} alt={picture.tags} className="App-picture-item-image" />}
+              {picture.showImage && <div>
+                <button
+                  name={index}
+                  type="submit"
+                  className="App-picture-item-button"
+                  onClick={() => togglePicture(index)}
+                >
+                  {picture.showImage ? 'Hide' : 'Show' } Image
+                </button>
+              </div>}
             </div>
           ))}
         </div> : <div>
-          <button onClick={getTrees} className="App-tree-item-button">
-            Load some pictures
+          <button onClick={getPictures} className="App-picture-item-button">
+            Load awesome animal pictures
           </button>
         </div>}
       </div>
@@ -57,4 +57,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default App

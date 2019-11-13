@@ -1,48 +1,48 @@
 .App {
   text-align: center;
-  padding: 20px;
+  padding: 20px 10px;
 }
 
 .App-logo {
   height: 160px;
 }
 
-.App-tree-items-holder {
+.App-picture-items-holder {
   display: flex;
   justify-content: center;
 }
 
-.App-tree-items {
+.App-picture-items {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 1000px;
+  justify-content: center;
 }
 
-.App-tree-item {
-  width: calc(50% - 20px);
+.App-picture-item {
+  width: 400px;
   margin: 0 10px 20px 10px;
   background-color: #eeeeee;
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
-.App-tree-item-title {
-  font-size: 32px;
-  margin: 3px 0;
+.App-picture-item-title {
+  font-size: 20px;
+  line-height: 20px;
+  margin-bottom: 10px;
 }
 
-.App-tree-item-subtitle {
+.App-picture-item-subtitle {
   font-size: 20px;
 }
 
-.App-tree-item-image {
-  width: 100%;
-  margin-top: 10px;
-  border-radius: 10px;
+.App-picture-item-image {
+  width: 360px;
+  border-radius: 6px;
 }
 
-.App-tree-item-button {
+.App-picture-item-button {
   font-size: 14px;
   padding: 10px;
   background-color: #209b2c;
