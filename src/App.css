@@ -8,8 +8,6 @@
 }
 
 .App-picture-items-holder {
-  display: flex;
-  justify-content: center;
 }
 
 .App-picture-items {
@@ -21,16 +19,16 @@
 
 .App-picture-item {
   max-width: 360px;
-  margin: 0 10px 20px 10px;
+  margin: 0 8px 20px 8px;
   background-color: #eeeeee;
   padding: 15px 15px 10px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .App-picture-item-title {
   font-size: 18px;
   line-height: 18px;
-  margin-top: 5px;
 }
 
 .App-picture-item-subtitle {
@@ -40,9 +38,23 @@
 .App-picture-item-image {
   width: 100%;
   border-radius: 10px;
+  margin-bottom: 5px;
 }
 
-.App-picture-item-button {
+.Search-input {
+  font-size: 16px;
+  padding: 10px;
+  background-color: #F9F9F9;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  width: 180px;
+  max-width: calc(100% - 70px);
+  outline: none;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.Search-button {
   font-size: 14px;
   padding: 10px;
   background-color: #209b2c;
@@ -52,5 +64,5 @@
   outline: none;
   cursor: pointer;
   font-weight: bold;
-  margin-top: 10px;
+  margin-bottom: 20px;
 }
