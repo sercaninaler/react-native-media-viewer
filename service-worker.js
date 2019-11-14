@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/react-native-web-kids-learn/precache-manifest.02e1513377bd516d0ad09a27787c2083.js"
+  "/react-native-web-kids-learn/precache-manifest.e8e115e5bf5f250d2074d534a3fb9403.js"
 );
 
 workbox.skipWaiting();
