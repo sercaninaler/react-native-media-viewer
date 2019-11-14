@@ -20,17 +20,17 @@
 }
 
 .App-picture-item {
-  width: 400px;
+  max-width: 360px;
   margin: 0 10px 20px 10px;
   background-color: #eeeeee;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 15px 15px 10px;
+  border-radius: 10px;
 }
 
 .App-picture-item-title {
-  font-size: 20px;
-  line-height: 20px;
-  margin-bottom: 10px;
+  font-size: 18px;
+  line-height: 18px;
+  margin-top: 5px;
 }
 
 .App-picture-item-subtitle {
@@ -38,8 +38,8 @@
 }
 
 .App-picture-item-image {
-  width: 360px;
-  border-radius: 6px;
+  width: 100%;
+  border-radius: 10px;
 }
 
 .App-picture-item-button {
