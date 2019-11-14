@@ -24,7 +24,7 @@ const App = () => {
   const getSounds = async (soundQuery) => {
     const response = await axios.get(freesoundApi(soundQuery))
     const sounds = response.data.results
-    console.log(sounds)
+    //console.log(sounds)
     setSounds(sounds)
     playAudio(sounds[0].previews['preview-lq-mp3'])
   }
@@ -49,7 +49,7 @@ const App = () => {
   }
 
   const onChange = event => {
-    console.log(event.target.value)
+    //console.log(event.target.value)
     setQuery(event.target.value)
   }
 //
