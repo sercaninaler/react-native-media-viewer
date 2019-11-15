@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "292aff8ac3425ff78059",
-    "url": "/react-native-web-kids-learn/static/js/app.2d39fafb.chunk.js"
+    "revision": "cc5359199f08a0f0d46e",
+    "url": "/react-native-web-kids-learn/static/js/app.ddc641a0.chunk.js"
   },
   {
     "revision": "139f443d41c4ce336c76",
     "url": "/react-native-web-kids-learn/static/js/runtime~app.7e7a666d.js"
   },
   {
-    "revision": "7a99c97e54edd98a4ecc",
-    "url": "/react-native-web-kids-learn/static/js/2.ce76e23d.chunk.js"
+    "revision": "e25feeafd99bc786b3db",
+    "url": "/react-native-web-kids-learn/static/js/2.89cc855f.chunk.js"
   },
   {
     "revision": "3a2ba31570920eeb9b1d217cabe58315",
@@ -56,12 +56,12 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/./fonts/SimpleLineIcons.ttf"
   },
   {
-    "revision": "7a7bc7ead25db795e58b336f04d2624c",
-    "url": "/react-native-web-kids-learn/favicon.ico"
-  },
-  {
     "revision": "d0c694b562b2208635f250762cd7fc79",
     "url": "/react-native-web-kids-learn/serve.json"
+  },
+  {
+    "revision": "7a7bc7ead25db795e58b336f04d2624c",
+    "url": "/react-native-web-kids-learn/favicon.ico"
   },
   {
     "revision": "5e695e96a003a79f7f97060bf49409a9",
@@ -72,16 +72,16 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/register-service-worker.js"
   },
   {
-    "revision": "78470b09f38304603362638e057e4176",
+    "revision": "d38a63048e65bb887d047c8c8a2e8dd9",
     "url": "/react-native-web-kids-learn/manifest.json"
   },
   {
-    "revision": "5a7a2884c9ce8892b73ae584a1089c53",
+    "revision": "14fe94816fbae75b06de987c8f3fb15c",
     "url": "/react-native-web-kids-learn/index.html"
   },
   {
-    "revision": "4a0069c35f6dae8b4dcd079d730feea4",
-    "url": "/react-native-web-kids-learn/static/js/app.2d39fafb.chunk.js.gz"
+    "revision": "be7dc90d5f3317251b492102216cb0cf",
+    "url": "/react-native-web-kids-learn/static/js/app.ddc641a0.chunk.js.gz"
   },
   {
     "revision": "867d3b2c300dea602b16bc68c8a265ac",
@@ -92,7 +92,7 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/expo-service-worker.js.gz"
   },
   {
-    "revision": "4a807d7b2eedc2847f2ee16da159e273",
-    "url": "/react-native-web-kids-learn/static/js/2.ce76e23d.chunk.js.gz"
+    "revision": "1a8a3c96fa91322e1ba337bf6515ac7c",
+    "url": "/react-native-web-kids-learn/static/js/2.89cc855f.chunk.js.gz"
   }
 ];

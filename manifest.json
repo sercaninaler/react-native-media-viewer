@@ -4,11 +4,11 @@
   "dir": "auto",
   "display": "standalone",
   "lang": "en",
-  "name": "React Native Web Kids Learn",
+  "name": "Kids Learn",
   "orientation": "portrait",
   "prefer_related_applications": true,
   "related_applications": [],
-  "short_name": "React Native Web Kids Learn",
+  "short_name": "Kids Learn",
   "start_url": ".",
   "theme_color": "#4630EB"
 }
