@@ -12,6 +12,8 @@ const App = () => {
   const [ pictures, setPictures ] = useState([])
   const [ sounds, setSounds ] = useState([])
   const [ query, setQuery ] = useState('cats')
+  const [ tags, setTags ] = useState([])
+
   let sound = null
 
   const getPictures = async (pictureQuery) => {
@@ -45,35 +47,43 @@ const App = () => {
 
   const onSubmit = event => {
     event.preventDefault()
+    tags.unshift(query)
+    setTags(tags)
     getPictures(query)
   }
 
   const onChange = event => {
-    //console.log(event.target.value)
     setQuery(event.target.value)
   }
-//
+
   return (
     <div className="App">
+      <form onSubmit={onSubmit} className="Search-form">
+        <input
+          name="searchQuery"
+          type="text"
+          className="Search-input"
+          placeholder="Search for pictures"
+          autoComplete="off"
+          onChange={onChange}
+          value={query}
+        />
+        <button className="Search-button">
+          Search
+        </button>
+      </form>
+      <div className="App-tags">
+        {tags.length !== 0 && <div className="App-tags-label">Recent</div>}
+        {tags.map((tag) => (
+          <div className="App-tags-item" key={tag} onClick={() => { getPictures(tag) }}>
+            { tag }
+          </div>
+        ))}
+      </div>
       <div className="App-picture-items-holder">
-        <form onSubmit={onSubmit}>
-          <input
-            name="searchQuery"
-            type="text"
-            className="Search-input"
-            placeholder="Search for pictures"
-            autoComplete="off"
-            onChange={onChange}
-            value={query}
-          />
-          <button className="Search-button">
-            Search
-          </button>
-        </form>
-
-        {pictures && pictures.length !== 0 && <div className="App-picture-items">
+      {pictures.length !== 0 && <div className="App-picture-items">
           {pictures.map((picture, index) => (
-            <div className="App-picture-item" key={picture.id} data-testid="row" onClick={() => { getSounds(query) }}>
+            <div className="App-picture-item" key={picture.id} onClick={() => { getSounds(query) }}>
               {!picture.showImage && <img
                 src={picture.webformatURL}
                 alt={picture.tags}
