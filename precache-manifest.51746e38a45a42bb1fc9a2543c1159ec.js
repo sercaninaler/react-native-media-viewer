@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "308556dc6cbdb0ef334e",
-    "url": "/react-native-web-kids-learn/static/js/app.289ebf72.chunk.js"
+    "revision": "a8606e73d1265a0df43c",
+    "url": "/react-native-web-kids-learn/static/js/app.3a6f424e.chunk.js"
   },
   {
     "revision": "139f443d41c4ce336c76",
@@ -56,16 +56,16 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/./fonts/SimpleLineIcons.ttf"
   },
   {
+    "revision": "d0c694b562b2208635f250762cd7fc79",
+    "url": "/react-native-web-kids-learn/serve.json"
+  },
+  {
     "revision": "7a7bc7ead25db795e58b336f04d2624c",
     "url": "/react-native-web-kids-learn/favicon.ico"
   },
   {
     "revision": "5e695e96a003a79f7f97060bf49409a9",
     "url": "/react-native-web-kids-learn/expo-service-worker.js"
-  },
-  {
-    "revision": "d0c694b562b2208635f250762cd7fc79",
-    "url": "/react-native-web-kids-learn/serve.json"
   },
   {
     "revision": "020fd499a2d2bc45c4c3b6021e472b43",
@@ -76,12 +76,12 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/manifest.json"
   },
   {
-    "revision": "a8a8db64a8232b00316afe76c61714d0",
+    "revision": "b174f7a9ae8533598cddd1c6a02f9404",
     "url": "/react-native-web-kids-learn/index.html"
   },
   {
-    "revision": "f8b66e3a71f80e522be2ace9f637dfeb",
-    "url": "/react-native-web-kids-learn/static/js/app.289ebf72.chunk.js.gz"
+    "revision": "e3ec7e8fc6209ebe7bd8093d397b0e39",
+    "url": "/react-native-web-kids-learn/static/js/app.3a6f424e.chunk.js.gz"
   },
   {
     "revision": "867d3b2c300dea602b16bc68c8a265ac",
