@@ -1,5 +1,5 @@
 .App {
-  padding: 20px 10px;
+  padding: 18px 0;
 }
 
 .App-logo {
@@ -39,17 +39,13 @@
   cursor: pointer;
 }
 
-.App-tags-item:hover {
+.App-tags-item:hover, .App-tags-item.selected {
   background-color: #ddd;
 }
 
 .App-picture-item {
-  max-width: 360px;
-  margin: 0 8px 20px 8px;
-  background-color: #eeeeee;
-  padding: 15px 15px 10px;
-  border-radius: 10px;
-  cursor: pointer;
+  max-width: 400px;
+  margin: 5px 5px;
 }
 
 .App-picture-item-title {
@@ -64,7 +60,6 @@
 .App-picture-item-image {
   width: 100%;
   border-radius: 10px;
-  margin-bottom: 5px;
 }
 
 .Search-form {

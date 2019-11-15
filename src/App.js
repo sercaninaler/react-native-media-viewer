@@ -4,7 +4,7 @@ import './index.css'
 import './App.css'
 import { PIXABAY_API_URL, PIXABAY_API_KEY, FREESOUND_API_URL, FREESOUND_API_KEY } from '../config'
 
-export const pixabayApi = query => `${PIXABAY_API_URL}?key=${PIXABAY_API_KEY}&q=${query}&image_type=photo`
+export const pixabayApi = query => `${PIXABAY_API_URL}?key=${PIXABAY_API_KEY}&q=${query}&image_type=photo&orientation=horizontal`
 export const freesoundApi = query =>`${FREESOUND_API_URL}?query=${query}&token=${FREESOUND_API_KEY}
 &normalized=true&fields=previews,description&sort=downloads_desc&filter=duration:[1 TO 5]`
 
@@ -12,26 +12,37 @@ const App = () => {
   const [ pictures, setPictures ] = useState([])
   const [ sounds, setSounds ] = useState([])
   const [ query, setQuery ] = useState('cats')
-  const [ tags, setTags ] = useState([])
+  const [ tags, setTags ] = useState(['fruits','animals','planets'])
 
-  if (!JSON.parse(localStorage.getItem('data'))) {
-    localStorage.setItem('data', JSON.stringify({}))
+  if (!JSON.parse(localStorage.getItem('pictures'))) {
+    localStorage.setItem('pictures', JSON.stringify({}))
+  }
+  if (!JSON.parse(localStorage.getItem('tags'))) {
+    localStorage.setItem('tags', JSON.stringify(['fruits','animals','planets']))
   }
 
   let sound = null
 
   const getPictures = async (query) => {
-    const data = JSON.parse(localStorage.getItem('data'))
+    const localData = JSON.parse(localStorage.getItem('pictures'))
 
-    if (!data[query]) {
+    if (!Array.isArray(localData[query]) || !localData[query].length) {
       const response = await axios.get(pixabayApi(query))
-      const pictures = response.data.hits
+      const data = response.data.hits
+      const newData = []
 
-      data[query] = pictures
-      localStorage.setItem('data', JSON.stringify(data))
-      setPictures(pictures)
+      data.forEach((item) => {
+        newData.push({
+          image: item.webformatURL,
+          tags: item.tags,
+        })
+      })
+
+      localData[query] = newData
+      localStorage.setItem('pictures', JSON.stringify(localData))
+      setPictures(newData)
     } else {
-      setPictures(data[query])
+      setPictures(localData[query])
     }
   }
 
@@ -57,15 +68,22 @@ const App = () => {
     sound.play()
   }
 
+  const arrayRemove = (arr, value) => {
+    return arr.filter(function(ele){
+      return ele !== value;
+    });
+  }
+
   const onSubmit = event => {
     event.preventDefault()
-    tags.unshift(query)
-    setTags(tags)
+    const newTags = arrayRemove(tags, query)
+    newTags.unshift(query)
+    setTags(newTags)
     getPictures(query)
   }
 
   const onChange = event => {
-    setQuery(event.target.value)
+    setQuery(event.target.value.toLowerCase())
   }
 
   return (
@@ -78,6 +96,7 @@ const App = () => {
           placeholder="Search for pictures"
           autoComplete="off"
           onChange={onChange}
+          onFocus={(event) => event.target.select()}
           value={query}
         />
         <button className="Search-button">
@@ -85,9 +104,12 @@ const App = () => {
         </button>
       </form>
       <div className="App-tags">
-        {tags.length !== 0 && <div className="App-tags-label">Recent</div>}
+        {tags.length !== 0 && <div className="App-tags-label">Tags</div>}
         {tags.map((tag) => (
-          <div className="App-tags-item" key={tag} onClick={() => { getPictures(tag) }}>
+          <div className={`App-tags-item ${tag === query && "selected"}`} key={tag} onClick={() => {
+            setQuery(tag)
+            getPictures(tag)
+          }}>
             { tag }
           </div>
         ))}
@@ -95,9 +117,9 @@ const App = () => {
       <div className="App-picture-items-holder">
       {pictures.length !== 0 && <div className="App-picture-items">
           {pictures.map((picture, index) => (
-            <div className="App-picture-item" key={picture.id} onClick={() => { getSounds(query) }}>
+            <div className="App-picture-item" key={picture.image} /*onClick={() => { getSounds(query) }}*/>
               {!picture.showImage && <img
-                src={picture.webformatURL}
+                src={picture.image}
                 alt={picture.tags}
                 className="App-picture-item-image"
               />}
