@@ -29,18 +29,21 @@ const App = () => {
     if (!Array.isArray(localData[query]) || !localData[query].length) {
       const response = await axios.get(pixabayApi(query))
       const data = response.data.hits
-      const newData = []
 
-      data.forEach((item) => {
-        newData.push({
-          image: item.webformatURL,
-          tags: item.tags,
+      if (data.length) {
+        const newData = []
+        data.forEach((item) => {
+          newData.push({
+            image: item.webformatURL,
+            tags: item.tags,
+          })
         })
-      })
 
-      localData[query] = newData
-      localStorage.setItem('pictures', JSON.stringify(localData))
-      setPictures(newData)
+        localData[query] = newData
+        localStorage.setItem('pictures', JSON.stringify(localData))
+        setPictures(newData)
+      }
+
     } else {
       setPictures(localData[query])
     }
