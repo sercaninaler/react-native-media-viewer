@@ -14,17 +14,29 @@ const App = () => {
   const [ query, setQuery ] = useState('cats')
   const [ tags, setTags ] = useState([])
 
-  let sound = null
-
-  const getPictures = async (pictureQuery) => {
-    const response = await axios.get(pixabayApi(pictureQuery))
-    const pictures = response.data.hits
-    //console.log(pictures)
-    setPictures(pictures)
+  if (!JSON.parse(localStorage.getItem('data'))) {
+    localStorage.setItem('data', JSON.stringify({}))
   }
 
-  const getSounds = async (soundQuery) => {
-    const response = await axios.get(freesoundApi(soundQuery))
+  let sound = null
+
+  const getPictures = async (query) => {
+    const data = JSON.parse(localStorage.getItem('data'))
+
+    if (!data[query]) {
+      const response = await axios.get(pixabayApi(query))
+      const pictures = response.data.hits
+
+      data[query] = pictures
+      localStorage.setItem('data', JSON.stringify(data))
+      setPictures(pictures)
+    } else {
+      setPictures(data[query])
+    }
+  }
+
+  const getSounds = async (query) => {
+    const response = await axios.get(freesoundApi(query))
     const sounds = response.data.results
     //console.log(sounds)
     setSounds(sounds)
@@ -90,7 +102,7 @@ const App = () => {
                 className="App-picture-item-image"
               />}
 
-              <h2 className="App-picture-item-title">{picture.tags}</h2>
+              {picture.showImage && <h2 className="App-picture-item-title">{picture.tags}</h2>}
 
               {picture.showImage && <div>
                 <button

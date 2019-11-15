@@ -6,9 +6,6 @@
   height: 160px;
 }
 
-.App-picture-items-holder {
-}
-
 .App-picture-items {
   display: flex;
   flex-direction: row;
@@ -23,10 +20,11 @@
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
+  margin: 5px 0;
 }
 
 .App-tags-label {
-  margin: 0 6px 15px 6px;
+  margin: 4px 6px 8px 6px;
   background-color: #eeeeee;
   padding: 8px 15px;
   border-radius: 10px;
@@ -34,11 +32,15 @@
 }
 
 .App-tags-item {
-  margin: 0 6px 15px 6px;
+  margin: 4px 6px 8px 6px;
   background-color: #eeeeee;
   padding: 8px 15px;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.App-tags-item:hover {
+  background-color: #ddd;
 }
 
 .App-picture-item {
@@ -78,7 +80,7 @@
   width: 200px;
   max-width: calc(100% - 88px);
   outline: none;
-  margin: 0 10px 20px 0;
+  margin: 0 10px 10px 0;
 }
 
 .Search-button {
@@ -91,5 +93,5 @@
   outline: none;
   cursor: pointer;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
