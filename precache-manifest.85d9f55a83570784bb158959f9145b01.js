@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "a8606e73d1265a0df43c",
-    "url": "/react-native-web-kids-learn/static/js/app.3a6f424e.chunk.js"
+    "revision": "ed87866159242056e683",
+    "url": "/react-native-web-kids-learn/static/js/app.39e91eba.chunk.js"
   },
   {
     "revision": "139f443d41c4ce336c76",
     "url": "/react-native-web-kids-learn/static/js/runtime~app.7e7a666d.js"
   },
   {
-    "revision": "e25feeafd99bc786b3db",
-    "url": "/react-native-web-kids-learn/static/js/2.89cc855f.chunk.js"
+    "revision": "ceae46116185df4b2cfa",
+    "url": "/react-native-web-kids-learn/static/js/2.6d931552.chunk.js"
   },
   {
     "revision": "3a2ba31570920eeb9b1d217cabe58315",
@@ -76,12 +76,12 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/manifest.json"
   },
   {
-    "revision": "b174f7a9ae8533598cddd1c6a02f9404",
+    "revision": "733bfae17051cddf834d01a247876dc0",
     "url": "/react-native-web-kids-learn/index.html"
   },
   {
-    "revision": "e3ec7e8fc6209ebe7bd8093d397b0e39",
-    "url": "/react-native-web-kids-learn/static/js/app.3a6f424e.chunk.js.gz"
+    "revision": "e51c8b552eed90edb47b02927ea11194",
+    "url": "/react-native-web-kids-learn/static/js/app.39e91eba.chunk.js.gz"
   },
   {
     "revision": "867d3b2c300dea602b16bc68c8a265ac",
@@ -92,7 +92,7 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/expo-service-worker.js.gz"
   },
   {
-    "revision": "1a8a3c96fa91322e1ba337bf6515ac7c",
-    "url": "/react-native-web-kids-learn/static/js/2.89cc855f.chunk.js.gz"
+    "revision": "58f20ccbd7c3713b18694959d0f5e50a",
+    "url": "/react-native-web-kids-learn/static/js/2.6d931552.chunk.js.gz"
   }
 ];
