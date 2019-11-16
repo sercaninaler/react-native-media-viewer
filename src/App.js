@@ -13,6 +13,7 @@ const App = () => {
   const [ sounds, setSounds ] = useState([])
   const [ query, setQuery ] = useState('cats')
   const [ tags, setTags ] = useState(['fruits','animals','planets'])
+  const [ settings, setSettings ] = useState(0)
 
   if (!JSON.parse(localStorage.getItem('pictures'))) {
     localStorage.setItem('pictures', JSON.stringify({}))
@@ -89,6 +90,11 @@ const App = () => {
     setQuery(event.target.value.toLowerCase())
   }
 
+  const showSettings = () => {
+    setSettings(settings + 1)
+  }
+
+  console.log(settings)
   return (
     <div className="App">
       <form onSubmit={onSubmit} className="Search-form">
@@ -142,6 +148,9 @@ const App = () => {
             </div>
           ))}
         </div>}
+      </div>
+      <div className="App-footer">
+        <div className="App-footer-item" onClick={() => showSettings()}>Copyright 2019 &copy; Kids Learn</div>
       </div>
     </div>
   );
