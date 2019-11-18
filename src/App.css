@@ -1,5 +1,5 @@
 .App {
-  padding: 18px 0;
+  padding: 20px 5px;
 }
 
 .App-logo {
@@ -95,8 +95,33 @@
 .App-footer {
   text-align: center;
   background-color: #eeeeee;
-  padding: 10px;
+  padding: 12px 0;
   position: absolute;
   width: 100%;
   bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  line-height: 20px;
+}
+
+.App-footer-label {
+  padding: 0 6px;
+}
+
+.App-footer-item {
+  margin: 0 3px;
+  border-left: 1px solid #6b6b6b;
+  padding: 0 6px;
+  color: black;
+  text-decoration: none;
+}
+
+.App-footer-item:first-child {
+  border-left: none
+}
+
+.App-footer-item:hover {
+  text-decoration: underline;
 }

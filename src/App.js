@@ -13,7 +13,7 @@ const App = () => {
   const [ sounds, setSounds ] = useState([])
   const [ query, setQuery ] = useState('cats')
   const [ tags, setTags ] = useState(['fruits','animals','planets'])
-  const [ settings, setSettings ] = useState(0)
+  const [ settingsCounter, setSettingsCounter ] = useState(0)
 
   if (!JSON.parse(localStorage.getItem('pictures'))) {
     localStorage.setItem('pictures', JSON.stringify({}))
@@ -91,10 +91,9 @@ const App = () => {
   }
 
   const showSettings = () => {
-    setSettings(settings + 1)
+    setSettingsCounter(settingsCounter + 1)
   }
 
-  console.log(settings)
   return (
     <div className="App">
       <form onSubmit={onSubmit} className="Search-form">
@@ -127,7 +126,7 @@ const App = () => {
       {pictures.length !== 0 && <div className="App-picture-items">
           {pictures.map((picture, index) => (
             <div className="App-picture-item" key={picture.image} /*onClick={() => { getSounds(query) }}*/>
-              {!picture.showImage && <img
+              {picture.showImage && <img
                 src={picture.image}
                 alt={picture.tags}
                 className="App-picture-item-image"
@@ -150,10 +149,20 @@ const App = () => {
         </div>}
       </div>
       <div className="App-footer">
-        <div className="App-footer-item" onClick={() => showSettings()}>Copyright 2019 &copy; Kids Learn</div>
+        {settingsCounter <= 4 && <div className="App-footer-label no-select" onClick={() => showSettings()}>Copyright 2019 &copy; Kids Learn</div>}
+        {settingsCounter === 4 && <a href="#" className="App-footer-item" onClick={() => showSettings()}>Settings</a>}
+        {settingsCounter > 4 && <a href="#" className="App-footer-item" onClick={() => setSettingsCounter(0)}>Back</a>}
+        {settingsCounter > 4 && <a href="#" className="App-footer-item" onClick={() => {
+          localStorage.setItem('tags', JSON.stringify([]))
+          setTags([])
+        }}>Clear tags</a>}
+        {settingsCounter > 4 && <a href="#" className="App-footer-item" onClick={() => {
+          setPictures([]);
+          localStorage.setItem('pictures', JSON.stringify({}))
+        }}>Clear cache</a>}
       </div>
     </div>
-  );
+  )
 }
 
 export default App
