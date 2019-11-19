@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "ed87866159242056e683",
-    "url": "/react-native-web-kids-learn/static/js/app.39e91eba.chunk.js"
+    "revision": "10df7055e9c39b7bdef3",
+    "url": "/react-native-web-kids-learn/static/js/app.ed0389ef.chunk.js"
   },
   {
     "revision": "139f443d41c4ce336c76",
     "url": "/react-native-web-kids-learn/static/js/runtime~app.7e7a666d.js"
   },
   {
-    "revision": "ceae46116185df4b2cfa",
-    "url": "/react-native-web-kids-learn/static/js/2.6d931552.chunk.js"
+    "revision": "203a2e153f7e7b180309",
+    "url": "/react-native-web-kids-learn/static/js/2.ea51f786.chunk.js"
   },
   {
     "revision": "3a2ba31570920eeb9b1d217cabe58315",
@@ -60,6 +60,10 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/serve.json"
   },
   {
+    "revision": "020fd499a2d2bc45c4c3b6021e472b43",
+    "url": "/react-native-web-kids-learn/register-service-worker.js"
+  },
+  {
     "revision": "7a7bc7ead25db795e58b336f04d2624c",
     "url": "/react-native-web-kids-learn/favicon.ico"
   },
@@ -68,31 +72,27 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/expo-service-worker.js"
   },
   {
-    "revision": "020fd499a2d2bc45c4c3b6021e472b43",
-    "url": "/react-native-web-kids-learn/register-service-worker.js"
-  },
-  {
     "revision": "d38a63048e65bb887d047c8c8a2e8dd9",
     "url": "/react-native-web-kids-learn/manifest.json"
   },
   {
-    "revision": "733bfae17051cddf834d01a247876dc0",
+    "revision": "851dc7a8454ddfadc2dd308ebd09d122",
     "url": "/react-native-web-kids-learn/index.html"
-  },
-  {
-    "revision": "e51c8b552eed90edb47b02927ea11194",
-    "url": "/react-native-web-kids-learn/static/js/app.39e91eba.chunk.js.gz"
   },
   {
     "revision": "867d3b2c300dea602b16bc68c8a265ac",
     "url": "/react-native-web-kids-learn/static/js/runtime~app.7e7a666d.js.gz"
   },
   {
+    "revision": "d7ec4a4cc3bc4ce52ccb7c4f942f80a9",
+    "url": "/react-native-web-kids-learn/static/js/app.ed0389ef.chunk.js.gz"
+  },
+  {
     "revision": "bd56db0844d50841ee6e0b69eb5e794d",
     "url": "/react-native-web-kids-learn/expo-service-worker.js.gz"
   },
   {
-    "revision": "58f20ccbd7c3713b18694959d0f5e50a",
-    "url": "/react-native-web-kids-learn/static/js/2.6d931552.chunk.js.gz"
+    "revision": "c5b1efa80c2873f1dc847210b6752467",
+    "url": "/react-native-web-kids-learn/static/js/2.ea51f786.chunk.js.gz"
   }
 ];
