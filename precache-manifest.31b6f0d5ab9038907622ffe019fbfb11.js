@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "0e2a5d31062fe2e303c2",
-    "url": "/react-native-web-kids-learn/static/js/app.0f5202b8.chunk.js"
+    "revision": "dd91af76e87790227049",
+    "url": "/react-native-web-kids-learn/static/js/app.a9b60ce9.chunk.js"
   },
   {
     "revision": "139f443d41c4ce336c76",
@@ -76,12 +76,12 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/manifest.json"
   },
   {
-    "revision": "c03c94a9b475bf93ffe60b03b659c7e6",
+    "revision": "c6f7ebb706212f2d3a1f7bd8226f7069",
     "url": "/react-native-web-kids-learn/index.html"
   },
   {
-    "revision": "776140d63e7a47532c04f37d21f03469",
-    "url": "/react-native-web-kids-learn/static/js/app.0f5202b8.chunk.js.gz"
+    "revision": "aabf5e1a31cdd4cf9977f541b5295bee",
+    "url": "/react-native-web-kids-learn/static/js/app.a9b60ce9.chunk.js.gz"
   },
   {
     "revision": "867d3b2c300dea602b16bc68c8a265ac",
