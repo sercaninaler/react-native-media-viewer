@@ -27,7 +27,7 @@ const App = () => {
   const getPictures = async (query) => {
     const localData = JSON.parse(localStorage.getItem('pictures'))
 
-    if (!Array.isArray(localData[query]) || !localData[query].length) {
+    if ((!Array.isArray(localData[query]) || !localData[query].length) || Math.round(new Date().getTime() / 1000) - localData.lastUpdate > 24 * 60 * 60) {
       const response = await axios.get(pixabayApi(query))
       const data = response.data.hits
 
@@ -41,6 +41,7 @@ const App = () => {
         })
 
         localData[query] = newData
+        localData.lastUpdate = Math.round(new Date().getTime()/1000)
         localStorage.setItem('pictures', JSON.stringify(localData))
         setPictures(newData)
       }
@@ -94,6 +95,7 @@ const App = () => {
     setSettingsCounter(settingsCounter + 1)
   }
 
+
   return (
     <div className="App">
       <form onSubmit={onSubmit} className="Search-form">
@@ -104,7 +106,7 @@ const App = () => {
           placeholder="Search for pictures"
           autoComplete="off"
           onChange={onChange}
-          onFocus={(event) => event.target.select()}
+          onFocus={event => event.target.select()}
           value={query}
         />
         <button className="Search-button">
@@ -126,7 +128,7 @@ const App = () => {
       {pictures.length !== 0 && <div className="App-picture-items">
           {pictures.map((picture, index) => (
             <div className="App-picture-item" key={picture.image} /*onClick={() => { getSounds(query) }}*/>
-              {picture.showImage && <img
+              {!picture.showImage && <img
                 src={picture.image}
                 alt={picture.tags}
                 className="App-picture-item-image"
@@ -149,17 +151,17 @@ const App = () => {
         </div>}
       </div>
       <div className="App-footer">
-        {settingsCounter <= 4 && <div className="App-footer-label no-select" onClick={() => showSettings()}>Copyright 2019 &copy; Kids Learn</div>}
-        {settingsCounter === 4 && <a href="#" className="App-footer-item" onClick={() => showSettings()}>Settings</a>}
-        {settingsCounter > 4 && <a href="#" className="App-footer-item" onClick={() => setSettingsCounter(0)}>Back</a>}
-        {settingsCounter > 4 && <a href="#" className="App-footer-item" onClick={() => {
+        {settingsCounter <= 4 && <div className="App-footer-label" onClick={() => showSettings()}>Copyright 2019 &copy; Kids Learn</div>}
+        {settingsCounter === 4 && <span className="App-footer-item" onClick={() => showSettings()}>Settings</span>}
+        {settingsCounter > 4 && <span className="App-footer-item" onClick={() => setSettingsCounter(0)}>Back</span>}
+        {settingsCounter > 4 && <span className="App-footer-item" onClick={() => {
           localStorage.setItem('tags', JSON.stringify([]))
           setTags([])
-        }}>Clear tags</a>}
-        {settingsCounter > 4 && <a href="#" className="App-footer-item" onClick={() => {
+        }}>Clear tags</span>}
+        {settingsCounter > 4 && <span className="App-footer-item" onClick={() => {
           setPictures([]);
           localStorage.setItem('pictures', JSON.stringify({}))
-        }}>Clear cache</a>}
+        }}>Clear cache</span>}
       </div>
     </div>
   )
