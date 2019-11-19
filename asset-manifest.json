@@ -1,6 +1,6 @@
 {
-  "app.js": "/react-native-web-kids-learn/static/js/app.ed0389ef.chunk.js",
-  "app.10df7055e9c39b7bdef3.map": "/react-native-web-kids-learn/10df7055e9c39b7bdef3.map",
+  "app.js": "/react-native-web-kids-learn/static/js/app.0f5202b8.chunk.js",
+  "app.0e2a5d31062fe2e303c2.map": "/react-native-web-kids-learn/0e2a5d31062fe2e303c2.map",
   "runtime~app.js": "/react-native-web-kids-learn/static/js/runtime~app.7e7a666d.js",
   "runtime~app.139f443d41c4ce336c76.map": "/react-native-web-kids-learn/139f443d41c4ce336c76.map",
   "static/js/2.ea51f786.chunk.js": "/react-native-web-kids-learn/static/js/2.ea51f786.chunk.js",
@@ -21,11 +21,11 @@
   "favicon.ico": "/react-native-web-kids-learn/favicon.ico",
   "index.html": "/react-native-web-kids-learn/index.html",
   "manifest.json": "/react-native-web-kids-learn/manifest.json",
-  "precache-manifest.5c804164ead8203725486b037fb14ce4.js": "/react-native-web-kids-learn/precache-manifest.5c804164ead8203725486b037fb14ce4.js",
+  "precache-manifest.06eba4a05217822d49913fc5d4550635.js": "/react-native-web-kids-learn/precache-manifest.06eba4a05217822d49913fc5d4550635.js",
   "register-service-worker.js": "/react-native-web-kids-learn/register-service-worker.js",
   "serve.json": "/react-native-web-kids-learn/serve.json",
   "service-worker.js": "/react-native-web-kids-learn/service-worker.js",
   "static/js/2.ea51f786.chunk.js.gz": "/react-native-web-kids-learn/static/js/2.ea51f786.chunk.js.gz",
-  "static/js/app.ed0389ef.chunk.js.gz": "/react-native-web-kids-learn/static/js/app.ed0389ef.chunk.js.gz",
+  "static/js/app.0f5202b8.chunk.js.gz": "/react-native-web-kids-learn/static/js/app.0f5202b8.chunk.js.gz",
   "static/js/runtime~app.7e7a666d.js.gz": "/react-native-web-kids-learn/static/js/runtime~app.7e7a666d.js.gz"
 }

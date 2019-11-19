@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "10df7055e9c39b7bdef3",
-    "url": "/react-native-web-kids-learn/static/js/app.ed0389ef.chunk.js"
+    "revision": "0e2a5d31062fe2e303c2",
+    "url": "/react-native-web-kids-learn/static/js/app.0f5202b8.chunk.js"
   },
   {
     "revision": "139f443d41c4ce336c76",
@@ -60,10 +60,6 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/serve.json"
   },
   {
-    "revision": "020fd499a2d2bc45c4c3b6021e472b43",
-    "url": "/react-native-web-kids-learn/register-service-worker.js"
-  },
-  {
     "revision": "7a7bc7ead25db795e58b336f04d2624c",
     "url": "/react-native-web-kids-learn/favicon.ico"
   },
@@ -72,20 +68,24 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/expo-service-worker.js"
   },
   {
+    "revision": "020fd499a2d2bc45c4c3b6021e472b43",
+    "url": "/react-native-web-kids-learn/register-service-worker.js"
+  },
+  {
     "revision": "d38a63048e65bb887d047c8c8a2e8dd9",
     "url": "/react-native-web-kids-learn/manifest.json"
   },
   {
-    "revision": "851dc7a8454ddfadc2dd308ebd09d122",
+    "revision": "c03c94a9b475bf93ffe60b03b659c7e6",
     "url": "/react-native-web-kids-learn/index.html"
+  },
+  {
+    "revision": "776140d63e7a47532c04f37d21f03469",
+    "url": "/react-native-web-kids-learn/static/js/app.0f5202b8.chunk.js.gz"
   },
   {
     "revision": "867d3b2c300dea602b16bc68c8a265ac",
     "url": "/react-native-web-kids-learn/static/js/runtime~app.7e7a666d.js.gz"
-  },
-  {
-    "revision": "d7ec4a4cc3bc4ce52ccb7c4f942f80a9",
-    "url": "/react-native-web-kids-learn/static/js/app.ed0389ef.chunk.js.gz"
   },
   {
     "revision": "bd56db0844d50841ee6e0b69eb5e794d",
