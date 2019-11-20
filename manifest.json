@@ -4,11 +4,11 @@
   "dir": "auto",
   "display": "standalone",
   "lang": "en",
-  "name": "Kids Learn",
+  "name": "Media Viewer for Kids",
   "orientation": "portrait",
   "prefer_related_applications": true,
   "related_applications": [],
-  "short_name": "Kids Learn",
+  "short_name": "Media Viewer for Kids",
   "start_url": ".",
   "theme_color": "#4630EB"
 }
