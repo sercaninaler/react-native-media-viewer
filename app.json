@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Kids Learn",
-    "slug": "react-native-web-kids-learn",
+    "name": "Media Viewer for Kids",
+    "slug": "react-native-media-viewer",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [

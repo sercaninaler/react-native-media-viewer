@@ -1,9 +1,9 @@
-## React Native Web Kids Learn
-Learning application for kids based on React Native. Works on Web, Android and Ios
+## React Native Media Viewer
+Media viewer and learning application for kids based on React Native. Works on Web, Android and Ios
 
 ## Demo
 
-https://sercaninaler.github.io/react-native-web-kids-learn
+https://sercaninaler.github.io/react-native-media-viewer
 
 ### Installation
 

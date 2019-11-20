@@ -14,6 +14,7 @@ const App = () => {
   const [ query, setQuery ] = useState('cats')
   const [ tags, setTags ] = useState(['fruits','animals','planets'])
   const [ settingsCounter, setSettingsCounter ] = useState(0)
+  const [ message, setMessage ] = useState(null)
 
   if (!JSON.parse(localStorage.getItem('pictures'))) {
     localStorage.setItem('pictures', JSON.stringify({}))
@@ -25,6 +26,8 @@ const App = () => {
   let sound = null
 
   const getPictures = async (query) => {
+    setMessage(null)
+
     const localData = JSON.parse(localStorage.getItem('pictures'))
 
     if ((!Array.isArray(localData[query]) || !localData[query].length) || Math.round(new Date().getTime() / 1000) - localData.lastUpdate > 24 * 60 * 60) {
@@ -44,11 +47,26 @@ const App = () => {
         localData.lastUpdate = Math.round(new Date().getTime()/1000)
         localStorage.setItem('pictures', JSON.stringify(localData))
         setPictures(newData)
+
+        insertTag(query)
+      } else {
+        setMessage('Couldn\'t find any results ')
+        setPictures([])
       }
 
     } else {
       setPictures(localData[query])
+
+      if (tags.indexOf(query) === -1) {
+        insertTag(query)
+      }
     }
+  }
+
+  const insertTag = tag => {
+    const newTags = arrayRemove(tags, tag)
+    newTags.unshift(tag)
+    setTags(newTags)
   }
 
   const getSounds = async (query) => {
@@ -66,7 +84,7 @@ const App = () => {
   }
 
   const playAudio = fileName => {
-    if(sound) {
+    if (sound) {
       sound.pause()
     }
     sound = new Audio(fileName)
@@ -74,16 +92,13 @@ const App = () => {
   }
 
   const arrayRemove = (arr, value) => {
-    return arr.filter(function(ele){
-      return ele !== value;
-    });
+    return arr.filter(el => {
+      return el !== value
+    })
   }
 
   const onSubmit = event => {
     event.preventDefault()
-    const newTags = arrayRemove(tags, query)
-    newTags.unshift(query)
-    setTags(newTags)
     getPictures(query)
   }
 
@@ -94,7 +109,6 @@ const App = () => {
   const showSettings = () => {
     setSettingsCounter(settingsCounter + 1)
   }
-
 
   return (
     <div className="App">
@@ -120,10 +134,13 @@ const App = () => {
             setQuery(tag)
             getPictures(tag)
           }}>
-            { tag }
+            {tag}
           </div>
         ))}
       </div>
+
+      {message && <div className="App-message">{message}</div>}
+
       <div className="App-picture-items-holder">
       {pictures.length !== 0 && <div className="App-picture-items">
           {pictures.map((picture, index) => (
