@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "fa0cdc1a5d659d8c1659",
-    "url": "/react-native-web-kids-learn/static/js/app.8428a1ed.chunk.js"
+    "revision": "2b71ed1f685e5b4b1b19",
+    "url": "/react-native-web-kids-learn/static/js/app.582a3415.chunk.js"
   },
   {
     "revision": "139f443d41c4ce336c76",
@@ -56,12 +56,12 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/./fonts/SimpleLineIcons.ttf"
   },
   {
-    "revision": "7a7bc7ead25db795e58b336f04d2624c",
-    "url": "/react-native-web-kids-learn/favicon.ico"
-  },
-  {
     "revision": "d0c694b562b2208635f250762cd7fc79",
     "url": "/react-native-web-kids-learn/serve.json"
+  },
+  {
+    "revision": "7a7bc7ead25db795e58b336f04d2624c",
+    "url": "/react-native-web-kids-learn/favicon.ico"
   },
   {
     "revision": "5e695e96a003a79f7f97060bf49409a9",
@@ -76,12 +76,12 @@ self.__precacheManifest = [
     "url": "/react-native-web-kids-learn/manifest.json"
   },
   {
-    "revision": "9375adbbe5b9ccfd6ed958e0b2e8c2bc",
+    "revision": "f8e5b382a8cdcea8db369b43c1b4cc2a",
     "url": "/react-native-web-kids-learn/index.html"
   },
   {
-    "revision": "293a230be670c111f9aecdcdf57dd82c",
-    "url": "/react-native-web-kids-learn/static/js/app.8428a1ed.chunk.js.gz"
+    "revision": "baa5a3d7e0240da7f30aef1982774588",
+    "url": "/react-native-web-kids-learn/static/js/app.582a3415.chunk.js.gz"
   },
   {
     "revision": "867d3b2c300dea602b16bc68c8a265ac",
