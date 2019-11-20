@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import './index.css'
 import './App.css'
 import { PIXABAY_API_URL, PIXABAY_API_KEY, FREESOUND_API_URL, FREESOUND_API_KEY } from '../config'
+
+import homeSvg from '../assets/home.svg'
 
 export const pixabayApi = query => `${PIXABAY_API_URL}?key=${PIXABAY_API_KEY}&q=${query}&image_type=photo&orientation=horizontal`
 export const freesoundApi = query =>`${FREESOUND_API_URL}?query=${query}&token=${FREESOUND_API_KEY}
 &normalized=true&fields=previews,description&sort=downloads_desc&filter=duration:[1 TO 5]`
 
 const App = () => {
+  const searchQueryRef = useRef(null)
+
   if (!JSON.parse(localStorage.getItem('pictures'))) {
     localStorage.setItem('pictures', JSON.stringify({}))
   }
@@ -116,6 +120,7 @@ const App = () => {
     <div className="App">
       <form onSubmit={onSubmit} className="Search-form">
         <input
+          ref={searchQueryRef}
           name="searchQuery"
           type="text"
           className="Search-input"
@@ -130,7 +135,13 @@ const App = () => {
         </button>
       </form>
       <div className="App-tags">
-        {tags.length !== 0 && <div className="App-tags-label">Tags</div>}
+        {tags.length !== 0 && <div className="App-tags-item App-tags-label" onClick={() => {
+          setQuery('')
+          setPictures([])
+          searchQueryRef.current.focus()
+        }}>
+          <img src={homeSvg} alt="Homepage" />
+        </div>}
         {tags.map((tag) => (
           <div className={`App-tags-item ${tag === query && "selected"}`} key={tag} onClick={() => {
             setQuery(tag)
@@ -169,8 +180,14 @@ const App = () => {
           ))}
         </div>}
       </div>
+      {1 === 2 &&<div className="App-footer App-settings">
+        <div className="App-footer-label">
+          <span className="App-footer-item" onClick={() => showSettings()}>Dark Mode</span>
+          <span className="App-footer-item" onClick={() => showSettings()}>Language (English)</span>
+        </div>
+      </div>}
       <div className="App-footer">
-        {settingsCounter <= 4 && <div className="App-footer-label" onClick={() => showSettings()}>Copyright 2019 &copy; Kids Learn</div>}
+        {settingsCounter <= 4 && <div className="App-footer-label" onClick={() => showSettings()}>Copyright 2019 &copy; Media Player for Kids</div>}
         {settingsCounter === 4 && <span className="App-footer-item" onClick={() => showSettings()}>Settings</span>}
         {settingsCounter > 4 && <span className="App-footer-item" onClick={() => setSettingsCounter(0)}>Back</span>}
         {settingsCounter > 4 && <span className="App-footer-item" onClick={() => {

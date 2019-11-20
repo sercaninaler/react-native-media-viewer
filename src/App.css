@@ -44,20 +44,24 @@
   margin: 5px 0;
 }
 
-.App-tags-label {
-  margin: 4px 6px 8px 6px;
-  background-color: #eeeeee;
-  padding: 8px 15px;
-  border-radius: 10px;
-  font-weight: bold;
-}
-
 .App-tags-item {
   margin: 4px 6px 8px 6px;
   background-color: #eeeeee;
   padding: 8px 15px;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.App-tags-label {
+  margin: 4px 6px 8px 6px;
+  background-color: #eeeeee;
+  padding: 5px 6px 0;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.App-tags-label img {
+  width: 23px;
 }
 
 .App-tags-item:hover, .App-tags-item.selected {
@@ -109,7 +113,7 @@
 
 .App-footer {
   text-align: center;
-  background-color: #eeeeee;
+  background-color: #eee;
   padding: 12px 0;
   position: absolute;
   width: 100%;
@@ -119,6 +123,11 @@
   justify-content: center;
   flex-wrap: wrap;
   line-height: 20px;
+}
+
+.App-settings {
+  bottom: 44px;
+  background-color: #fff;
 }
 
 .App-footer-label {
