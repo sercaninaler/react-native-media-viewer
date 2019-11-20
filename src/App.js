@@ -9,13 +9,6 @@ export const freesoundApi = query =>`${FREESOUND_API_URL}?query=${query}&token=$
 &normalized=true&fields=previews,description&sort=downloads_desc&filter=duration:[1 TO 5]`
 
 const App = () => {
-  const [ pictures, setPictures ] = useState([])
-  const [ sounds, setSounds ] = useState([])
-  const [ query, setQuery ] = useState('cats')
-  const [ tags, setTags ] = useState(['fruits','animals','planets'])
-  const [ settingsCounter, setSettingsCounter ] = useState(0)
-  const [ message, setMessage ] = useState(null)
-
   if (!JSON.parse(localStorage.getItem('pictures'))) {
     localStorage.setItem('pictures', JSON.stringify({}))
   }
@@ -23,11 +16,19 @@ const App = () => {
     localStorage.setItem('tags', JSON.stringify(['fruits','animals','planets']))
   }
 
+  const localStorageTags = JSON.parse(localStorage.getItem('tags'))
+
+  const [ pictures, setPictures ] = useState([])
+  const [ sounds, setSounds ] = useState([])
+  const [ query, setQuery ] = useState('')
+  const [ tags, setTags ] = useState(localStorageTags)
+  const [ settingsCounter, setSettingsCounter ] = useState(0)
+  const [ message, setMessage ] = useState(null)
+
   let sound = null
 
   const getPictures = async (query) => {
     setMessage(null)
-
     const localData = JSON.parse(localStorage.getItem('pictures'))
 
     if ((!Array.isArray(localData[query]) || !localData[query].length) || Math.round(new Date().getTime() / 1000) - localData.lastUpdate > 24 * 60 * 60) {
@@ -67,6 +68,7 @@ const App = () => {
     const newTags = arrayRemove(tags, tag)
     newTags.unshift(tag)
     setTags(newTags)
+    localStorage.setItem('tags', JSON.stringify(newTags))
   }
 
   const getSounds = async (query) => {
