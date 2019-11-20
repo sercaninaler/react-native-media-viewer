@@ -1,6 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "homepage": "https://sercaninaler.github.io/react-native-web-kids-learn",
+  "homepage": "https://sercaninaler.github.io/react-native-media-viewer",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
