@@ -4,7 +4,7 @@ import './index.css'
 import './App.css'
 import { PIXABAY_API_URL, PIXABAY_API_KEY, FREESOUND_API_URL, FREESOUND_API_KEY } from '../config'
 
-import homeSvg from '../assets/home.svg'
+import HomeSvg from '../assets/home.svg'
 
 export const pixabayApi = query => `${PIXABAY_API_URL}?key=${PIXABAY_API_KEY}&q=${query}&image_type=photo&orientation=horizontal`
 export const freesoundApi = query =>`${FREESOUND_API_URL}?query=${query}&token=${FREESOUND_API_KEY}
@@ -17,7 +17,7 @@ const App = () => {
     localStorage.setItem('pictures', JSON.stringify({}))
   }
   if (!JSON.parse(localStorage.getItem('tags'))) {
-    localStorage.setItem('tags', JSON.stringify(['fruits','animals','planets']))
+    localStorage.setItem('tags', JSON.stringify(['animals','fruits','planets']))
   }
 
   const localStorageTags = JSON.parse(localStorage.getItem('tags'))
@@ -27,6 +27,7 @@ const App = () => {
   const [ query, setQuery ] = useState('')
   const [ tags, setTags ] = useState(localStorageTags)
   const [ settingsCounter, setSettingsCounter ] = useState(0)
+  const [ theme, setTheme ] = useState('light')
   const [ message, setMessage ] = useState(null)
 
   let sound = null
@@ -35,7 +36,7 @@ const App = () => {
     setMessage(null)
     const localData = JSON.parse(localStorage.getItem('pictures'))
 
-    if ((!Array.isArray(localData[query]) || !localData[query].length) || Math.round(new Date().getTime() / 1000) - localData.lastUpdate > 24 * 60 * 60) {
+    if ((!Array.isArray(localData[query]) || !localData[query].length) || Math.round(new Date().getTime() / 1000) - localData[query + '_lastUpdate'] > 24 * 60 * 60) {
       const response = await axios.get(pixabayApi(query))
       const data = response.data.hits
 
@@ -49,7 +50,7 @@ const App = () => {
         })
 
         localData[query] = newData
-        localData.lastUpdate = Math.round(new Date().getTime()/1000)
+        localData[query + '_lastUpdate'] = Math.round(new Date().getTime() / 1000)
         localStorage.setItem('pictures', JSON.stringify(localData))
         setPictures(newData)
 
@@ -117,7 +118,7 @@ const App = () => {
   }
 
   return (
-    <div className="App">
+    <div className="App" style={theme === 'dark' ? { backgroundColor: 'black' } : {}}>
       <form onSubmit={onSubmit} className="Search-form">
         <input
           ref={searchQueryRef}
@@ -140,7 +141,7 @@ const App = () => {
           setPictures([])
           searchQueryRef.current.focus()
         }}>
-          <img src={homeSvg} alt="Homepage" />
+          <img src={HomeSvg} alt="Homepage" />
         </div>}
         {tags.map((tag) => (
           <div className={`App-tags-item ${tag === query && "selected"}`} key={tag} onClick={() => {
@@ -180,14 +181,13 @@ const App = () => {
           ))}
         </div>}
       </div>
-      {1 === 2 &&<div className="App-footer App-settings">
-        <div className="App-footer-label">
-          <span className="App-footer-item" onClick={() => showSettings()}>Dark Mode</span>
-          <span className="App-footer-item" onClick={() => showSettings()}>Language (English)</span>
-        </div>
-      </div>}
       <div className="App-footer">
-        {settingsCounter <= 4 && <div className="App-footer-label" onClick={() => showSettings()}>Copyright 2019 &copy; Media Player for Kids</div>}
+        {settingsCounter <= 4 && <>
+          <div className="App-footer-label" onClick={() => showSettings()}>Media Player for Kids</div>
+          <span className="App-footer-item" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === 'dark' ? 'Light' : 'Dark'} Mode</span>
+        </>}
+        {1 === 2 && <span className="App-footer-item" onClick={() => showSettings()}>Language (English)</span>}
+
         {settingsCounter === 4 && <span className="App-footer-item" onClick={() => showSettings()}>Settings</span>}
         {settingsCounter > 4 && <span className="App-footer-item" onClick={() => setSettingsCounter(0)}>Back</span>}
         {settingsCounter > 4 && <span className="App-footer-item" onClick={() => {
