@@ -5,6 +5,7 @@ import './App.css'
 import { PIXABAY_API_URL, PIXABAY_API_KEY, FREESOUND_API_URL, FREESOUND_API_KEY } from '../config'
 
 import HomeSvg from '../assets/home.svg'
+import SearchSvg from '../assets/search.svg'
 
 export const pixabayApi = query => `${PIXABAY_API_URL}?key=${PIXABAY_API_KEY}&q=${query}&image_type=photo&orientation=horizontal`
 export const freesoundApi = query =>`${FREESOUND_API_URL}?query=${query}&token=${FREESOUND_API_KEY}
@@ -70,10 +71,12 @@ const App = () => {
   }
 
   const insertTag = tag => {
-    const newTags = arrayRemove(tags, tag)
-    newTags.unshift(tag)
-    setTags(newTags)
-    localStorage.setItem('tags', JSON.stringify(newTags))
+    if (tag !== '') {
+      const newTags = arrayRemove(tags, tag)
+      newTags.unshift(tag)
+      setTags(newTags)
+      localStorage.setItem('tags', JSON.stringify(newTags))
+    }
   }
 
   const getSounds = async (query) => {
@@ -132,11 +135,11 @@ const App = () => {
           value={query}
         />
         <button className="Search-button">
-          Search
+          <img src={SearchSvg} alt="Homepage" />
         </button>
       </form>
       <div className="App-tags">
-        {tags.length !== 0 && <div className="App-tags-item App-tags-label" onClick={() => {
+        {1 === 2 && tags.length !== 0 && <div className="App-tags-item App-tags-label" onClick={() => {
           setQuery('')
           setPictures([])
           searchQueryRef.current.focus()
