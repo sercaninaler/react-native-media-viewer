@@ -1,6 +1,6 @@
 {
   "background_color": "#ffffff",
-  "description": "A Neat Expo App",
+  "description": "Media Viewer for Kids",
   "dir": "auto",
   "display": "standalone",
   "lang": "en",
@@ -10,5 +10,5 @@
   "related_applications": [],
   "short_name": "Media Viewer for Kids",
   "start_url": ".",
-  "theme_color": "#4630EB"
+  "theme_color": "#000"
 }
