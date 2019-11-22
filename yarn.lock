@@ -844,10 +844,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@expo/config@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@expo/config/-/config-2.5.0.tgz#e2d750007f639da8c078bb5c0108d872bb8218b5"
-  integrity sha512-eLKo9mjfjvplX88LNpIndHUJWrCSW+QBdEsODVHouGIwXRlihR1a4ytPi381s11X2z+Ab0iabwfW0lIVid4cTA==
+"@expo/config@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@expo/config/-/config-2.5.1.tgz#467733b18d9c26601785a4d3c261edd5e1fba6c0"
+  integrity sha512-MyIGtj917uPHiJJL0mP7A6vDxqgH/z7MqOa18UAz4NfGfCrMKetf/yAk6bQ/rcGBJeNyDSOOXwAOErFSQtBGfg==
   dependencies:
     "@expo/json-file" "^8.2.1"
     "@types/invariant" "^2.2.30"
@@ -893,15 +893,15 @@
   dependencies:
     lodash "^4.17.4"
 
-"@expo/webpack-config@^0.10.1":
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.10.1.tgz#003b2b41deb0b2d89c74c24e36966efe643ae501"
-  integrity sha512-eDDe2m9nJZamYzhUTc6zVLsXwcVTzVKtYMmEDEo/9z8Gl2ZQbV5ggJm1rf8SN1DATAXS6RYJW+OVvS8eLp7Upg==
+"@expo/webpack-config@^0.10.2":
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.10.2.tgz#74c07a4e5d93288be32ce8a177c689b8cf7f8798"
+  integrity sha512-KgeWwMd3R2oV/RkqKjLVgKeKToYK4Tp+9zlSz7Ly2K5z21GKirxMspB5W7LKmiZHnBMlDEBFbflNd5GiotiuRA==
   dependencies:
     "@babel/core" "^7.0.0"
     "@babel/runtime" "^7.3.4"
-    "@expo/config" "^2.5.0"
-    "@expo/webpack-pwa-manifest-plugin" "^1.2.10"
+    "@expo/config" "^2.5.1"
+    "@expo/webpack-pwa-manifest-plugin" "^1.2.11"
     "@types/yup" "^0.26.24"
     babel-loader "8.0.6"
     babel-preset-expo "^7.0.0"
@@ -928,7 +928,7 @@
     style-loader "^0.23.1"
     terser-webpack-plugin "^1.2.3"
     url-loader "^1.1.2"
-    webpack "4.39.0"
+    webpack "4.41.2"
     webpack-bundle-analyzer "^3.0.4"
     webpack-deep-scope-plugin "1.6.0"
     webpack-manifest-plugin "^2.0.4"
@@ -936,12 +936,12 @@
     workbox-webpack-plugin "^3.6.3"
     yup "^0.27.0"
 
-"@expo/webpack-pwa-manifest-plugin@^1.2.10":
-  version "1.2.10"
-  resolved "https://registry.yarnpkg.com/@expo/webpack-pwa-manifest-plugin/-/webpack-pwa-manifest-plugin-1.2.10.tgz#5b6222a1dc25021b92b473de6fef07cbd713f5f1"
-  integrity sha512-K1YVk0sYhaLiwe6FroE4JiLQkPD187ViaAOhXCL5/V10yREwvqxyjFaF4z7UnWPWOpg7lnz8C2PwsbsVuUv8JA==
+"@expo/webpack-pwa-manifest-plugin@^1.2.11":
+  version "1.2.11"
+  resolved "https://registry.yarnpkg.com/@expo/webpack-pwa-manifest-plugin/-/webpack-pwa-manifest-plugin-1.2.11.tgz#e003dc729a4864099cc74890803d1181d155adb9"
+  integrity sha512-/AURoxSPVAeBoA4MpcTezYsncL7GiIogx2D9VkS1y5k5hgrI3n+p0QKTKjeLs/zfTOmAjKGQDRr+q3LE+AHZvw==
   dependencies:
-    "@expo/config" "^2.5.0"
+    "@expo/config" "^2.5.1"
     "@expo/image-utils" "^0.2.8"
     is-color "^1.0.2"
     mime "^2.4.0"
@@ -7921,6 +7921,14 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.11.0.tgz#b85dfecd48ad1ce469ff558a882ca8e8313928fa"
   integrity sha512-gbBVYR2p8mnriqAwWx9LbuUrShnAuSCNnuPGyc7GJrMVQtPDAh8iLpv7FRuMPFb56KkaVZIYSz1PrjI9q0QPCw==
 
+react-loader-spinner@^3.1.5:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/react-loader-spinner/-/react-loader-spinner-3.1.5.tgz#e9a40c6032fddf0eba319e525cc613c5d698e4f9"
+  integrity sha512-617hOJtzFqQDs9OT/zLzdyvlCcb6m07xz/tOoZcVAeb/yiwstrz3nulzpKkwYL3c/3+l5IZJNGl1Bm5fLy6uYg==
+  dependencies:
+    babel-runtime "^6.26.0"
+    prop-types "^15.6.2"
+
 react-native-branch@~3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-3.0.1.tgz#5b07b61cbd290168cd3c3662e017ebe0f356d2ca"
@@ -9737,10 +9745,10 @@ webpack-sources@^1.0.1, webpack-sources@^1.0.2, webpack-sources@^1.1.0, webpack-
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@4.39.0:
-  version "4.39.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.39.0.tgz#1d511308c3dd8f9fe3152c9447ce30f1814a620c"
-  integrity sha512-nrxFNSEKm4T1C/EsgOgN50skt//Pl4X7kgJC1MrlE47M292LSCVmMOC47iTGL0CGxbdwhKGgeThrJcw0bstEfA==
+webpack@4.41.2:
+  version "4.41.2"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.2.tgz#c34ec76daa3a8468c9b61a50336d8e3303dce74e"
+  integrity sha512-Zhw69edTGfbz9/8JJoyRQ/pq8FYUoY0diOXqW0T6yhgdhCv6wr0hra5DwwWexNRns2Z2+gsnrNcbe9hbGBgk/A==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
