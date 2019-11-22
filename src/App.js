@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
+import Loader from 'react-loader-spinner'
 import './index.css'
 import './App.css'
 import { PIXABAY_API_URL, PIXABAY_API_KEY, FREESOUND_API_URL, FREESOUND_API_KEY } from '../config'
@@ -30,6 +31,7 @@ const App = () => {
   const [ settingsCounter, setSettingsCounter ] = useState(0)
   const [ theme, setTheme ] = useState('light')
   const [ message, setMessage ] = useState(null)
+  const [ isLoading, setIsLoading ] = useState(false)
 
   let sound = null
 
@@ -38,6 +40,7 @@ const App = () => {
     const localData = JSON.parse(localStorage.getItem('pictures'))
 
     if ((!Array.isArray(localData[query]) || !localData[query].length) || Math.round(new Date().getTime() / 1000) - localData[query + '_lastUpdate'] > 24 * 60 * 60) {
+      setIsLoading(true)
       const response = await axios.get(pixabayApi(query))
       const data = response.data.hits
 
@@ -57,10 +60,14 @@ const App = () => {
 
         insertTag(query)
       } else {
-        setMessage('Couldn\'t find any results ')
+        setTimeout(() => {
+          setMessage('Couldn\'t find any results ')
+        }, 500)
         setPictures([])
       }
-
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 500)
     } else {
       setPictures(localData[query])
 
@@ -158,8 +165,18 @@ const App = () => {
 
       {message && <div className="App-message">{message}</div>}
 
+      {isLoading && <div className="loader">
+        <Loader
+          type="BallTriangle"
+          color="#333"
+          height={100}
+          width={100}
+          timeout={5000}
+        />
+      </div>}
+
       <div className="App-picture-items-holder">
-      {pictures.length !== 0 && <div className="App-picture-items">
+        {!isLoading && pictures.length !== 0 && <div className="App-picture-items">
           {pictures.map((picture, index) => (
             <div className="App-picture-item" key={picture.image} /*onClick={() => { getSounds(query) }}*/>
               {!picture.showImage && <img

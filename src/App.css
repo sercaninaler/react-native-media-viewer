@@ -18,8 +18,8 @@
   background-color: #F9F9F9;
   border: 1px solid #DDD;
   border-radius: 4px;
-  width: 200px;
-  max-width: calc(100% - 88px);
+  width: 260px;
+  max-width: calc(100% - 60px);
   outline: none;
   margin: 0 10px 10px 0;
 }
@@ -31,8 +31,11 @@
   cursor: pointer;
   margin-bottom: 10px;
   background-color: #f9f9f9;
-  border-color: #ddd;
-  outline: none;
+  border: 1px solid #ddd;
+}
+
+.Search-button:focus {
+  outline: none!important;
 }
 
 .Search-button:hover {
@@ -85,6 +88,10 @@
   text-align: center;
   margin: 25px 0 0;
   color: red;
+}
+
+.App-picture-items-holder {
+  text-align: center;
 }
 
 .App-picture-items {
@@ -158,4 +165,12 @@
 .App-footer-item:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100% - 260px);
+  text-align: center;
 }
