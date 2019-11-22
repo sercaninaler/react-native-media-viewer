@@ -1,32 +1,54 @@
-## React Native Media Viewer
-Media viewer and learning application for kids based on React Native. Works on Web, Android and Ios
+### React Native Media Viewer
+Media viewer application based on React Native. 
+Works on Web, Android and Ios.
 
-## Demo
+#### Demo
 
 https://sercaninaler.github.io/react-native-media-viewer
 
-### Installation
+#### Installation
 
 ```
 yarn
 ```
 
-### Running
+#### Running with Metro Bundler 
 
 ```
 yarn start
-Open http://127.0.0.1:8090
 ```
 
-### Building
+#### Running for Web
+
+```
+yarn web
+```
+
+#### Running for Android
+
+```
+yarn android
+```
+
+#### Running for IOS
+
+```
+yarn ios
+```
+
+#### Build for Web
 
 ```
 yarn build
 ```
 
-### Linting
+#### Deploy on Github Pages
 
-ESLint with React linting options have been enabled.
+```
+yarn deploy
+```
+
+#### Linting
 
 ```
 yarn lint
