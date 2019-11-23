@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { AppRegistry, StyleSheet, Text, View } from 'react-native'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
+import styles from './styles'
+
 import './index.css'
 import './App.css'
 import { PIXABAY_API_URL, PIXABAY_API_KEY, FREESOUND_API_URL, FREESOUND_API_KEY } from '../config'
@@ -29,11 +32,20 @@ const App = () => {
   const [ query, setQuery ] = useState('')
   const [ tags, setTags ] = useState(localStorageTags)
   const [ settingsCounter, setSettingsCounter ] = useState(0)
-  const [ theme, setTheme ] = useState('light')
+  const [ theme, setTheme ] = useState('dark')
   const [ message, setMessage ] = useState(null)
   const [ isLoading, setIsLoading ] = useState(false)
 
   let sound = null
+
+  let newStyles = styles
+  if (theme === 'light') {
+    newStyles = Object.assign({}, styles, {
+      app: {...styles.app, backgroundColor:'#FFFFFF'}
+    })
+  }
+
+  const style = StyleSheet.create(newStyles)
 
   const getPictures = async (query) => {
     setMessage(null)
@@ -128,7 +140,7 @@ const App = () => {
   }
 
   return (
-    <div className="App" style={theme === 'dark' ? { backgroundColor: 'black' } : {}}>
+    <View style={style.app}>
       <form onSubmit={onSubmit} className="Search-form">
         <input
           ref={searchQueryRef}
@@ -215,11 +227,11 @@ const App = () => {
           setTags([])
         }}>Clear tags</span>}
         {settingsCounter > 4 && <span className="App-footer-item" onClick={() => {
-          setPictures([]);
+          setPictures([])
           localStorage.setItem('pictures', JSON.stringify({}))
         }}>Clear cache</span>}
       </div>
-    </div>
+    </View>
   )
 }
 
