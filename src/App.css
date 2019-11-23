@@ -15,9 +15,9 @@
 .Search-input {
   font-size: 18px;
   padding: 8px;
-  background-color: #F9F9F9;
-  border: 1px solid #DDD;
-  border-radius: 4px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   width: 260px;
   max-width: calc(100% - 60px);
   outline: none;
@@ -26,12 +26,12 @@
 
 .Search-button {
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: 5px;
   outline: none;
   cursor: pointer;
   margin-bottom: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  background-color: #eee;
+  border: 1px solid #ccc;
 }
 
 .Search-button:focus {
@@ -39,11 +39,11 @@
 }
 
 .Search-button:hover {
-  background-color: #ddd;
+  background-color: #ccc;
 }
 
 .Search-button img {
-  height: 22px;
+  height: 20px;
 }
 
 .App-tags {
@@ -58,15 +58,16 @@
 
 .App-tags-item {
   margin: 4px 6px 8px 6px;
-  background-color: #eeeeee;
-  padding: 8px 15px;
-  border-radius: 10px;
+  background-color: #eee;
+  padding: 7px 14px;
+  border-radius: 5px;
   cursor: pointer;
+  border: 1px solid #ccc;
 }
 
 .App-tags-label {
   margin: 4px 6px 8px 6px;
-  background-color: #eeeeee;
+  background-color: #eee;
   padding: 5px 6px 0;
   border-radius: 10px;
   font-weight: bold;
@@ -77,7 +78,7 @@
 }
 
 .App-tags-item:hover, .App-tags-item.selected {
-  background-color: #ddd;
+  background-color: #ccc;
 }
 
 .App-message {
@@ -105,7 +106,7 @@
 
 .App-picture-item {
   max-width: 480px;
-  margin: 30px -5px 50px;
+  margin: 20px -5px 50px;
 }
 
 .App-picture-item-title {
@@ -119,11 +120,12 @@
 
 .App-picture-item-image {
   width: 100%;
+  border-radius: 10px;
 }
 
 @media only screen and (min-width: 500px) {
   .App-picture-item {
-    margin: 30px 15px 0;
+    margin: 30px 15px 10px;
   }
 }
 

@@ -32,7 +32,7 @@ const App = () => {
   const [ query, setQuery ] = useState('')
   const [ tags, setTags ] = useState(localStorageTags)
   const [ settingsCounter, setSettingsCounter ] = useState(0)
-  const [ theme, setTheme ] = useState('dark')
+  const [ theme, setTheme ] = useState('light')
   const [ message, setMessage ] = useState(null)
   const [ isLoading, setIsLoading ] = useState(false)
 
@@ -90,11 +90,10 @@ const App = () => {
   }
 
   const insertTag = tag => {
-    if (tag !== '') {
-      const newTags = arrayRemove(tags, tag)
-      newTags.unshift(tag)
-      setTags(newTags)
-      localStorage.setItem('tags', JSON.stringify(newTags))
+    if (tag !== '' && tags.indexOf(tag) === -1) {
+      tags.unshift(tag)
+      setTags(tags)
+      localStorage.setItem('tags', JSON.stringify(tags))
     }
   }
 
@@ -118,12 +117,6 @@ const App = () => {
     }
     sound = new Audio(fileName)
     sound.play()
-  }
-
-  const arrayRemove = (arr, value) => {
-    return arr.filter(el => {
-      return el !== value
-    })
   }
 
   const onSubmit = event => {

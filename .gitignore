@@ -11,7 +11,8 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.orig.*
-web-build/
+web-build/*
+!*web-build/index.html
 web-report/
 
 # macOS
