@@ -173,6 +173,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: calc(100% - 260px);
   text-align: center;
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  height: 100%;
+  opacity: 0.8;
+  z-index: 1;
+  padding-bottom: 100px;
+
 }

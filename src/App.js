@@ -176,7 +176,7 @@ const App = () => {
           color="#333"
           height={100}
           width={100}
-          timeout={5000}
+          timeout={500000}
         />
       </div>}
 
