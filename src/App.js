@@ -2,14 +2,16 @@ import React, { useState, useEffect, useRef } from 'react'
 import { AppRegistry, StyleSheet, Text, View } from 'react-native'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
-import styles from './styles'
+import { Resizable } from 're-resizable'
 
+import styles from './styles'
 import './index.css'
 import './App.css'
-import { PIXABAY_API_URL, PIXABAY_API_KEY, FREESOUND_API_URL, FREESOUND_API_KEY } from '../config'
 
 import HomeSvg from '../assets/home.svg'
 import SearchSvg from '../assets/search.svg'
+
+import { PIXABAY_API_URL, PIXABAY_API_KEY, FREESOUND_API_URL, FREESOUND_API_KEY } from '../config'
 
 export const pixabayApi = query => `${PIXABAY_API_URL}?key=${PIXABAY_API_KEY}&q=${query}&image_type=photo&orientation=horizontal`
 export const freesoundApi = query =>`${FREESOUND_API_URL}?query=${query}&token=${FREESOUND_API_KEY}
@@ -182,13 +184,20 @@ const App = () => {
 
       <div className="App-picture-items-holder">
         {!isLoading && pictures.length !== 0 && <div className="App-picture-items">
+          <Resizable
+            defaultSize={{
+              minWidth: 480
+            }}
+            enable={{ top:false, right:true, bottom:false, left:true, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
+            className="App-picture-resizable"
+          >
           {pictures.map((picture, index) => (
             <div className="App-picture-item" key={picture.image} /*onClick={() => { getSounds(query) }}*/>
-              {!picture.showImage && <img
+              <img
                 src={picture.image}
                 alt={picture.tags}
                 className="App-picture-item-image"
-              />}
+              />
 
               {picture.showImage && <h2 className="App-picture-item-title">{picture.tags}</h2>}
 
@@ -204,6 +213,7 @@ const App = () => {
               </div>}
             </div>
           ))}
+          </Resizable>
         </div>}
       </div>
       <div className="App-footer">

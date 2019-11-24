@@ -101,12 +101,10 @@
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
-  padding-bottom: 40px;
 }
 
 .App-picture-item {
-  max-width: 480px;
-  margin: 20px -5px 50px;
+  margin: 20px 0 50px;
 }
 
 .App-picture-item-title {
@@ -121,12 +119,17 @@
 .App-picture-item-image {
   width: 100%;
   border-radius: 10px;
+  display: block;
 }
 
-@media only screen and (min-width: 500px) {
-  .App-picture-item {
-    margin: 30px 15px 10px;
+@media only screen and (max-width: 640px) {
+  .App-picture-item-image {
+    border-radius: 0;
   }
+}
+
+.App-picture-resizable {
+  overflow: hidden;
 }
 
 .App-footer {
@@ -181,5 +184,4 @@
   opacity: 0.8;
   z-index: 1;
   padding-bottom: 100px;
-
 }
