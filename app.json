@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Media Viewer for Kids",
+    "name": "Media Viewer",
     "slug": "react-native-media-viewer",
     "privacy": "public",
     "sdkVersion": "35.0.0",

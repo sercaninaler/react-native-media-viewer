@@ -218,7 +218,7 @@ const App = () => {
       </div>
       <div className="App-footer">
         {settingsCounter <= 4 && <>
-          <div className="App-footer-label" onClick={() => showSettings()}>Media Player for Kids</div>
+          <div className="App-footer-label" onClick={() => showSettings()}>Media Viewer</div>
           <span className="App-footer-item" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === 'dark' ? 'Light' : 'Dark'} Mode</span>
         </>}
         {1 === 2 && <span className="App-footer-item" onClick={() => showSettings()}>Language (English)</span>}
