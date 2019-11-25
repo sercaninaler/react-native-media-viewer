@@ -19,27 +19,25 @@ const App = () => {
     localStorage.setItem('pictures', JSON.stringify({}))
   }
   if (!JSON.parse(localStorage.getItem('tags'))) {
-    localStorage.setItem('tags', JSON.stringify(['animals','fruits','planets']))
+    localStorage.setItem('tags', JSON.stringify(['animals', 'fruits', 'planets']))
   }
 
   const localStorageTags = JSON.parse(localStorage.getItem('tags'))
 
-  const [ pictures, setPictures ] = useState([])
-  const [ sounds, setSounds ] = useState([])
-  const [ query, setQuery ] = useState('')
-  const [ tags, setTags ] = useState(localStorageTags)
-  const [ settingsCounter, setSettingsCounter ] = useState(0)
-  const [ theme, setTheme ] = useState('light')
-  const [ message, setMessage ] = useState(null)
-  const [ isLoading, setIsLoading ] = useState(false)
+  const [pictures, setPictures] = useState([])
+  const [sounds, setSounds] = useState([])
+  const [query, setQuery] = useState('')
+  const [tags, setTags] = useState(localStorageTags)
+  const [settingsCounter, setSettingsCounter] = useState(0)
+  const [theme, setTheme] = useState('light')
+  const [message, setMessage] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   let sound = null
 
   let newStyles = styles
   if (theme === 'light') {
-    newStyles = Object.assign({}, styles, {
-      app: {...styles.app, backgroundColor:'#FFFFFF'}
-    })
+    newStyles = { ...styles, app: { ...styles.app, backgroundColor: '#FFFFFF' } }
   }
 
   const style = StyleSheet.create(newStyles)
@@ -48,7 +46,7 @@ const App = () => {
     setMessage(null)
     const localData = JSON.parse(localStorage.getItem('pictures'))
 
-    if ((!Array.isArray(localData[query]) || !localData[query].length) || Math.round(new Date().getTime() / 1000) - localData[query + '_lastUpdate'] > 24 * 60 * 60) {
+    if ((!Array.isArray(localData[query]) || !localData[query].length) || Math.round(new Date().getTime() / 1000) - localData[`${query}_lastUpdate`] > 24 * 60 * 60) {
       setIsLoading(true)
       const response = await axios.get(pixabayApi(query))
       const data = response.data.hits
@@ -63,7 +61,7 @@ const App = () => {
         })
 
         localData[query] = newData
-        localData[query + '_lastUpdate'] = Math.round(new Date().getTime() / 1000)
+        localData[`${query}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
         localStorage.setItem('pictures', JSON.stringify(localData))
         setPictures(newData)
 
@@ -86,7 +84,7 @@ const App = () => {
     }
   }
 
-  const insertTag = tag => {
+  const insertTag = (tag) => {
     if (tag !== '' && tags.indexOf(tag) === -1) {
       tags.unshift(tag)
       setTags(tags)
@@ -97,18 +95,18 @@ const App = () => {
   const getSounds = async (query) => {
     const response = await axios.get(freesoundApi(query))
     const sounds = response.data.results
-    //console.log(sounds)
+    // console.log(sounds)
     setSounds(sounds)
     playAudio(sounds[0].previews['preview-lq-mp3'])
   }
 
-  const togglePicture = id => {
+  const togglePicture = (id) => {
     const newPictures = [...pictures]
     newPictures[id].showImage = !newPictures[id].showImage
     setPictures(newPictures)
   }
 
-  const playAudio = fileName => {
+  const playAudio = (fileName) => {
     if (sound) {
       sound.pause()
     }
@@ -116,12 +114,12 @@ const App = () => {
     sound.play()
   }
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault()
     getPictures(query)
   }
 
-  const onChange = event => {
+  const onChange = (event) => {
     setQuery(event.target.value.toLowerCase())
   }
 
@@ -140,7 +138,7 @@ const App = () => {
           placeholder="Search for pictures"
           autoComplete="off"
           onChange={onChange}
-          onFocus={event => event.target.select()}
+          onFocus={(event) => event.target.select()}
           value={query}
         />
         <button className="Search-button">
@@ -148,18 +146,27 @@ const App = () => {
         </button>
       </form>
       <div className="App-tags">
-        {1 === 2 && tags.length !== 0 && <div className="App-tags-item App-tags-label" onClick={() => {
-          setQuery('')
-          setPictures([])
-          searchQueryRef.current.focus()
-        }}>
+        {1 === 2 && tags.length !== 0 && (
+        <div
+          className="App-tags-item App-tags-label"
+          onClick={() => {
+            setQuery('')
+            setPictures([])
+            searchQueryRef.current.focus()
+          }}
+        >
           <img src={HomeSvg} alt="Homepage" />
-        </div>}
+        </div>
+        )}
         {tags.map((tag) => (
-          <div className={`App-tags-item ${tag === query && "selected"}`} key={tag} onClick={() => {
-            setQuery(tag)
-            getPictures(tag)
-          }}>
+          <div
+            className={`App-tags-item ${tag === query && 'selected'}`}
+            key={tag}
+            onClick={() => {
+              setQuery(tag)
+              getPictures(tag)
+            }}
+          >
             {tag}
           </div>
         ))}
@@ -167,7 +174,8 @@ const App = () => {
 
       {message && <div className="App-message">{message}</div>}
 
-      {isLoading && <div className="loader">
+      {isLoading && (
+      <div className="loader">
         <Loader
           type="BallTriangle"
           color="#333"
@@ -175,59 +183,88 @@ const App = () => {
           width={100}
           timeout={500000}
         />
-      </div>}
+      </div>
+      )}
 
       <div className="App-picture-items-holder">
-        {!isLoading && pictures.length !== 0 && <div className="App-picture-items">
+        {!isLoading && pictures.length !== 0 && (
+        <div className="App-picture-items">
           <Resizable
             defaultSize={{ minWidth: 480 }}
-            enable={{ top:false, right:true, bottom:false, left:true, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
+            enable={{
+              top: false, right: true, bottom: false, left: true, topRight: false, bottomRight: false, bottomLeft: false, topLeft: false,
+            }}
             className="App-picture-resizable"
           >
-          {pictures.map((picture, index) => (
-            <div className="App-picture-item" key={picture.image}>
-              <img
-                src={picture.image}
-                alt={picture.tags}
-                className="App-picture-item-image"
-              />
+            {pictures.map((picture, index) => (
+              <div className="App-picture-item" key={picture.image}>
+                <img
+                  src={picture.image}
+                  alt={picture.tags}
+                  className="App-picture-item-image"
+                />
 
-              <div className="App-picture-item-info">
-                <h2 className="App-picture-item-title">{picture.tags}</h2>
+                <div className="App-picture-item-info">
+                  <h2 className="App-picture-item-title">{picture.tags}</h2>
+                </div>
+
+                {picture.showImage && (
+                <div>
+                  <button
+                    name={index}
+                    type="submit"
+                    className="Search-button"
+                    onClick={() => togglePicture(index)}
+                  >
+                    {picture.showImage ? 'Hide' : 'Show' }
+                    {' '}
+Image
+                  </button>
+                </div>
+                )}
               </div>
-
-              {picture.showImage && <div>
-                <button
-                  name={index}
-                  type="submit"
-                  className="Search-button"
-                  onClick={() => togglePicture(index)}
-                >
-                  {picture.showImage ? 'Hide' : 'Show' } Image
-                </button>
-              </div>}
-            </div>
-          ))}
+            ))}
           </Resizable>
-        </div>}
+        </div>
+        )}
       </div>
       <div className="App-footer">
-        {settingsCounter <= 4 && <>
-          <div className="App-footer-label" onClick={() => showSettings()}>Media Viewer</div>
-          <span className="App-footer-item" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === 'dark' ? 'Light' : 'Dark'} Mode</span>
-        </>}
+        {settingsCounter <= 4 && (
+          <>
+            <div className="App-footer-label" onClick={() => showSettings()}>Media Viewer</div>
+            <span className="App-footer-item" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+              {theme === 'dark' ? 'Light' : 'Dark'}
+              {' '}
+Mode
+            </span>
+          </>
+        )}
         {1 === 2 && <span className="App-footer-item" onClick={() => showSettings()}>Language (English)</span>}
 
         {settingsCounter === 4 && <span className="App-footer-item" onClick={() => showSettings()}>Settings</span>}
         {settingsCounter > 4 && <span className="App-footer-item" onClick={() => setSettingsCounter(0)}>Back</span>}
-        {settingsCounter > 4 && <span className="App-footer-item" onClick={() => {
-          localStorage.setItem('tags', JSON.stringify([]))
-          setTags([])
-        }}>Clear tags</span>}
-        {settingsCounter > 4 && <span className="App-footer-item" onClick={() => {
-          setPictures([])
-          localStorage.setItem('pictures', JSON.stringify({}))
-        }}>Clear cache</span>}
+        {settingsCounter > 4 && (
+        <span
+          className="App-footer-item"
+          onClick={() => {
+            localStorage.setItem('tags', JSON.stringify([]))
+            setTags([])
+          }}
+        >
+Clear tags
+        </span>
+        )}
+        {settingsCounter > 4 && (
+        <span
+          className="App-footer-item"
+          onClick={() => {
+            setPictures([])
+            localStorage.setItem('pictures', JSON.stringify({}))
+          }}
+        >
+Clear cache
+        </span>
+        )}
       </div>
     </View>
   )
