@@ -1,23 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "a589e46aeb9b3427deba",
-    "url": "/react-native-media-viewer/static/js/app.5a1b3fce.chunk.js"
+    "revision": "5f0bb0e6e4a8781bea43",
+    "url": "/react-native-media-viewer/static/js/app.e394ec1f.chunk.js"
   },
   {
     "revision": "b651ec6ee3f07fc88480",
     "url": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js"
   },
   {
-    "revision": "e855d93fd7a53806efdd",
-    "url": "/react-native-media-viewer/static/js/2.0c16a7a2.chunk.js"
+    "revision": "6e7363b64e8825e0e6b5",
+    "url": "/react-native-media-viewer/static/js/2.0d153d0b.chunk.js"
   },
   {
     "revision": "98ad626126898dc274b0899baaf8bb9d",
     "url": "/react-native-media-viewer/static/media/search.98ad6261.svg"
-  },
-  {
-    "revision": "1bb81d2b072d4b42a5e58a81df0adb0b",
-    "url": "/react-native-media-viewer/static/media/home.1bb81d2b.svg"
   },
   {
     "revision": "3a2ba31570920eeb9b1d217cabe58315",
@@ -68,12 +64,12 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/serve.json"
   },
   {
-    "revision": "7a7bc7ead25db795e58b336f04d2624c",
-    "url": "/react-native-media-viewer/favicon.ico"
-  },
-  {
     "revision": "5e695e96a003a79f7f97060bf49409a9",
     "url": "/react-native-media-viewer/expo-service-worker.js"
+  },
+  {
+    "revision": "7a7bc7ead25db795e58b336f04d2624c",
+    "url": "/react-native-media-viewer/favicon.ico"
   },
   {
     "revision": "020fd499a2d2bc45c4c3b6021e472b43",
@@ -84,12 +80,12 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/manifest.json"
   },
   {
-    "revision": "195d347ff99831cc131b948567587752",
+    "revision": "8e588579cc43e8fec4d864949d88b03c",
     "url": "/react-native-media-viewer/index.html"
   },
   {
-    "revision": "f2f094893cc395d3b43f7f4039968238",
-    "url": "/react-native-media-viewer/static/js/app.5a1b3fce.chunk.js.gz"
+    "revision": "b81c6337dc25d5349f6f22fbd80169fa",
+    "url": "/react-native-media-viewer/static/js/app.e394ec1f.chunk.js.gz"
   },
   {
     "revision": "1e4ea387a53522007dc7c24cc22f6986",
@@ -100,7 +96,7 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/expo-service-worker.js.gz"
   },
   {
-    "revision": "2376ee09916f40704574dc5a4499e0a4",
-    "url": "/react-native-media-viewer/static/js/2.0c16a7a2.chunk.js.gz"
+    "revision": "0e8b668e7bf885873425adadfb0b6b31",
+    "url": "/react-native-media-viewer/static/js/2.0d153d0b.chunk.js.gz"
   }
 ];
