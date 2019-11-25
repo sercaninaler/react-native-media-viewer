@@ -3,13 +3,12 @@ import { StyleSheet, View } from 'react-native'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
 import { Resizable } from 're-resizable'
-import { pixabayApi, freesoundApi } from '../config'
+import { pixabayApi } from './constants'
 
 import styles from './styles'
 import './index.css'
 import './App.css'
 
-import HomeSvg from '../assets/home.svg'
 import SearchSvg from '../assets/search.svg'
 
 const App = () => {
@@ -25,15 +24,13 @@ const App = () => {
   const localStorageTags = JSON.parse(localStorage.getItem('tags'))
 
   const [pictures, setPictures] = useState([])
-  const [sounds, setSounds] = useState([])
+  /* const [sounds, setSounds] = useState([]) */
   const [query, setQuery] = useState('')
   const [tags, setTags] = useState(localStorageTags)
   const [settingsCounter, setSettingsCounter] = useState(0)
   const [theme, setTheme] = useState('light')
   const [message, setMessage] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-
-  let sound = null
 
   let newStyles = styles
   if (theme === 'light') {
@@ -42,13 +39,21 @@ const App = () => {
 
   const style = StyleSheet.create(newStyles)
 
-  const getPictures = async (query) => {
+  const insertTag = (tag) => {
+    if (tag !== '' && tags.indexOf(tag) === -1) {
+      tags.unshift(tag)
+      setTags(tags)
+      localStorage.setItem('tags', JSON.stringify(tags))
+    }
+  }
+
+  const getPictures = async (pictureQuery) => {
     setMessage(null)
     const localData = JSON.parse(localStorage.getItem('pictures'))
 
-    if ((!Array.isArray(localData[query]) || !localData[query].length) || Math.round(new Date().getTime() / 1000) - localData[`${query}_lastUpdate`] > 24 * 60 * 60) {
+    if ((!Array.isArray(localData[pictureQuery]) || !localData[pictureQuery].length) || Math.round(new Date().getTime() / 1000) - localData[`${pictureQuery}_lastUpdate`] > 24 * 60 * 60) {
       setIsLoading(true)
-      const response = await axios.get(pixabayApi(query))
+      const response = await axios.get(pixabayApi(pictureQuery))
       const data = response.data.hits
 
       if (data.length) {
@@ -60,12 +65,12 @@ const App = () => {
           })
         })
 
-        localData[query] = newData
-        localData[`${query}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
+        localData[pictureQuery] = newData
+        localData[`${pictureQuery}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
         localStorage.setItem('pictures', JSON.stringify(localData))
         setPictures(newData)
 
-        insertTag(query)
+        insertTag(pictureQuery)
       } else {
         setTimeout(() => {
           setMessage('Couldn\'t find any results ')
@@ -76,42 +81,34 @@ const App = () => {
         setIsLoading(false)
       }, 500)
     } else {
-      setPictures(localData[query])
+      setPictures(localData[pictureQuery])
 
-      if (tags.indexOf(query) === -1) {
-        insertTag(query)
+      if (tags.indexOf(pictureQuery) === -1) {
+        insertTag(pictureQuery)
       }
     }
   }
 
-  const insertTag = (tag) => {
-    if (tag !== '' && tags.indexOf(tag) === -1) {
-      tags.unshift(tag)
-      setTags(tags)
-      localStorage.setItem('tags', JSON.stringify(tags))
-    }
-  }
-
-  const getSounds = async (query) => {
+  /* const getSounds = async (query) => {
     const response = await axios.get(freesoundApi(query))
     const sounds = response.data.results
     // console.log(sounds)
     setSounds(sounds)
     playAudio(sounds[0].previews['preview-lq-mp3'])
-  }
+  } */
 
-  const togglePicture = (id) => {
-    const newPictures = [...pictures]
-    newPictures[id].showImage = !newPictures[id].showImage
-    setPictures(newPictures)
-  }
-
-  const playAudio = (fileName) => {
+  /* const playAudio = (fileName) => {
     if (sound) {
       sound.pause()
     }
     sound = new Audio(fileName)
     sound.play()
+  } */
+
+  const togglePicture = (id) => {
+    const newPictures = [...pictures]
+    newPictures[id].showImage = !newPictures[id].showImage
+    setPictures(newPictures)
   }
 
   const onSubmit = (event) => {
@@ -141,25 +138,14 @@ const App = () => {
           onFocus={(event) => event.target.select()}
           value={query}
         />
-        <button className="Search-button">
+        <button className="Search-button" type="submit">
           <img src={SearchSvg} alt="Homepage" />
         </button>
       </form>
       <div className="App-tags">
-        {1 === 2 && tags.length !== 0 && (
-        <div
-          className="App-tags-item App-tags-label"
-          onClick={() => {
-            setQuery('')
-            setPictures([])
-            searchQueryRef.current.focus()
-          }}
-        >
-          <img src={HomeSvg} alt="Homepage" />
-        </div>
-        )}
         {tags.map((tag) => (
-          <div
+          <button
+            type="button"
             className={`App-tags-item ${tag === query && 'selected'}`}
             key={tag}
             onClick={() => {
@@ -168,7 +154,7 @@ const App = () => {
             }}
           >
             {tag}
-          </div>
+          </button>
         ))}
       </div>
 
@@ -192,7 +178,14 @@ const App = () => {
           <Resizable
             defaultSize={{ minWidth: 480 }}
             enable={{
-              top: false, right: true, bottom: false, left: true, topRight: false, bottomRight: false, bottomLeft: false, topLeft: false,
+              top: false,
+              right: true,
+              bottom: false,
+              left: true,
+              topRight: false,
+              bottomRight: false,
+              bottomLeft: false,
+              topLeft: false,
             }}
             className="App-picture-resizable"
           >
@@ -218,7 +211,7 @@ const App = () => {
                   >
                     {picture.showImage ? 'Hide' : 'Show' }
                     {' '}
-Image
+                    Image
                   </button>
                 </div>
                 )}
@@ -231,39 +224,41 @@ Image
       <div className="App-footer">
         {settingsCounter <= 4 && (
           <>
-            <div className="App-footer-label" onClick={() => showSettings()}>Media Viewer</div>
-            <span className="App-footer-item" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+            <button type="button" className="App-footer-label" onClick={() => showSettings()}>Media Viewer</button>
+            <button type="button" className="App-footer-item" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
               {theme === 'dark' ? 'Light' : 'Dark'}
               {' '}
-Mode
-            </span>
+              Mode
+            </button>
           </>
         )}
-        {1 === 2 && <span className="App-footer-item" onClick={() => showSettings()}>Language (English)</span>}
+        {1 === 2 && <button type="button" className="App-footer-item" onClick={() => showSettings()}>Language (English)</button>}
 
-        {settingsCounter === 4 && <span className="App-footer-item" onClick={() => showSettings()}>Settings</span>}
-        {settingsCounter > 4 && <span className="App-footer-item" onClick={() => setSettingsCounter(0)}>Back</span>}
+        {settingsCounter === 4 && <button type="button" className="App-footer-item" onClick={() => showSettings()}>Settings</button>}
+        {settingsCounter > 4 && <button type="button" className="App-footer-item" onClick={() => setSettingsCounter(0)}>Back</button>}
         {settingsCounter > 4 && (
-        <span
+        <button
+          type="button"
           className="App-footer-item"
           onClick={() => {
             localStorage.setItem('tags', JSON.stringify([]))
             setTags([])
           }}
         >
-Clear tags
-        </span>
+          Clear tags
+        </button>
         )}
         {settingsCounter > 4 && (
-        <span
+        <button
+          type="button"
           className="App-footer-item"
           onClick={() => {
             setPictures([])
             localStorage.setItem('pictures', JSON.stringify({}))
           }}
         >
-Clear cache
-        </span>
+          Clear cache
+        </button>
         )}
       </div>
     </View>
