@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { AppRegistry, StyleSheet, Text, View } from 'react-native'
+import React, { useState, useRef } from 'react'
+import { StyleSheet, View } from 'react-native'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
 import { Resizable } from 're-resizable'
+import { pixabayApi, freesoundApi } from '../config'
 
 import styles from './styles'
 import './index.css'
@@ -10,12 +11,6 @@ import './App.css'
 
 import HomeSvg from '../assets/home.svg'
 import SearchSvg from '../assets/search.svg'
-
-import { PIXABAY_API_URL, PIXABAY_API_KEY, FREESOUND_API_URL, FREESOUND_API_KEY } from '../config'
-
-export const pixabayApi = query => `${PIXABAY_API_URL}?key=${PIXABAY_API_KEY}&q=${query}&image_type=photo&orientation=horizontal`
-export const freesoundApi = query =>`${FREESOUND_API_URL}?query=${query}&token=${FREESOUND_API_KEY}
-&normalized=true&fields=previews,description&sort=downloads_desc&filter=duration:[1 TO 5]`
 
 const App = () => {
   const searchQueryRef = useRef(null)
@@ -185,21 +180,21 @@ const App = () => {
       <div className="App-picture-items-holder">
         {!isLoading && pictures.length !== 0 && <div className="App-picture-items">
           <Resizable
-            defaultSize={{
-              minWidth: 480
-            }}
+            defaultSize={{ minWidth: 480 }}
             enable={{ top:false, right:true, bottom:false, left:true, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
             className="App-picture-resizable"
           >
           {pictures.map((picture, index) => (
-            <div className="App-picture-item" key={picture.image} /*onClick={() => { getSounds(query) }}*/>
+            <div className="App-picture-item" key={picture.image}>
               <img
                 src={picture.image}
                 alt={picture.tags}
                 className="App-picture-item-image"
               />
 
-              {picture.showImage && <h2 className="App-picture-item-title">{picture.tags}</h2>}
+              <div className="App-picture-item-info">
+                <h2 className="App-picture-item-title">{picture.tags}</h2>
+              </div>
 
               {picture.showImage && <div>
                 <button
