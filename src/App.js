@@ -176,12 +176,12 @@ const App = () => {
         {!isLoading && pictures.length !== 0 && (
         <div className="App-picture-items">
           <Resizable
-            defaultSize={{ minWidth: 480 }}
+            defaultSize={{ minWidth: 640 }}
             enable={{
               top: false,
-              right: true,
+              right: window.innerWidth > 640,
               bottom: false,
-              left: true,
+              left: window.innerWidth > 640,
               topRight: false,
               bottomRight: false,
               bottomLeft: false,
