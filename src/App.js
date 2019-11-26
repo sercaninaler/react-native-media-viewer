@@ -124,6 +124,22 @@ const App = () => {
     setSettingsCounter(settingsCounter + 1)
   }
 
+  const renderTags = (text) => {
+    const pictureTags = text.split(',')
+    return pictureTags.map((tag) => (
+      <button
+        type="button"
+        key={tag}
+        onClick={() => {
+          setQuery(tag)
+          getPictures(tag)
+        }}
+      >
+        {tag}
+      </button>
+    ))
+  }
+
   return (
     <View style={style.app}>
       <form onSubmit={onSubmit} className="Search-form">
@@ -198,7 +214,9 @@ const App = () => {
                 />
 
                 <div className="App-picture-item-info">
-                  <h2 className="App-picture-item-title">{picture.tags}</h2>
+                  <div className="App-picture-item-title">
+                    {renderTags(picture.tags)}
+                  </div>
                 </div>
 
                 {picture.showImage && (
