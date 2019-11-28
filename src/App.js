@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, TextInput, Button} from 'react-native'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
 import { Resizable } from 're-resizable'
 import { pixabayApi } from './constants'
 
-import styles from './styles'
+import style from './styles'
 import './index.css'
 import './App.css'
 
@@ -32,12 +32,12 @@ const App = () => {
   const [message, setMessage] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
-  let newStyles = styles
+  let newStyles = style
   if (theme === 'light') {
-    newStyles = { ...styles, app: { ...styles.app, backgroundColor: '#FFFFFF' } }
+    newStyles = { ...style, app: { ...style.app, backgroundColor: '#FFFFFF' } }
   }
 
-  const style = StyleSheet.create(newStyles)
+  const styles = StyleSheet.create(newStyles)
 
   const insertTag = (tag) => {
     if (tag !== '' && tags.indexOf(tag) === -1) {
@@ -107,7 +107,7 @@ const App = () => {
 
   const togglePicture = (id) => {
     const newPictures = [...pictures]
-    newPictures[id].showImage = !newPictures[id].showImage
+    newPictures[id].showInfo = !newPictures[id].showInfo
     setPictures(newPictures)
   }
 
@@ -118,6 +118,10 @@ const App = () => {
 
   const onChange = (event) => {
     setQuery(event.target.value.toLowerCase())
+  }
+
+  const onChangeText = (event) => {
+    setQuery(event.toLowerCase())
   }
 
   const showSettings = () => {
@@ -141,23 +145,17 @@ const App = () => {
   }
 
   return (
-    <View style={style.app}>
-      <form onSubmit={onSubmit} className="Search-form">
-        <input
-          ref={searchQueryRef}
-          name="searchQuery"
-          type="text"
-          className="Search-input"
-          placeholder="Search for pictures"
-          autoComplete="off"
-          onChange={onChange}
-          onFocus={(event) => event.target.select()}
+    <View style={styles.app}>
+      <View style={styles.searchForm}>
+        <TextInput
+          style={styles.searchInput}
           value={query}
+          onChangeText={(text) => onChangeText(text)}
+          placeholder="Search for pictures"
         />
-        <button className="Search-button" type="submit">
-          <img src={SearchSvg} alt="Homepage" />
-        </button>
-      </form>
+
+        <Button style={styles.searchButton} title="Search" onPress={onSubmit} />
+      </View>
       <div className="App-tags">
         {tags.map((tag) => (
           <button
@@ -177,15 +175,15 @@ const App = () => {
       {message && <div className="App-message">{message}</div>}
 
       {isLoading && (
-      <div className="loader">
-        <Loader
-          type="BallTriangle"
-          color="#333"
-          height={100}
-          width={100}
-          timeout={500000}
-        />
-      </div>
+        <div className="loader">
+          <Loader
+            type="BallTriangle"
+            color="#FFF"
+            height={100}
+            width={100}
+            timeout={500000}
+          />
+        </div>
       )}
 
       <div className="App-picture-items-holder">
@@ -211,27 +209,15 @@ const App = () => {
                   src={picture.image}
                   alt={picture.tags}
                   className="App-picture-item-image"
+                  onClick={() => togglePicture(index)}
                 />
 
-                <div className="App-picture-item-info">
-                  <div className="App-picture-item-title">
-                    {renderTags(picture.tags)}
+                {picture.showInfo && (
+                  <div className="App-picture-item-info">
+                    <div className="App-picture-item-tags">
+                      {renderTags(picture.tags)}
+                    </div>
                   </div>
-                </div>
-
-                {picture.showImage && (
-                <div>
-                  <button
-                    name={index}
-                    type="submit"
-                    className="Search-button"
-                    onClick={() => togglePicture(index)}
-                  >
-                    {picture.showImage ? 'Hide' : 'Show' }
-                    {' '}
-                    Image
-                  </button>
-                </div>
                 )}
               </div>
             ))}
