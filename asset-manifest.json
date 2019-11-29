@@ -1,10 +1,10 @@
 {
-  "app.js": "/react-native-media-viewer/static/js/app.f5798ec9.chunk.js",
-  "app.411b21aa1fcf3e6bb8f8.map": "/react-native-media-viewer/411b21aa1fcf3e6bb8f8.map",
+  "app.js": "/react-native-media-viewer/static/js/app.eb2fc8bd.chunk.js",
+  "app.029ef584d4d33155c60c.map": "/react-native-media-viewer/029ef584d4d33155c60c.map",
   "runtime~app.js": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js",
   "runtime~app.b651ec6ee3f07fc88480.map": "/react-native-media-viewer/b651ec6ee3f07fc88480.map",
-  "static/js/2.0d153d0b.chunk.js": "/react-native-media-viewer/static/js/2.0d153d0b.chunk.js",
-  "6e7363b64e8825e0e6b5.map": "/react-native-media-viewer/6e7363b64e8825e0e6b5.map",
+  "static/js/2.1556d5a6.chunk.js": "/react-native-media-viewer/static/js/2.1556d5a6.chunk.js",
+  "b4e0d80fc99e5f9cb37c.map": "/react-native-media-viewer/b4e0d80fc99e5f9cb37c.map",
   "fonts/AntDesign.ttf": "/react-native-media-viewer/./fonts/AntDesign.ttf",
   "fonts/Entypo.ttf": "/react-native-media-viewer/./fonts/Entypo.ttf",
   "fonts/Feather.ttf": "/react-native-media-viewer/./fonts/Feather.ttf",
@@ -21,12 +21,11 @@
   "favicon.ico": "/react-native-media-viewer/favicon.ico",
   "index.html": "/react-native-media-viewer/index.html",
   "manifest.json": "/react-native-media-viewer/manifest.json",
-  "precache-manifest.739ccfe490aab11795a8a2842c111c28.js": "/react-native-media-viewer/precache-manifest.739ccfe490aab11795a8a2842c111c28.js",
+  "precache-manifest.e23b22e067ba23a6c1853a839c599726.js": "/react-native-media-viewer/precache-manifest.e23b22e067ba23a6c1853a839c599726.js",
   "register-service-worker.js": "/react-native-media-viewer/register-service-worker.js",
   "serve.json": "/react-native-media-viewer/serve.json",
   "service-worker.js": "/react-native-media-viewer/service-worker.js",
-  "static/js/2.0d153d0b.chunk.js.gz": "/react-native-media-viewer/static/js/2.0d153d0b.chunk.js.gz",
-  "static/js/app.f5798ec9.chunk.js.gz": "/react-native-media-viewer/static/js/app.f5798ec9.chunk.js.gz",
-  "static/js/runtime~app.f99f8593.js.gz": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js.gz",
-  "static/media/search.svg": "/react-native-media-viewer/static/media/search.98ad6261.svg"
+  "static/js/2.1556d5a6.chunk.js.gz": "/react-native-media-viewer/static/js/2.1556d5a6.chunk.js.gz",
+  "static/js/app.eb2fc8bd.chunk.js.gz": "/react-native-media-viewer/static/js/app.eb2fc8bd.chunk.js.gz",
+  "static/js/runtime~app.f99f8593.js.gz": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js.gz"
 }
