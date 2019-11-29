@@ -1,3 +1,5 @@
+@import "index.css";
+
 .App-logo {
   height: 160px;
 }
@@ -30,17 +32,18 @@
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
-  margin: 5px auto;
+  margin: 10px auto;
   max-width: 800px;
 }
 
 .App-tags-item {
-  margin: 4px 6px 8px 6px;
+  margin: 5px 7px 10px 7px;
   background-color: #eee;
   padding: 7px 14px;
   border-radius: 5px;
   cursor: pointer;
   border: 1px solid #ccc;
+  font-size: 15px;
 }
 
 .App-tags-label {
@@ -87,14 +90,14 @@
 }
 
 .App-picture-item-tags button {
-  font-size: 22px;
+  font-size: 18px;
   color: white;
   margin: 0 8px;
   padding: 8px 12px;
   background-color: #000;
   border-radius: 10px;
   display: inline-block;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 .App-picture-item-tags button:hover {
@@ -181,7 +184,7 @@
   width: 100%;
   background-color: #000;
   height: 100%;
-  opacity: 0.7;
+  opacity: 0.45;
   z-index: 1;
   padding-bottom: 100px;
 }

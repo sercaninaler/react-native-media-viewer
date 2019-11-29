@@ -1,15 +1,12 @@
 import React, { useState, useRef } from 'react'
-import { StyleSheet, View, TextInput, Button} from 'react-native'
+import { StyleSheet, View, TextInput } from 'react-native'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
 import { Resizable } from 're-resizable'
 import { pixabayApi } from './constants'
 
 import style from './styles'
-import './index.css'
 import './App.css'
-
-import SearchSvg from '../assets/search.svg'
 
 const App = () => {
   const searchQueryRef = useRef(null)
@@ -34,7 +31,10 @@ const App = () => {
 
   let newStyles = style
   if (theme === 'light') {
-    newStyles = { ...style, app: { ...style.app, backgroundColor: '#FFFFFF' } }
+    newStyles = {
+      ...style,
+      app: { ...style.app, backgroundColor: '#FFFFFF' },
+    }
   }
 
   const styles = StyleSheet.create(newStyles)
@@ -151,10 +151,10 @@ const App = () => {
           style={styles.searchInput}
           value={query}
           onChangeText={(text) => onChangeText(text)}
-          placeholder="Search for pictures"
+          onSubmitEditing={onSubmit}
+          placeholder="cats, planets, fruits,..."
+          selectTextOnFocus
         />
-
-        <Button style={styles.searchButton} title="Search" onPress={onSubmit} />
       </View>
       <div className="App-tags">
         {tags.map((tag) => (

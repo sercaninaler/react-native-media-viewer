@@ -7,13 +7,21 @@ const styles = {
   },
   searchForm: {
     justifyContent: 'center',
-    flex: '1 0',
     flexDirection: 'row',
   },
+  searchButtonView: {
+    height: '40px',
+    marginLeft: '12px',
+    marginTop: '3px',
+  },
   searchButton: {
+    height: '48px',
+    padding: '4px',
+    fontSize: '18px',
+    borderRadius: '7px',
   },
   searchInput: {
-    fontSize: '18px',
+    fontSize: '16px',
     padding: '8px',
     backgroundColor: '#eee',
     borderTopColor: '#ccc',
