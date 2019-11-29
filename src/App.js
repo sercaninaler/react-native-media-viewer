@@ -225,7 +225,7 @@ const App = () => {
         </div>
         )}
       </div>
-      <div className="App-footer">
+      <div className={theme === 'dark' ? 'App-footer dark' : 'App-footer'}>
         {settingsCounter <= 4 && (
           <>
             <button type="button" className="App-footer-label" onClick={() => showSettings()}>Media Viewer</button>

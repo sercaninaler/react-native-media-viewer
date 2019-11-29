@@ -37,7 +37,7 @@
 }
 
 .App-tags-item {
-  margin: 5px 7px 10px 7px;
+  margin: 5px 7px 8px 7px;
   background-color: #eee;
   padding: 7px 14px;
   border-radius: 5px;
@@ -148,6 +148,15 @@
   line-height: 20px;
 }
 
+.App-footer.dark {
+  background-color: #000;
+}
+
+.App-footer.dark button {
+  color: white;
+  background-color: transparent;
+}
+
 .App-settings {
   bottom: 44px;
   opacity: 0.8;
@@ -160,7 +169,7 @@
 .App-footer-item {
   margin: 0 3px;
   border-left: 1px solid #6b6b6b;
-  padding: 0 6px;
+  padding: 6px 6px;
   color: black;
   text-decoration: none;
 }

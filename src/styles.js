@@ -36,6 +36,7 @@ const styles = {
     width: '260px',
     height: '40px',
   },
+  footer: { },
 }
 
 export default styles
