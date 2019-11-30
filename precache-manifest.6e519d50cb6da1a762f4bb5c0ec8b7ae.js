@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "284c13e0c9b601d2a8b3",
-    "url": "/react-native-media-viewer/static/js/app.5cdc9f00.chunk.js"
+    "revision": "560f2b8b1d4aacd444c9",
+    "url": "/react-native-media-viewer/static/js/app.41cc9fcc.chunk.js"
   },
   {
     "revision": "b651ec6ee3f07fc88480",
     "url": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js"
   },
   {
-    "revision": "b4e0d80fc99e5f9cb37c",
-    "url": "/react-native-media-viewer/static/js/2.1556d5a6.chunk.js"
+    "revision": "4323aec7890bc56413f5",
+    "url": "/react-native-media-viewer/static/js/2.5434a417.chunk.js"
   },
   {
     "revision": "3a2ba31570920eeb9b1d217cabe58315",
@@ -56,12 +56,12 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/./fonts/SimpleLineIcons.ttf"
   },
   {
-    "revision": "d0c694b562b2208635f250762cd7fc79",
-    "url": "/react-native-media-viewer/serve.json"
-  },
-  {
     "revision": "7a7bc7ead25db795e58b336f04d2624c",
     "url": "/react-native-media-viewer/favicon.ico"
+  },
+  {
+    "revision": "d0c694b562b2208635f250762cd7fc79",
+    "url": "/react-native-media-viewer/serve.json"
   },
   {
     "revision": "5e695e96a003a79f7f97060bf49409a9",
@@ -76,23 +76,23 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/manifest.json"
   },
   {
-    "revision": "823b7289f697489adb26de69f2e87895",
+    "revision": "8da84c84eebd0792f335db718ccb081c",
     "url": "/react-native-media-viewer/index.html"
-  },
-  {
-    "revision": "e6756f1b8cdf2617295731e7e1b7b427",
-    "url": "/react-native-media-viewer/static/js/app.5cdc9f00.chunk.js.gz"
   },
   {
     "revision": "1e4ea387a53522007dc7c24cc22f6986",
     "url": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js.gz"
   },
   {
+    "revision": "67d8c86188405b04dd8ca5441d9db145",
+    "url": "/react-native-media-viewer/static/js/app.41cc9fcc.chunk.js.gz"
+  },
+  {
     "revision": "bd56db0844d50841ee6e0b69eb5e794d",
     "url": "/react-native-media-viewer/expo-service-worker.js.gz"
   },
   {
-    "revision": "bd9a26a5795cba1c6df2f255f76829ac",
-    "url": "/react-native-media-viewer/static/js/2.1556d5a6.chunk.js.gz"
+    "revision": "4f6a37672d7112f01928c2140a920ff4",
+    "url": "/react-native-media-viewer/static/js/2.5434a417.chunk.js.gz"
   }
 ];
