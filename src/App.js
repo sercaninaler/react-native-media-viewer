@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, View, TextInput } from 'react-native'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
@@ -9,8 +9,6 @@ import style from './styles'
 import './App.css'
 
 const App = () => {
-  const searchQueryRef = useRef(null)
-
   if (!JSON.parse(localStorage.getItem('pictures'))) {
     localStorage.setItem('pictures', JSON.stringify({}))
   }
@@ -47,8 +45,10 @@ const App = () => {
     }
   }
 
-  const getPictures = async (pictureQuery) => {
+  const getPictures = async (keyword) => {
+    const pictureQuery = keyword.trim()
     setMessage(null)
+
     const localData = JSON.parse(localStorage.getItem('pictures'))
 
     if ((!Array.isArray(localData[pictureQuery]) || !localData[pictureQuery].length) || Math.round(new Date().getTime() / 1000) - localData[`${pictureQuery}_lastUpdate`] > 24 * 60 * 60) {
@@ -57,18 +57,18 @@ const App = () => {
       const data = response.data.hits
 
       if (data.length) {
-        const newData = []
+        const newPictures = []
         data.forEach((item) => {
-          newData.push({
+          newPictures.push({
             image: item.webformatURL,
             tags: item.tags,
           })
         })
 
-        localData[pictureQuery] = newData
+        localData[pictureQuery] = newPictures
         localData[`${pictureQuery}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
         localStorage.setItem('pictures', JSON.stringify(localData))
-        setPictures(newData)
+        setPictures(newPictures)
 
         insertTag(pictureQuery)
       } else {
@@ -105,10 +105,26 @@ const App = () => {
     sound.play()
   } */
 
-  const togglePicture = (id) => {
+  const togglePicture = (index) => {
     const newPictures = [...pictures]
-    newPictures[id].showInfo = !newPictures[id].showInfo
+    if (newPictures[index].showInfo === undefined) {
+      newPictures[index].showInfo = 0
+    } else {
+      newPictures[index].showInfo += 1
+    }
+
     setPictures(newPictures)
+  }
+
+  const deletePicture = (index, query) => {
+    const newPictures = [...pictures]
+    newPictures[index].isDeleted = true
+    setPictures(newPictures)
+
+    const localData = JSON.parse(localStorage.getItem('pictures'))
+    localData[query] = newPictures
+    localData[`${query}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
+    localStorage.setItem('pictures', JSON.stringify(localData))
   }
 
   const onSubmit = (event) => {
@@ -204,23 +220,37 @@ const App = () => {
             className="App-picture-resizable"
           >
             {pictures.map((picture, index) => (
-              <div className="App-picture-item" key={picture.image}>
-                <img
-                  src={picture.image}
-                  alt={picture.tags}
-                  className="App-picture-item-image"
-                  onClick={() => togglePicture(index)}
-                />
+              !picture.isDeleted && (
+                <div className="App-picture-item" key={picture.image}>
+                  <img
+                    src={picture.image}
+                    alt={picture.tags}
+                    className="App-picture-item-image"
+                    onClick={() => togglePicture(index)}
+                  />
 
-                {picture.showInfo && (
-                  <div className="App-picture-item-info">
-                    <div className="App-picture-item-tags">
-                      {renderTags(picture.tags)}
+                  {picture.showInfo % 2 === 0 && (
+                    <div className="App-picture-item-info">
+                      <div className="App-picture-item-tags">
+
+                        {picture.showInfo > 1 && (
+                          <button
+                            type="button"
+                            style={{ color: 'red' }}
+                            onClick={() => {
+                              deletePicture(index, query)
+                            }}
+                          >
+                            delete
+                          </button>
+                        )}
+
+                        {renderTags(picture.tags)}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              )))}
           </Resizable>
         </div>
         )}
