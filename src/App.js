@@ -16,18 +16,25 @@ const App = () => {
     localStorage.setItem('tags', JSON.stringify(['animals', 'fruits', 'planets']))
   }
 
+  if (!JSON.parse(localStorage.getItem('settings'))) {
+    localStorage.setItem('settings', JSON.stringify({ imageWidth: 640, theme: 'light' }))
+  }
+
   const localStorageTags = JSON.parse(localStorage.getItem('tags'))
+  const localStorageSettings = JSON.parse(localStorage.getItem('settings'))
 
   const [pictures, setPictures] = useState([])
   /* const [sounds, setSounds] = useState([]) */
   const [query, setQuery] = useState('')
   const [tags, setTags] = useState(localStorageTags)
   const [settingsCounter, setSettingsCounter] = useState(0)
-  const [theme, setTheme] = useState('light')
+  const [settings, setSettings] = useState(localStorageSettings)
   const [message, setMessage] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
   let newStyles = style
+  const { theme, imageWidth } = settings
+
   if (theme === 'light') {
     newStyles = {
       ...style,
@@ -116,14 +123,14 @@ const App = () => {
     setPictures(newPictures)
   }
 
-  const deletePicture = (index, query) => {
+  const deletePicture = (index, tag) => {
     const newPictures = [...pictures]
     newPictures[index].isDeleted = true
     setPictures(newPictures)
 
     const localData = JSON.parse(localStorage.getItem('pictures'))
-    localData[query] = newPictures
-    localData[`${query}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
+    localData[tag] = newPictures
+    localData[`${tag}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
     localStorage.setItem('pictures', JSON.stringify(localData))
   }
 
@@ -142,6 +149,15 @@ const App = () => {
 
   const showSettings = () => {
     setSettingsCounter(settingsCounter + 1)
+  }
+
+  const updateSettings = (key, value) => {
+    const newSettings = {
+      ...settings,
+      [key]: value,
+    }
+    setSettings(newSettings)
+    localStorage.setItem('settings', JSON.stringify(newSettings))
   }
 
   const renderTags = (text) => {
@@ -206,18 +222,19 @@ const App = () => {
         {!isLoading && pictures.length !== 0 && (
         <div className="App-picture-items">
           <Resizable
-            defaultSize={{ minWidth: 640 }}
+            size={{width: imageWidth}}
+            className="App-picture-resizable"
             enable={{
               top: false,
-              right: window.innerWidth > 640,
+              right: window.innerWidth > imageWidth,
               bottom: false,
-              left: window.innerWidth > 640,
+              left: window.innerWidth > imageWidth,
               topRight: false,
               bottomRight: false,
               bottomLeft: false,
               topLeft: false,
             }}
-            className="App-picture-resizable"
+            onResizeStop={(e, d, x, size) => { updateSettings('imageWidth', imageWidth + size.width) }}
           >
             {pictures.map((picture, index) => (
               !picture.isDeleted && (
@@ -232,19 +249,15 @@ const App = () => {
                   {picture.showInfo % 2 === 0 && (
                     <div className="App-picture-item-info">
                       <div className="App-picture-item-tags">
-
-                        {picture.showInfo > 1 && (
-                          <button
-                            type="button"
-                            style={{ color: 'red' }}
-                            onClick={() => {
-                              deletePicture(index, query)
-                            }}
-                          >
-                            delete
-                          </button>
-                        )}
-
+                        <button
+                          type="button"
+                          style={{ color: 'red' }}
+                          onClick={() => {
+                            deletePicture(index, query)
+                          }}
+                        >
+                          x
+                        </button>
                         {renderTags(picture.tags)}
                       </div>
                     </div>
@@ -259,10 +272,8 @@ const App = () => {
         {settingsCounter <= 4 && (
           <>
             <button type="button" className="App-footer-label" onClick={() => showSettings()}>Media Viewer</button>
-            <button type="button" className="App-footer-item" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-              {theme === 'dark' ? 'Light' : 'Dark'}
-              {' '}
-              Mode
+            <button type="button" className="App-footer-item" onClick={() => updateSettings('theme', theme === 'dark' ? 'light' : 'dark')}>
+              {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
             </button>
           </>
         )}

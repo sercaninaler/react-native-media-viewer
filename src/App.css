@@ -85,7 +85,7 @@
 }
 
 .App-picture-item {
-  margin: 4% 0 10%;
+  margin: 4% 0 12%;
   position: relative;
 }
 
@@ -137,7 +137,7 @@
 .App-footer {
   text-align: center;
   background-color: #ececec;
-  padding: 12px 0;
+  padding: 10px 0;
   position: absolute;
   width: 100%;
   bottom: 0;
@@ -145,7 +145,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  line-height: 20px;
+  line-height: 14px;
 }
 
 .App-footer.dark {
@@ -167,9 +167,9 @@
 }
 
 .App-footer-item {
-  margin: 0 3px;
+  margin: 0 4px;
   border-left: 1px solid #6b6b6b;
-  padding: 6px 6px;
+  padding: 0 6px 0 8px;
   color: black;
   text-decoration: none;
 }
