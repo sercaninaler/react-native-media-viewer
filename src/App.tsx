@@ -4,24 +4,13 @@ import axios from 'axios'
 import Loader from 'react-loader-spinner'
 import { Resizable } from 're-resizable'
 import { pixabayApi } from './constants'
+import { initLocalStorage, localStorageTags, localStorageSettings } from './helpers'
 
-import style from './styles'
+import importedStyles from './styles'
 import './App.css'
 
 const App = () => {
-  if (!JSON.parse(localStorage.getItem('pictures'))) {
-    localStorage.setItem('pictures', JSON.stringify({}))
-  }
-  if (!JSON.parse(localStorage.getItem('tags'))) {
-    localStorage.setItem('tags', JSON.stringify(['animals', 'fruits', 'planets']))
-  }
-
-  if (!JSON.parse(localStorage.getItem('settings'))) {
-    localStorage.setItem('settings', JSON.stringify({ imageWidth: 640, theme: 'light' }))
-  }
-
-  const localStorageTags = JSON.parse(localStorage.getItem('tags'))
-  const localStorageSettings = JSON.parse(localStorage.getItem('settings'))
+  initLocalStorage()
 
   const [pictures, setPictures] = useState([])
   /* const [sounds, setSounds] = useState([]) */
@@ -32,13 +21,13 @@ const App = () => {
   const [message, setMessage] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
-  let newStyles = style
+  let newStyles = importedStyles
   const { theme, imageWidth } = settings
 
   if (theme === 'light') {
     newStyles = {
-      ...style,
-      app: { ...style.app, backgroundColor: '#FFFFFF' },
+      ...importedStyles,
+      app: { ...importedStyles.app, backgroundColor: '#FFFFFF' },
     }
   }
 

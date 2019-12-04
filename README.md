@@ -2,6 +2,17 @@
 Media viewer application based on React Native. 
 Works on Web, Android and Ios.
 
+#### Dependencies, Libraries
+
+```
+React
+React Native (Expo)
+React Native Web
+Typescript
+Eslint
+Axios
+```
+
 #### Demo
 
 https://sercaninaler.github.io/react-native-media-viewer
@@ -12,27 +23,12 @@ https://sercaninaler.github.io/react-native-media-viewer
 yarn
 ```
 
-#### Running with Metro Bundler 
+#### Running with Metro Bundler, Web, Androd and Ios
 
 ```
 yarn start
-```
-
-#### Running for Web
-
-```
 yarn web
-```
-
-#### Running for Android
-
-```
 yarn android
-```
-
-#### Running for IOS
-
-```
 yarn ios
 ```
 
@@ -48,8 +44,8 @@ yarn build
 yarn deploy
 ```
 
-#### Linting
+#### Lint
 
 ```
-yarn lint
+yarn eslint
 ```
