@@ -7,7 +7,7 @@ import { pixabayApi } from './constants'
 import { initLocalStorage, localStorageTags, localStorageSettings } from './helpers'
 
 import importedStyles from './styles'
-import './App.css'
+import './index.css'
 
 const App = () => {
   initLocalStorage()
