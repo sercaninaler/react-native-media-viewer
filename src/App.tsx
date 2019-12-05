@@ -16,12 +16,14 @@ type apiItems = {
 
 type Settings = {
   theme: string;
-  imageWidth: string;
+  imageWidth: number;
 }
 
 type Pictures = {
   isDeleted: boolean;
   showInfo: number;
+  image: string;
+  tags: string;
 }
 
 const App: FC = () => {
@@ -68,12 +70,14 @@ const App: FC = () => {
       const data = response.data.hits
 
       if (data.length) {
-        const newPictures: object[] = []
+        const newPictures: Pictures[] = []
 
         data.forEach((item: apiItems) => {
           newPictures.push({
             image: item.webformatURL,
             tags: item.tags,
+            isDeleted: false,
+            showInfo: 0,
           })
         })
 
@@ -226,7 +230,7 @@ const App: FC = () => {
         {!isLoading && pictures.length !== 0 && (
         <div className="App-picture-items">
           <Resizable
-            size={{width: imageWidth}}
+            size={{width: imageWidth, height: ''}}
             className="App-picture-resizable"
             enable={{
               top: false,
@@ -238,7 +242,7 @@ const App: FC = () => {
               bottomLeft: false,
               topLeft: false,
             }}
-            onResizeStop={(e, d, x, size): void => { updateSettings('imageWidth', imageWidth + size.width) }}
+            onResizeStop={(e, d, x, size): void => { updateSettings('imageWidth', (imageWidth + size.width).toString()) }}
           >
             {pictures.map((picture, index) => (
               !picture.isDeleted && (
