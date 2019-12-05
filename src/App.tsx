@@ -21,7 +21,7 @@ type Settings = {
 
 type Pictures = {
   isDeleted: boolean;
-  showInfo: number;
+  showInfo: boolean;
   image: string;
   tags: string;
 }
@@ -77,7 +77,7 @@ const App: FC = () => {
             image: item.webformatURL,
             tags: item.tags,
             isDeleted: false,
-            showInfo: 0,
+            showInfo: false,
           })
         })
 
@@ -123,11 +123,7 @@ const App: FC = () => {
 
   const togglePicture = (index: number): void => {
     const newPictures = [...pictures]
-    if (newPictures[index].showInfo === undefined) {
-      newPictures[index].showInfo = 0
-    } else {
-      newPictures[index].showInfo += 1
-    }
+    newPictures[index].showInfo = !newPictures[index].showInfo
 
     setPictures(newPictures)
   }
@@ -211,7 +207,7 @@ const App: FC = () => {
         ))}
       </View>
 
-      {message && <div className="App-message">{message}</div>}
+      {message && <Text style={styles.message}>{message}</Text>}
 
       {isLoading && (
         <div className="loader">
@@ -253,7 +249,7 @@ const App: FC = () => {
                     onClick={(): void => togglePicture(index)}
                   />
 
-                  {picture.showInfo % 2 === 0 && (
+                  {picture.showInfo ? (
                     <div className="App-picture-item-info">
                       <div className="App-picture-item-tags">
                         <button
@@ -268,13 +264,14 @@ const App: FC = () => {
                         {renderTags(picture.tags)}
                       </div>
                     </div>
-                  )}
+                  ) : null}
                 </div>
               )))}
           </Resizable>
         </div>
         )}
       </div>
+
       <div className={theme === 'dark' ? 'App-footer dark' : 'App-footer'}>
         {settingsCounter <= 4 && (
           <>

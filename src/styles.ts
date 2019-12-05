@@ -40,7 +40,6 @@ const styles = {
     flexDirection: 'row' as 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    textAlign: 'center',
     marginTop: '15px',
     marginBottom: '15px',
     marginLeft: 'auto',
@@ -50,10 +49,18 @@ const styles = {
   tag: {
     margin: '5px',
     backgroundColor: '#eee',
-    padding: '8px',
+    padding: '5px',
+    paddingLeft: '11px',
+    paddingRight: '11px',
     borderRadius: '5px',
-    border: '1px solid #ccc',
+  },
+  message: {
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginTop: '25px',
+    color: 'red',
     fontSize: '16px',
+    alignSelf: 'center',
   }
 }
 
