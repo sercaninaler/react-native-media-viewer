@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { StyleSheet, View, TextInput } from 'react-native'
+import React, { FC, useState } from 'react'
+import { StyleSheet, View, TextInput, ViewStyle } from 'react-native'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
 import { Resizable } from 're-resizable'
@@ -9,31 +9,46 @@ import { initLocalStorage, localStorageTags, localStorageSettings } from './help
 import importedStyles from './styles'
 import './index.css'
 
-const App = () => {
+type apiItems = {
+  webformatURL: string;
+  tags: string;
+}
+
+type Settings = {
+  theme: string;
+  imageWidth: string;
+}
+
+type Pictures = {
+  isDeleted: boolean;
+  showInfo: number;
+}
+
+const App: FC = () => {
   initLocalStorage()
 
-  const [pictures, setPictures] = useState([])
+  const [pictures, setPictures] = useState<Pictures[]>([])
   /* const [sounds, setSounds] = useState([]) */
-  const [query, setQuery] = useState('')
-  const [tags, setTags] = useState(localStorageTags)
-  const [settingsCounter, setSettingsCounter] = useState(0)
-  const [settings, setSettings] = useState(localStorageSettings)
-  const [message, setMessage] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [query, setQuery] = useState<string>('')
+  const [tags, setTags] = useState<string[]>(localStorageTags)
+  const [settingsCounter, setSettingsCounter] = useState<number>(0)
+  const [settings, setSettings] = useState<Settings>(localStorageSettings )
+  const [message, setMessage] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  let newStyles = importedStyles
+  let styles = importedStyles
   const { theme, imageWidth } = settings
 
   if (theme === 'light') {
-    newStyles = {
+    styles = {
       ...importedStyles,
       app: { ...importedStyles.app, backgroundColor: '#FFFFFF' },
     }
   }
 
-  const styles = StyleSheet.create(newStyles)
+  styles = StyleSheet.create(styles)
 
-  const insertTag = (tag) => {
+  const insertTag = (tag: string): void => {
     if (tag !== '' && tags.indexOf(tag) === -1) {
       tags.unshift(tag)
       setTags(tags)
@@ -41,20 +56,21 @@ const App = () => {
     }
   }
 
-  const getPictures = async (keyword) => {
+  const getPictures = async (keyword: string): Promise<void> => {
     const pictureQuery = keyword.trim()
     setMessage(null)
 
-    const localData = JSON.parse(localStorage.getItem('pictures'))
+    const localData = JSON.parse(localStorage.getItem('pictures') || '')
 
-    if ((!Array.isArray(localData[pictureQuery]) || !localData[pictureQuery].length) || Math.round(new Date().getTime() / 1000) - localData[`${pictureQuery}_lastUpdate`] > 24 * 60 * 60) {
+    if ((!Array.isArray(localData[pictureQuery]) || !localData[pictureQuery].length) || Math.round(new Date().getTime() / 1000) - localData[`${pictureQuery}_lastUpdate`] > 12 * 60 * 60) {
       setIsLoading(true)
       const response = await axios.get(pixabayApi(pictureQuery))
       const data = response.data.hits
 
       if (data.length) {
-        const newPictures = []
-        data.forEach((item) => {
+        const newPictures: object[] = []
+
+        data.forEach((item: apiItems) => {
           newPictures.push({
             image: item.webformatURL,
             tags: item.tags,
@@ -101,7 +117,7 @@ const App = () => {
     sound.play()
   } */
 
-  const togglePicture = (index) => {
+  const togglePicture = (index: number): void => {
     const newPictures = [...pictures]
     if (newPictures[index].showInfo === undefined) {
       newPictures[index].showInfo = 0
@@ -112,35 +128,34 @@ const App = () => {
     setPictures(newPictures)
   }
 
-  const deletePicture = (index, tag) => {
+  const deletePicture = (index: number, tag: string): void => {
     const newPictures = [...pictures]
     newPictures[index].isDeleted = true
     setPictures(newPictures)
 
-    const localData = JSON.parse(localStorage.getItem('pictures'))
+    const localData = JSON.parse(localStorage.getItem('pictures') || '')
     localData[tag] = newPictures
     localData[`${tag}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
     localStorage.setItem('pictures', JSON.stringify(localData))
   }
 
-  const onSubmit = (event) => {
-    event.preventDefault()
+  const onSubmit = (): void => {
     getPictures(query)
   }
 
-  const onChange = (event) => {
+  /* const onChange = (event: React.SyntheticEvent): void => {
     setQuery(event.target.value.toLowerCase())
+  }*/
+
+  const onChangeText = (text: string): void => {
+    setQuery(text.toLowerCase())
   }
 
-  const onChangeText = (event) => {
-    setQuery(event.toLowerCase())
-  }
-
-  const showSettings = () => {
+  const showSettings = (): void => {
     setSettingsCounter(settingsCounter + 1)
   }
 
-  const updateSettings = (key, value) => {
+  const updateSettings = (key: string, value: string): void => {
     const newSettings = {
       ...settings,
       [key]: value,
@@ -149,13 +164,13 @@ const App = () => {
     localStorage.setItem('settings', JSON.stringify(newSettings))
   }
 
-  const renderTags = (text) => {
+  const renderTags = (text: string) => {
     const pictureTags = text.split(',')
     return pictureTags.map((tag) => (
       <button
         type="button"
         key={tag}
-        onClick={() => {
+        onClick={(): void => {
           setQuery(tag)
           getPictures(tag)
         }}
@@ -171,7 +186,7 @@ const App = () => {
         <TextInput
           style={styles.searchInput}
           value={query}
-          onChangeText={(text) => onChangeText(text)}
+          onChangeText={(text: string): void => onChangeText(text)}
           onSubmitEditing={onSubmit}
           placeholder="cats, planets, fruits,..."
           selectTextOnFocus
@@ -183,7 +198,7 @@ const App = () => {
             type="button"
             className={`App-tags-item ${tag === query && 'selected'}`}
             key={tag}
-            onClick={() => {
+            onClick={(): void => {
               setQuery(tag)
               getPictures(tag)
             }}
@@ -223,7 +238,7 @@ const App = () => {
               bottomLeft: false,
               topLeft: false,
             }}
-            onResizeStop={(e, d, x, size) => { updateSettings('imageWidth', imageWidth + size.width) }}
+            onResizeStop={(e, d, x, size): void => { updateSettings('imageWidth', imageWidth + size.width) }}
           >
             {pictures.map((picture, index) => (
               !picture.isDeleted && (
@@ -232,7 +247,7 @@ const App = () => {
                     src={picture.image}
                     alt={picture.tags}
                     className="App-picture-item-image"
-                    onClick={() => togglePicture(index)}
+                    onClick={(): void => togglePicture(index)}
                   />
 
                   {picture.showInfo % 2 === 0 && (
@@ -241,7 +256,7 @@ const App = () => {
                         <button
                           type="button"
                           style={{ color: 'red' }}
-                          onClick={() => {
+                          onClick={(): void => {
                             deletePicture(index, query)
                           }}
                         >
@@ -260,21 +275,21 @@ const App = () => {
       <div className={theme === 'dark' ? 'App-footer dark' : 'App-footer'}>
         {settingsCounter <= 4 && (
           <>
-            <button type="button" className="App-footer-label" onClick={() => showSettings()}>Media Viewer</button>
-            <button type="button" className="App-footer-item" onClick={() => updateSettings('theme', theme === 'dark' ? 'light' : 'dark')}>
+            <button type="button" className="App-footer-label" onClick={(): void => showSettings()}>Media Viewer</button>
+            <button type="button" className="App-footer-item" onClick={(): void => updateSettings('theme', theme === 'dark' ? 'light' : 'dark')}>
               {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
             </button>
           </>
         )}
-        {1 === 2 && <button type="button" className="App-footer-item" onClick={() => showSettings()}>Language (English)</button>}
+        {settingsCounter > 20 && <button type="button" className="App-footer-item" onClick={(): void => showSettings()}>Language (English)</button>}
 
-        {settingsCounter === 4 && <button type="button" className="App-footer-item" onClick={() => showSettings()}>Settings</button>}
-        {settingsCounter > 4 && <button type="button" className="App-footer-item" onClick={() => setSettingsCounter(0)}>Back</button>}
+        {settingsCounter === 4 && <button type="button" className="App-footer-item" onClick={(): void => showSettings()}>Settings</button>}
+        {settingsCounter > 4 && <button type="button" className="App-footer-item" onClick={(): void => setSettingsCounter(0)}>Back</button>}
         {settingsCounter > 4 && (
         <button
           type="button"
           className="App-footer-item"
-          onClick={() => {
+          onClick={(): void => {
             localStorage.setItem('tags', JSON.stringify([]))
             setTags([])
           }}
@@ -286,7 +301,7 @@ const App = () => {
         <button
           type="button"
           className="App-footer-item"
-          onClick={() => {
+          onClick={(): void => {
             setPictures([])
             localStorage.setItem('pictures', JSON.stringify({}))
           }}

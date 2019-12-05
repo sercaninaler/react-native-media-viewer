@@ -62,7 +62,7 @@ button {
 }
 
 .App-tags-item {
-  margin: 5px 7px 8px 7px;
+  margin: 4px 5px 6px 5px;
   background-color: #eee;
   padding: 7px 14px;
   border-radius: 5px;
@@ -72,7 +72,7 @@ button {
 }
 
 .App-tags-label {
-  margin: 4px 6px 8px 6px;
+  margin: 4px 4px 6px 4px;
   background-color: #eee;
   padding: 5px 6px 0;
   border-radius: 10px;
@@ -110,7 +110,7 @@ button {
 }
 
 .App-picture-item {
-  margin: 4% 0 1%;
+  margin: 4% 0 15%;
   position: relative;
 }
 

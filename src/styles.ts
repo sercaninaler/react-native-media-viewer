@@ -6,8 +6,8 @@ const styles = {
     backgroundColor: '#000000',
   },
   searchForm: {
-    justifyContent: 'center',
-    flexDirection: 'row',
+    justifyContent: 'center' as 'center',
+    flexDirection: 'row' as 'row',
   },
   searchButtonView: {
     height: '40px',
@@ -17,11 +17,11 @@ const styles = {
   searchButton: {
     height: '48px',
     padding: '4px',
-    fontSize: '18px',
-    borderRadius: '7px',
+    fontSize: 18,
+    borderRadius: 7,
   },
   searchInput: {
-    fontSize: '16px',
+    fontSize: 16,
     padding: '8px',
     backgroundColor: '#eee',
     borderTopColor: '#ccc',
@@ -32,11 +32,10 @@ const styles = {
     borderRightWidth: 1,
     borderBottomWidth: 1,
     borderLeftWidth: 1,
-    borderRadius: '5px',
+    borderRadius: 5,
     width: '260px',
     height: '40px',
-  },
-  footer: { },
+  }
 }
 
 export default styles
