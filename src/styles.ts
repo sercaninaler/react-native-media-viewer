@@ -1,6 +1,6 @@
 const styles = {
   app: {
-    paddingTop: 20,
+    paddingTop: 15,
     paddingBottom: 30,
     height: '100%',
     backgroundColor: '#000000',
@@ -35,6 +35,25 @@ const styles = {
     borderRadius: 5,
     width: '260px',
     height: '40px',
+  },
+  tags: {
+    flexDirection: 'row' as 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    textAlign: 'center',
+    marginTop: '15px',
+    marginBottom: '15px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: '800px',
+  },
+  tag: {
+    margin: '5px',
+    backgroundColor: '#eee',
+    padding: '8px',
+    borderRadius: '5px',
+    border: '1px solid #ccc',
+    fontSize: '16px',
   }
 }
 

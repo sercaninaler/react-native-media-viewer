@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { StyleSheet, View, TextInput, ViewStyle } from 'react-native'
+import { StyleSheet, View, Text, TextInput, TouchableHighlight } from 'react-native'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
 import { Resizable } from 're-resizable'
@@ -9,7 +9,7 @@ import { initLocalStorage, localStorageTags, localStorageSettings } from './help
 import importedStyles from './styles'
 import './index.css'
 
-type apiItems = {
+type ApiResults = {
   webformatURL: string;
   tags: string;
 }
@@ -72,7 +72,7 @@ const App: FC = () => {
       if (data.length) {
         const newPictures: Pictures[] = []
 
-        data.forEach((item: apiItems) => {
+        data.forEach((item: ApiResults) => {
           newPictures.push({
             image: item.webformatURL,
             tags: item.tags,
@@ -196,21 +196,20 @@ const App: FC = () => {
           selectTextOnFocus
         />
       </View>
-      <div className="App-tags">
+      <View style={styles.tags}>
         {tags.map((tag) => (
-          <button
-            type="button"
-            className={`App-tags-item ${tag === query && 'selected'}`}
-            key={tag}
-            onClick={(): void => {
-              setQuery(tag)
-              getPictures(tag)
-            }}
+          <TouchableHighlight
+              key={tag}
+              style={styles.tag}
+              onPress={(): void => {
+                setQuery(tag)
+                getPictures(tag)
+              }}
           >
-            {tag}
-          </button>
+            <Text>{tag}</Text>
+          </TouchableHighlight>
         ))}
-      </div>
+      </View>
 
       {message && <div className="App-message">{message}</div>}
 
