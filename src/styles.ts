@@ -1,3 +1,5 @@
+import { ViewStyle } from "react-native";
+
 const styles = {
   app: {
     paddingTop: 15,
@@ -24,20 +26,14 @@ const styles = {
     fontSize: 16,
     padding: '8px',
     backgroundColor: '#eee',
-    borderTopColor: '#ccc',
-    borderRightColor: '#ccc',
-    borderBottomColor: '#ccc',
-    borderLeftColor: '#ccc',
-    borderTopWidth: 1,
-    borderRightWidth: 1,
-    borderBottomWidth: 1,
-    borderLeftWidth: 1,
+    borderColor: '#ddd',
+    borderWidth: 1,
     borderRadius: 5,
     width: '260px',
     height: '40px',
   },
   tags: {
-    flexDirection: 'row' as 'row',
+    flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     marginTop: '15px',
@@ -45,14 +41,16 @@ const styles = {
     marginLeft: 'auto',
     marginRight: 'auto',
     maxWidth: '800px',
-  },
+  } as ViewStyle,
   tag: {
     margin: '5px',
     backgroundColor: '#eee',
     padding: '5px',
     paddingLeft: '11px',
     paddingRight: '11px',
-    borderRadius: '5px',
+    borderRadius: 5,
+    borderColor: '#ddd',
+    borderWidth: 1,
   },
   message: {
     flexWrap: 'wrap',
@@ -61,7 +59,39 @@ const styles = {
     color: 'red',
     fontSize: '16px',
     alignSelf: 'center',
-  }
+  } as ViewStyle,
+  loader: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    textAlign: 'center',
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    backgroundColor: '#000',
+    height: '100%',
+    opacity: 0.45,
+    zIndex: 1,
+    paddingBottom: '100px',
+  } as ViewStyle,
+  AppFooter: {
+    backgroundColor: '#ececec',
+    padding: '10px 0',
+    position: 'absolute',
+    width: '100%',
+    bottom: 0,
+    left: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  } as ViewStyle,
+  AppFooterItem: {
+    margin: '0 4px',
+    borderLeftWidth: 1,
+    borderColor: '#999999',
+    padding: '6px',
+  } as ViewStyle
 }
 
 export default styles

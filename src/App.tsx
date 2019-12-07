@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { StyleSheet, View, Text, TextInput, TouchableHighlight } from 'react-native'
+import { View, Text, TextInput, TouchableHighlight } from 'react-native'
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
 import { Resizable } from 're-resizable'
@@ -47,8 +47,6 @@ const App: FC = () => {
       app: { ...importedStyles.app, backgroundColor: '#FFFFFF' },
     }
   }
-
-  styles = StyleSheet.create(styles)
 
   const insertTag = (tag: string): void => {
     if (tag !== '' && tags.indexOf(tag) === -1) {
@@ -164,7 +162,7 @@ const App: FC = () => {
     localStorage.setItem('settings', JSON.stringify(newSettings))
   }
 
-  const renderTags = (text: string) => {
+  const renderTags = (text: string): object => {
     const pictureTags = text.split(',')
     return pictureTags.map((tag) => (
       <button
@@ -210,7 +208,7 @@ const App: FC = () => {
       {message && <Text style={styles.message}>{message}</Text>}
 
       {isLoading && (
-        <div className="loader">
+        <View style={styles.loader}>
           <Loader
             type="BallTriangle"
             color="#FFF"
@@ -218,7 +216,7 @@ const App: FC = () => {
             width={100}
             timeout={500000}
           />
-        </div>
+        </View>
       )}
 
       <div className="App-picture-items-holder">
@@ -272,44 +270,71 @@ const App: FC = () => {
         )}
       </div>
 
-      <div className={theme === 'dark' ? 'App-footer dark' : 'App-footer'}>
-        {settingsCounter <= 4 && (
+      <View style={theme === 'light' ? styles.AppFooter : styles.AppFooter}>
+        {settingsCounter < 4 && (
           <>
-            <button type="button" className="App-footer-label" onClick={(): void => showSettings()}>Media Viewer</button>
-            <button type="button" className="App-footer-item" onClick={(): void => updateSettings('theme', theme === 'dark' ? 'light' : 'dark')}>
-              {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-            </button>
+            <TouchableHighlight
+                style={{...styles.AppFooterItem, borderLeftWidth: 0}}
+                onPress={(): void => { showSettings() }}
+                underlayColor="#ccc"
+            >
+              <Text>Media Viewer</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+                style={styles.AppFooterItem}
+                onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
+                underlayColor="#ccc"
+            >
+              <Text>{theme === 'dark' ? 'Light' : 'Dark'} Mode</Text>
+            </TouchableHighlight>
           </>
         )}
-        {settingsCounter > 20 && <button type="button" className="App-footer-item" onClick={(): void => showSettings()}>Language (English)</button>}
-
-        {settingsCounter === 4 && <button type="button" className="App-footer-item" onClick={(): void => showSettings()}>Settings</button>}
-        {settingsCounter > 4 && <button type="button" className="App-footer-item" onClick={(): void => setSettingsCounter(0)}>Back</button>}
-        {settingsCounter > 4 && (
-        <button
-          type="button"
-          className="App-footer-item"
-          onClick={(): void => {
-            localStorage.setItem('tags', JSON.stringify([]))
-            setTags([])
-          }}
+        {settingsCounter > 20 && <TouchableHighlight
+            style={styles.AppFooterItem}
+            onPress={(): void => showSettings()}
+            underlayColor="#ccc"
         >
-          Clear tags
-        </button>
-        )}
-        {settingsCounter > 4 && (
-        <button
-          type="button"
-          className="App-footer-item"
-          onClick={(): void => {
+          <Text>Language (English)</Text>
+        </TouchableHighlight>}
+
+        {settingsCounter === 4 && <TouchableHighlight
+            style={{...styles.AppFooterItem, borderLeftWidth: 0}}
+            onPress={(): void => showSettings()}
+            underlayColor="#ccc"
+        >
+          <Text>Settings</Text>
+        </TouchableHighlight>}
+
+        {settingsCounter > 4 && <TouchableHighlight
+            style={{...styles.AppFooterItem, borderLeftWidth: 0}}
+            onPress={(): void => setSettingsCounter(0)}
+            underlayColor="#ccc"
+        >
+          <Text>Back</Text>
+        </TouchableHighlight>}
+
+        {settingsCounter > 4 && <TouchableHighlight
+            style={styles.AppFooterItem}
+            underlayColor="#ccc"
+            onPress={(): void => {
+              localStorage.setItem('tags', JSON.stringify([]))
+              setTags([])
+            }}
+        >
+          <Text>Clear tags</Text>
+        </TouchableHighlight>}
+
+        {settingsCounter > 4 && <TouchableHighlight
+            style={styles.AppFooterItem}
+            underlayColor="#ccc"
+            onPress={(): void => {
             setPictures([])
             localStorage.setItem('pictures', JSON.stringify({}))
-          }}
+            }}
         >
-          Clear cache
-        </button>
-        )}
-      </div>
+          <Text>Clear cache</Text>
+        </TouchableHighlight>}
+      </View>
     </View>
   )
 }

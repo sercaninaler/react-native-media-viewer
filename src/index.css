@@ -150,20 +150,6 @@ button {
   overflow: hidden;
 }
 
-.App-footer {
-  text-align: center;
-  background-color: #ececec;
-  padding: 10px 0;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  line-height: 14px;
-}
-
 .App-footer.dark {
   background-color: #000;
 }
@@ -181,6 +167,20 @@ button {
 .App-footer-label {
   padding: 0 6px;
 }
+/*
+.App-footer {
+  text-align: center;
+  background-color: #ececec;
+  padding: 10px 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  line-height: 14px;
+}
 
 .App-footer-item {
   margin: 0 4px;
@@ -188,7 +188,7 @@ button {
   padding: 0 6px 0 8px;
   color: black;
   text-decoration: none;
-}
+}*/
 
 .App-footer-item:first-child {
   border-left: none
@@ -198,6 +198,7 @@ button {
   text-decoration: underline;
   cursor: pointer;
 }
+/*
 
 .loader {
   display: flex;
@@ -212,4 +213,4 @@ button {
   opacity: 0.45;
   z-index: 1;
   padding-bottom: 100px;
-}
+}*/
