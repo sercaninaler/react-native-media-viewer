@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "b577f25905366d3acd8e",
-    "url": "/react-native-media-viewer/static/js/app.c0f31d32.chunk.js"
+    "revision": "6cbb0db5eaf06e50b9c3",
+    "url": "/react-native-media-viewer/static/js/app.4fe766a2.chunk.js"
   },
   {
     "revision": "b651ec6ee3f07fc88480",
     "url": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js"
   },
   {
-    "revision": "cee950f6cd2dc3a144d0",
-    "url": "/react-native-media-viewer/static/js/2.0b09b5cf.chunk.js"
+    "revision": "10ecea82e06422b319b7",
+    "url": "/react-native-media-viewer/static/js/2.6568262e.chunk.js"
   },
   {
     "revision": "3a2ba31570920eeb9b1d217cabe58315",
@@ -60,12 +60,12 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/favicon.ico"
   },
   {
-    "revision": "5e695e96a003a79f7f97060bf49409a9",
-    "url": "/react-native-media-viewer/expo-service-worker.js"
-  },
-  {
     "revision": "d0c694b562b2208635f250762cd7fc79",
     "url": "/react-native-media-viewer/serve.json"
+  },
+  {
+    "revision": "5e695e96a003a79f7f97060bf49409a9",
+    "url": "/react-native-media-viewer/expo-service-worker.js"
   },
   {
     "revision": "020fd499a2d2bc45c4c3b6021e472b43",
@@ -76,23 +76,23 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/manifest.json"
   },
   {
-    "revision": "0da7667189554906e730bc31ef697a75",
+    "revision": "41e68caab001571d945cb7318ec9b998",
     "url": "/react-native-media-viewer/index.html"
+  },
+  {
+    "revision": "692715427dcb43f702e58bb848b51c76",
+    "url": "/react-native-media-viewer/static/js/app.4fe766a2.chunk.js.gz"
   },
   {
     "revision": "1e4ea387a53522007dc7c24cc22f6986",
     "url": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js.gz"
   },
   {
-    "revision": "987da196f6065a2c74c2708b6e41246c",
-    "url": "/react-native-media-viewer/static/js/app.c0f31d32.chunk.js.gz"
-  },
-  {
     "revision": "bd56db0844d50841ee6e0b69eb5e794d",
     "url": "/react-native-media-viewer/expo-service-worker.js.gz"
   },
   {
-    "revision": "ea42d52b75b792dc36270424dc281299",
-    "url": "/react-native-media-viewer/static/js/2.0b09b5cf.chunk.js.gz"
+    "revision": "3bc9e3314cb09ff6d7fb5baf28f2f0b1",
+    "url": "/react-native-media-viewer/static/js/2.6568262e.chunk.js.gz"
   }
 ];
