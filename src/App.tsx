@@ -56,15 +56,19 @@ const App: FC = () => {
     }
   }
 
-  const getPictures = async (keyword: string): Promise<void> => {
+  const getPictures = async (keyword: string, page: number): Promise<void> => {
     const pictureQuery = keyword.trim()
     setMessage(null)
 
     const localData = JSON.parse(localStorage.getItem('pictures') || '')
 
-    if ((!Array.isArray(localData[pictureQuery]) || !localData[pictureQuery].length) || Math.round(new Date().getTime() / 1000) - localData[`${pictureQuery}_lastUpdate`] > 12 * 60 * 60) {
+    if ((!Array.isArray(localData[pictureQuery]) ||
+        !localData[pictureQuery].length) ||
+        page > 1 ||
+        Math.round(new Date().getTime() / 1000) - localData[`${pictureQuery}_lastUpdate`] > 12 * 60 * 60
+    ) {
       setIsLoading(true)
-      const response = await axios.get(pixabayApi(pictureQuery))
+      const response = await axios.get(pixabayApi(pictureQuery, page))
       const data = response.data.hits
 
       if (data.length) {
@@ -138,7 +142,7 @@ const App: FC = () => {
   }
 
   const onSubmit = (): void => {
-    getPictures(query)
+    getPictures(query, 1)
   }
 
   /* const onChange = (event: React.SyntheticEvent): void => {
@@ -170,7 +174,7 @@ const App: FC = () => {
         key={tag}
         onClick={(): void => {
           setQuery(tag)
-          getPictures(tag)
+          getPictures(tag, 1)
         }}
       >
         {tag}
@@ -197,7 +201,7 @@ const App: FC = () => {
               style={styles.tag}
               onPress={(): void => {
                 setQuery(tag)
-                getPictures(tag)
+                getPictures(tag, 1)
               }}
           >
             <Text>{tag}</Text>
@@ -265,6 +269,14 @@ const App: FC = () => {
                   ) : null}
                 </div>
               )))}
+
+            <TouchableHighlight
+                style={{...styles.AppFooterItem, marginBottom: 20}}
+                onPress={(): object => getPictures(query, 2) }
+                underlayColor="#ccc"
+            >
+              <Text>Load More</Text>
+            </TouchableHighlight>
           </Resizable>
         </div>
         )}
