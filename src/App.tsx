@@ -259,7 +259,7 @@ const App: FC = () => {
                 <View style={styles.pictureInfo}>
                   <TouchableHighlight
                       underlayColor="#cccccc"
-                      style={{...styles.button, margin: 2}}
+                      style={{...styles.button, marginLeft: 2, marginRight: 2}}
                       onPress={(): void => deletePicture(index, query) }
                   >
                     <Text>x</Text>
