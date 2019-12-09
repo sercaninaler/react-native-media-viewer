@@ -7,6 +7,16 @@ const styles = {
     height: '100%',
     backgroundColor: '#000000',
   },
+  button: {
+    backgroundColor: '#eee',
+    padding: 6,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderRadius: 5,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    width: 'fit-content',
+  } as ViewStyle,
   searchForm: {
     justifyContent: 'center',
     flexDirection: 'row',
@@ -93,20 +103,23 @@ const styles = {
     paddingLeft: 10,
     paddingRight: 10,
   } as ViewStyle,
-  button: {
-    marginTop: -20,
-    marginBottom: 30,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    backgroundColor: '#eee',
-    padding: 5,
-    paddingLeft: 11,
-    paddingRight: 11,
-    borderRadius: 5,
-    borderColor: '#ddd',
-    borderWidth: 1,
-    width: 100,
-  } as ViewStyle
+  pictureHolder: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  } as ViewStyle,
+  picture: {
+    marginTop: '4%',
+    marginBottom: '10%',
+    position: 'relative',
+  } as ViewStyle,
+  pictureInfo: {
+    position: 'absolute',
+    bottom: '3%',
+    padding: 10,
+    flexDirection: 'row',
+    alignSelf: 'center',
+  } as ViewStyle,
 }
 
 export default styles

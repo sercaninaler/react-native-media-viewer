@@ -1,5 +1,5 @@
 ### React Native Media Viewer
-Media viewer application based on React Native. 
+Media viewer application based on React Native.
 Works on Web, Android and Ios.
 
 #### Dependencies, Libraries

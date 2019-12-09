@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
 import { View, Text, TextInput, TouchableHighlight } from 'react-native'
+import Constants from 'expo-constants';
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
 import { Resizable } from 're-resizable'
@@ -169,20 +170,23 @@ const App: FC = () => {
   const renderTags = (text: string): object => {
     const pictureTags = text.split(',')
     return pictureTags.map((tag) => (
-      <button
-        type="button"
+      <TouchableHighlight
         key={tag}
-        onClick={(): void => {
-          setQuery(tag)
-          getPictures(tag)
+        style={{...styles.button, marginLeft: 2, marginRight: 2}}
+        underlayColor="#cccccc"
+        onPress={(): void => {
+           setQuery(tag)
+           getPictures(tag)
         }}
       >
-        {tag}
-      </button>
+        <Text>{tag}</Text>
+      </TouchableHighlight>
     ))
   }
 
   const filteredPictures = pictures.filter(picture => !picture.isDeleted).slice(0, limit)
+
+  //console.log(Constants)
 
   return (
     <View style={styles.app}>
@@ -225,78 +229,72 @@ const App: FC = () => {
         </View>
       )}
 
-      <div className="App-picture-items-holder">
-        {!isLoading && pictures.length !== 0 && (
-        <div className="App-picture-items">
-          <Resizable
-            size={{width: imageWidth, height: ''}}
-            className="App-picture-resizable"
-            enable={{
-              top: false,
-              right: window.innerWidth > imageWidth,
-              bottom: false,
-              left: window.innerWidth > imageWidth,
-              topRight: false,
-              bottomRight: false,
-              bottomLeft: false,
-              topLeft: false,
-            }}
-            onResizeStop={(e, d, x, size): void => { updateSettings('imageWidth', (parseInt(String(imageWidth)) + parseInt(String(size.width))).toString()) }}
+      {!isLoading && pictures.length !== 0 && (
+      <View style={styles.pictureHolder}>
+        <Resizable
+          size={{width: imageWidth, height: 'auto'}}
+          className="App-picture-resizable"
+          enable={{
+            top: false,
+            right: window.innerWidth > imageWidth,
+            bottom: false,
+            left: window.innerWidth > imageWidth,
+            topRight: false,
+            bottomRight: false,
+            bottomLeft: false,
+            topLeft: false,
+          }}
+          onResizeStop={(e, d, x, size): void => { updateSettings('imageWidth', (parseInt(String(imageWidth)) + parseInt(String(size.width))).toString()) }}
+        >
+          {filteredPictures.map((picture, index) => (
+            <View style={styles.picture} key={picture.image}>
+              <img
+                src={picture.image}
+                alt={picture.tags}
+                className="App-picture-item-image"
+                onClick={(): void => togglePicture(index)}
+              />
+
+              {picture.showInfo ? (
+                <View style={styles.pictureInfo}>
+                  <TouchableHighlight
+                      underlayColor="#cccccc"
+                      style={{...styles.button, margin: 2}}
+                      onPress={(): void => deletePicture(index, query) }
+                  >
+                    <Text>x</Text>
+                  </TouchableHighlight>
+                  {renderTags(picture.tags)}
+                </View>
+              ) : null}
+            </View>
+            ))}
+
+          <TouchableHighlight
+              style={{...styles.button, marginBottom: 50, marginLeft: 'auto', marginRight: 'auto'}}
+              underlayColor="#cccccc"
+              onPress={(): void => setLimit(limit + 10) }
           >
-            {filteredPictures.map((picture, index) => (
-              <div className="App-picture-item" key={picture.image}>
-                <img
-                  src={picture.image}
-                  alt={picture.tags}
-                  className="App-picture-item-image"
-                  onClick={(): void => togglePicture(index)}
-                />
-
-                {picture.showInfo ? (
-                  <div className="App-picture-item-info">
-                    <div className="App-picture-item-tags">
-                      <button
-                        type="button"
-                        style={{ color: 'red' }}
-                        onClick={(): void => {
-                          deletePicture(index, query)
-                        }}
-                      >
-                        x
-                      </button>
-                      {renderTags(picture.tags)}
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-              ))}
-
-            <TouchableHighlight
-                style={styles.button}
-                onPress={(): void => setLimit(limit + 10) }
-                underlayColor="#cccccc"
-            >
-              <Text>Load More</Text>
-            </TouchableHighlight>
-          </Resizable>
-        </div>
-        )}
-      </div>
+            <Text>Load More</Text>
+          </TouchableHighlight>
+        </Resizable>
+      </View>
+      )}
 
       <View style={theme === 'light' ? styles.AppFooter : styles.AppFooter}>
         {settingsCounter < 4 && (
           <>
             <TouchableHighlight
                 style={styles.AppFooterItem}
-                onPress={(): void => { showSettings() }}
                 underlayColor="#ccc"
+                onPress={(): void => { showSettings() }}
             >
               <Text>Media Viewer</Text>
             </TouchableHighlight>
             <TouchableHighlight
                 style={{...styles.AppFooterItem, borderLeftWidth: 1}}
-                onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
                 underlayColor="#ccc"
+                onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
             >
               <Text>{theme === 'dark' ? 'Light' : 'Dark'} Mode</Text>
             </TouchableHighlight>

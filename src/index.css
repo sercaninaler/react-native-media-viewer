@@ -68,7 +68,7 @@ button {
   padding: 5px 6px 0;
   border-radius: 10px;
   font-weight: bold;
-}*/
+}
 
 .App-tags-label img {
   width: 23px;
@@ -88,10 +88,6 @@ button {
   color: red;
 }
 
-.App-picture-items-holder {
-  text-align: center;
-}
-
 .App-picture-items {
   display: flex;
   flex-direction: row;
@@ -104,17 +100,7 @@ button {
   margin: 4% 0 10%;
   position: relative;
 }
-
-.App-picture-item-tags button {
-  font-size: 18px;
-  color: white;
-  margin: 0 8px;
-  padding: 8px 12px;
-  background-color: #000;
-  border-radius: 10px;
-  display: inline-block;
-  opacity: 0.7;
-}
+*/
 
 .App-picture-item-tags button:hover {
   background-color: #222;
@@ -167,6 +153,7 @@ button {
 .App-footer-label {
   padding: 0 6px;
 }
+
 /*
 .App-footer {
   text-align: center;
@@ -188,7 +175,7 @@ button {
   padding: 0 6px 0 8px;
   color: black;
   text-decoration: none;
-}*/
+}
 
 .App-footer-item:first-child {
   border-left: none
@@ -198,7 +185,6 @@ button {
   text-decoration: underline;
   cursor: pointer;
 }
-/*
 
 .loader {
   display: flex;
@@ -213,4 +199,5 @@ button {
   opacity: 0.45;
   z-index: 1;
   padding-bottom: 100px;
-}*/
+}
+*/
