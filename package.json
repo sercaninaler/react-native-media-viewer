@@ -12,7 +12,8 @@
     "build": "expo build:web --no-pwa",
     "deploy": "npx gh-pages -d web-build",
     "eslint": "eslint src/**/*.ts*",
-    "eslint-fix": "eslint --fix src"
+    "eslint-fix": "eslint --fix src",
+    "tsc": "tsc"
   },
   "dependencies": {
     "axios": "^0.19.0",

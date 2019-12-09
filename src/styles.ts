@@ -8,9 +8,9 @@ const styles = {
     backgroundColor: '#000000',
   },
   searchForm: {
-    justifyContent: 'center' as 'center',
-    flexDirection: 'row' as 'row',
-  },
+    justifyContent: 'center',
+    flexDirection: 'row',
+  } as ViewStyle,
   searchButtonView: {
     height: 40,
     marginLeft: 12,
@@ -87,10 +87,25 @@ const styles = {
     flexWrap: 'wrap',
   } as ViewStyle,
   AppFooterItem: {
-    margin: '0 4',
-    borderLeftWidth: 1,
+    margin: '0 5',
     borderColor: '#999999',
-    padding: 6,
+    padding: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
+  } as ViewStyle,
+  button: {
+    marginTop: -20,
+    marginBottom: 30,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    backgroundColor: '#eee',
+    padding: 5,
+    paddingLeft: 11,
+    paddingRight: 11,
+    borderRadius: 5,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    width: 100,
   } as ViewStyle
 }
 

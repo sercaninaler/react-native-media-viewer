@@ -37,6 +37,7 @@ const App: FC = () => {
   const [settings, setSettings] = useState<Settings>(localStorageSettings )
   const [message, setMessage] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [limit, setLimit] = useState<number>(10)
 
   let styles = importedStyles
   const { theme, imageWidth } = settings
@@ -56,19 +57,18 @@ const App: FC = () => {
     }
   }
 
-  const getPictures = async (keyword: string, page: number): Promise<void> => {
+  const getPictures = async (keyword: string): Promise<void> => {
     const pictureQuery = keyword.trim()
     setMessage(null)
-
+    setLimit(10)
     const localData = JSON.parse(localStorage.getItem('pictures') || '')
 
     if ((!Array.isArray(localData[pictureQuery]) ||
         !localData[pictureQuery].length) ||
-        page > 1 ||
         Math.round(new Date().getTime() / 1000) - localData[`${pictureQuery}_lastUpdate`] > 12 * 60 * 60
     ) {
       setIsLoading(true)
-      const response = await axios.get(pixabayApi(pictureQuery, page))
+      const response = await axios.get(pixabayApi(pictureQuery))
       const data = response.data.hits
 
       if (data.length) {
@@ -142,7 +142,7 @@ const App: FC = () => {
   }
 
   const onSubmit = (): void => {
-    getPictures(query, 1)
+    getPictures(query)
   }
 
   /* const onChange = (event: React.SyntheticEvent): void => {
@@ -174,13 +174,15 @@ const App: FC = () => {
         key={tag}
         onClick={(): void => {
           setQuery(tag)
-          getPictures(tag, 1)
+          getPictures(tag)
         }}
       >
         {tag}
       </button>
     ))
   }
+
+  const filteredPictures = pictures.filter(picture => !picture.isDeleted).slice(0, limit)
 
   return (
     <View style={styles.app}>
@@ -201,7 +203,7 @@ const App: FC = () => {
               style={styles.tag}
               onPress={(): void => {
                 setQuery(tag)
-                getPictures(tag, 1)
+                getPictures(tag)
               }}
           >
             <Text>{tag}</Text>
@@ -239,41 +241,40 @@ const App: FC = () => {
               bottomLeft: false,
               topLeft: false,
             }}
-            onResizeStop={(e, d, x, size): void => { updateSettings('imageWidth', (imageWidth + size.width).toString()) }}
+            onResizeStop={(e, d, x, size): void => { updateSettings('imageWidth', (parseInt(String(imageWidth)) + parseInt(String(size.width))).toString()) }}
           >
-            {pictures.map((picture, index) => (
-              !picture.isDeleted && (
-                <div className="App-picture-item" key={picture.image}>
-                  <img
-                    src={picture.image}
-                    alt={picture.tags}
-                    className="App-picture-item-image"
-                    onClick={(): void => togglePicture(index)}
-                  />
+            {filteredPictures.map((picture, index) => (
+              <div className="App-picture-item" key={picture.image}>
+                <img
+                  src={picture.image}
+                  alt={picture.tags}
+                  className="App-picture-item-image"
+                  onClick={(): void => togglePicture(index)}
+                />
 
-                  {picture.showInfo ? (
-                    <div className="App-picture-item-info">
-                      <div className="App-picture-item-tags">
-                        <button
-                          type="button"
-                          style={{ color: 'red' }}
-                          onClick={(): void => {
-                            deletePicture(index, query)
-                          }}
-                        >
-                          x
-                        </button>
-                        {renderTags(picture.tags)}
-                      </div>
+                {picture.showInfo ? (
+                  <div className="App-picture-item-info">
+                    <div className="App-picture-item-tags">
+                      <button
+                        type="button"
+                        style={{ color: 'red' }}
+                        onClick={(): void => {
+                          deletePicture(index, query)
+                        }}
+                      >
+                        x
+                      </button>
+                      {renderTags(picture.tags)}
                     </div>
-                  ) : null}
-                </div>
-              )))}
+                  </div>
+                ) : null}
+              </div>
+              ))}
 
             <TouchableHighlight
-                style={{...styles.AppFooterItem, marginBottom: 20}}
-                onPress={(): object => getPictures(query, 2) }
-                underlayColor="#ccc"
+                style={styles.button}
+                onPress={(): void => setLimit(limit + 10) }
+                underlayColor="#cccccc"
             >
               <Text>Load More</Text>
             </TouchableHighlight>
@@ -286,14 +287,14 @@ const App: FC = () => {
         {settingsCounter < 4 && (
           <>
             <TouchableHighlight
-                style={{...styles.AppFooterItem, borderLeftWidth: 0}}
+                style={styles.AppFooterItem}
                 onPress={(): void => { showSettings() }}
                 underlayColor="#ccc"
             >
               <Text>Media Viewer</Text>
             </TouchableHighlight>
             <TouchableHighlight
-                style={styles.AppFooterItem}
+                style={{...styles.AppFooterItem, borderLeftWidth: 1}}
                 onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
                 underlayColor="#ccc"
             >
@@ -310,7 +311,7 @@ const App: FC = () => {
         </TouchableHighlight>}
 
         {settingsCounter === 4 && <TouchableHighlight
-            style={{...styles.AppFooterItem, borderLeftWidth: 0}}
+            style={styles.AppFooterItem}
             onPress={(): void => showSettings()}
             underlayColor="#ccc"
         >
@@ -318,7 +319,7 @@ const App: FC = () => {
         </TouchableHighlight>}
 
         {settingsCounter > 4 && <TouchableHighlight
-            style={{...styles.AppFooterItem, borderLeftWidth: 0}}
+            style={styles.AppFooterItem}
             onPress={(): void => setSettingsCounter(0)}
             underlayColor="#ccc"
         >
@@ -326,7 +327,7 @@ const App: FC = () => {
         </TouchableHighlight>}
 
         {settingsCounter > 4 && <TouchableHighlight
-            style={styles.AppFooterItem}
+            style={{...styles.AppFooterItem, borderLeftWidth: 1}}
             underlayColor="#ccc"
             onPress={(): void => {
               localStorage.setItem('tags', JSON.stringify([]))
@@ -337,7 +338,7 @@ const App: FC = () => {
         </TouchableHighlight>}
 
         {settingsCounter > 4 && <TouchableHighlight
-            style={styles.AppFooterItem}
+            style={{...styles.AppFooterItem, borderLeftWidth: 1}}
             underlayColor="#ccc"
             onPress={(): void => {
             setPictures([])
