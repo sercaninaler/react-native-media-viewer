@@ -20,7 +20,7 @@ Freesound API
 
 #### Demo
 
-https://sercaninaler.github.io/react-native-media-viewer
+https://sinaler.github.io/react-native-media-viewer
 
 #### Installation
 

@@ -117,9 +117,8 @@ const styles = {
     marginTop: '4%',
     marginBottom: '10%',
     position: 'relative',
-    width: imageWidth - 20,
+    width: imageWidth - 14,
     height: imageHeight,
-    borderRadius: 10,
   } as ImageStyle,
   pictureInfo: {
     position: 'absolute',

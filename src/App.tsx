@@ -3,7 +3,6 @@ import { View, Text, TextInput, TouchableHighlight, Image } from 'react-native'
 //import Constants from 'expo-constants';
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
-import { Resizable } from 're-resizable'
 import { pixabayApi } from './constants'
 import { initLocalStorage, localStorageTags, localStorageSettings } from './helpers'
 
@@ -230,52 +229,37 @@ const App: FC = () => {
 
       {!isLoading && pictures.length !== 0 && (
       <View style={styles.pictureHolder}>
-        <Resizable
-          size={{width: imageWidth, height: 'auto'}}
-          enable={{
-            top: false,
-            right: window.innerWidth > imageWidth,
-            bottom: false,
-            left: window.innerWidth > imageWidth,
-            topRight: false,
-            bottomRight: false,
-            bottomLeft: false,
-            topLeft: false,
-          }}
-          onResizeStop={(e, d, x, size): void => { updateSettings('imageWidth', (parseInt(String(imageWidth)) + parseInt(String(size.width))).toString()) }}
+        {filteredPictures.map((picture, index) => (
+          <View style={styles.pictureHolder} key={picture.image}>
+            <Image
+              style={styles.picture}
+              resizeMode={'cover'}
+              source={{uri: picture.image}}
+              onClick={(): void => togglePicture(index)}
+            />
+
+            {picture.showInfo ? (
+              <View style={styles.pictureInfo}>
+                <TouchableHighlight
+                    underlayColor="#cccccc"
+                    style={{...styles.button, marginLeft: 2, marginRight: 2}}
+                    onPress={(): void => deletePicture(index, query) }
+                >
+                  <Text>x</Text>
+                </TouchableHighlight>
+                {renderTags(picture.tags)}
+              </View>
+            ) : null}
+          </View>
+          ))}
+
+        <TouchableHighlight
+            style={{...styles.button, marginBottom: 50, marginLeft: 'auto', marginRight: 'auto'}}
+            underlayColor="#cccccc"
+            onPress={(): void => setLimit(limit + 10) }
         >
-          {filteredPictures.map((picture, index) => (
-            <View style={styles.pictureHolder} key={picture.image}>
-              <Image
-                style={styles.picture}
-                resizeMode={'cover'}
-                source={{uri: picture.image}}
-                onClick={(): void => togglePicture(index)}
-              />
-
-              {picture.showInfo ? (
-                <View style={styles.pictureInfo}>
-                  <TouchableHighlight
-                      underlayColor="#cccccc"
-                      style={{...styles.button, marginLeft: 2, marginRight: 2}}
-                      onPress={(): void => deletePicture(index, query) }
-                  >
-                    <Text>x</Text>
-                  </TouchableHighlight>
-                  {renderTags(picture.tags)}
-                </View>
-              ) : null}
-            </View>
-            ))}
-
-          <TouchableHighlight
-              style={{...styles.button, marginBottom: 50, marginLeft: 'auto', marginRight: 'auto'}}
-              underlayColor="#cccccc"
-              onPress={(): void => setLimit(limit + 10) }
-          >
-            <Text>Load More</Text>
-          </TouchableHighlight>
-        </Resizable>
+          <Text>Load More</Text>
+        </TouchableHighlight>
       </View>
       )}
 
