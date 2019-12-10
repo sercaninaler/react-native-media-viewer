@@ -1,4 +1,8 @@
-import { ViewStyle } from "react-native";
+import {ViewStyle, ImageStyle, Dimensions } from "react-native";
+
+const dimensions = Dimensions.get('window');
+const imageHeight = Math.round(dimensions.width * 9 / 16);
+const imageWidth = dimensions.width;
 
 const styles = {
   app: {
@@ -107,12 +111,16 @@ const styles = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    //overflow: 'hidden',
   } as ViewStyle,
   picture: {
     marginTop: '4%',
     marginBottom: '10%',
     position: 'relative',
-  } as ViewStyle,
+    width: imageWidth - 20,
+    height: imageHeight,
+    borderRadius: 10,
+  } as ImageStyle,
   pictureInfo: {
     position: 'absolute',
     bottom: '3%',

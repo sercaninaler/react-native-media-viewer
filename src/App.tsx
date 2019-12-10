@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { View, Text, TextInput, TouchableHighlight } from 'react-native'
+import { View, Text, TextInput, TouchableHighlight, Image } from 'react-native'
 //import Constants from 'expo-constants';
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
@@ -8,7 +8,6 @@ import { pixabayApi } from './constants'
 import { initLocalStorage, localStorageTags, localStorageSettings } from './helpers'
 
 import importedStyles from './styles'
-import './index.css'
 
 type ApiResults = {
   webformatURL: string;
@@ -233,7 +232,6 @@ const App: FC = () => {
       <View style={styles.pictureHolder}>
         <Resizable
           size={{width: imageWidth, height: 'auto'}}
-          className="App-picture-resizable"
           enable={{
             top: false,
             right: window.innerWidth > imageWidth,
@@ -247,11 +245,11 @@ const App: FC = () => {
           onResizeStop={(e, d, x, size): void => { updateSettings('imageWidth', (parseInt(String(imageWidth)) + parseInt(String(size.width))).toString()) }}
         >
           {filteredPictures.map((picture, index) => (
-            <View style={styles.picture} key={picture.image}>
-              <img
-                src={picture.image}
-                alt={picture.tags}
-                className="App-picture-item-image"
+            <View style={styles.pictureHolder} key={picture.image}>
+              <Image
+                style={styles.picture}
+                resizeMode={'cover'}
+                source={{uri: picture.image}}
                 onClick={(): void => togglePicture(index)}
               />
 

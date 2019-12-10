@@ -1,3 +1,4 @@
+/*
 * {
   box-sizing: border-box;
   margin: 0;
@@ -19,13 +20,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-button {
-  background: none;
-  border: none;
-  font-size: 16px;
-}
-
-/*
 .App-logo {
   height: 160px;
 }
@@ -100,7 +94,7 @@ button {
   margin: 4% 0 10%;
   position: relative;
 }
-*/
+
 
 .App-picture-item-tags button:hover {
   background-color: #222;
@@ -136,25 +130,6 @@ button {
   overflow: hidden;
 }
 
-.App-footer.dark {
-  background-color: #000;
-}
-
-.App-footer.dark button {
-  color: white;
-  background-color: transparent;
-}
-
-.App-settings {
-  bottom: 44px;
-  opacity: 0.8;
-}
-
-.App-footer-label {
-  padding: 0 6px;
-}
-
-/*
 .App-footer {
   text-align: center;
   background-color: #ececec;

@@ -31,29 +31,16 @@ Then run;
 yarn
 ```
 
-#### Running with Metro Bundler, Web, Android and Ios
+#### Package Scripts
 
 ```
-yarn start
-yarn web
-yarn android
-yarn ios
-```
+yarn start      // Run Metro Bundler
+yarn web        // Run for web
+yarn android    // Run for android
+yarn ios        // Run for ios
+yarn build      // Build for web
+yarn deploy     // Deploy on Github Pages
+yarn eslint     // Eslint check
+yarn tsc        // Typescript check
 
-#### Build for Web
-
-```
-yarn build
-```
-
-#### Deploy on Github Pages
-
-```
-yarn deploy
-```
-
-#### Lint
-
-```
-yarn eslint
 ```
