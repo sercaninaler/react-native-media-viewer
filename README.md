@@ -2,15 +2,20 @@
 Media viewer application based on React Native.
 Works on Web, Android and Ios.
 
-#### Dependencies, Libraries
+#### Dependencies, Libraries, API's
 
 ```
 React
 React Native (Expo)
-React Native Web
 Typescript
+React Native Web
 Eslint
 Axios
+```
+
+```
+Pixabay API
+Freesound API
 ```
 
 #### Demo
@@ -19,11 +24,14 @@ https://sercaninaler.github.io/react-native-media-viewer
 
 #### Installation
 
+Copy config.js.tmp => config.js and add your Pixabay and Freesound API keys.
+
+Then run;
 ```
 yarn
 ```
 
-#### Running with Metro Bundler, Web, Androd and Ios
+#### Running with Metro Bundler, Web, Android and Ios
 
 ```
 yarn start

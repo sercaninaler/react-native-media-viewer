@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 import { View, Text, TextInput, TouchableHighlight } from 'react-native'
-import Constants from 'expo-constants';
+//import Constants from 'expo-constants';
 import axios from 'axios'
 import Loader from 'react-loader-spinner'
 import { Resizable } from 're-resizable'

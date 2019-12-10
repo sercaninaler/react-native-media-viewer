@@ -1,2 +1,5 @@
-export const API_URL = ''
-export const API_KEY = ''
+export const PIXABAY_API_URL = 'https://pixabay.com/api/'
+export const PIXABAY_API_KEY = ''
+
+export const FREESOUND_API_URL = 'https://freesound.org/apiv2/search/text/'
+export const FREESOUND_API_KEY = ''
