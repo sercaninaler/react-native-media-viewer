@@ -8,8 +8,8 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js"
   },
   {
-    "revision": "385eb3fd427dfa82c0a6",
-    "url": "/react-native-media-viewer/static/js/2.dd9318aa.chunk.js"
+    "revision": "2fd9d1f5e145e276ebf4",
+    "url": "/react-native-media-viewer/static/js/2.c119243b.chunk.js"
   },
   {
     "revision": "d0c694b562b2208635f250762cd7fc79",
@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/manifest.json"
   },
   {
-    "revision": "ee8a140531ea76719866f0701c590a0a",
+    "revision": "ab1f05206af772d0aaf8c38f754059bb",
     "url": "/react-native-media-viewer/index.html"
   },
   {
@@ -48,7 +48,7 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/expo-service-worker.js.gz"
   },
   {
-    "revision": "448741a4ad87bf8d5d597434f8cd2141",
-    "url": "/react-native-media-viewer/static/js/2.dd9318aa.chunk.js.gz"
+    "revision": "43e81f7b77b6f885aa1b089b589878d0",
+    "url": "/react-native-media-viewer/static/js/2.c119243b.chunk.js.gz"
   }
 ];
