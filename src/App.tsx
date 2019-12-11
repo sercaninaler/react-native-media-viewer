@@ -202,7 +202,7 @@ const App: FC = () => {
         {tags.map((tag) => (
           <TouchableHighlight
               key={tag}
-              style={styles.tag}
+              style={styles.button}
               onPress={(): void => {
                 setQuery(tag)
                 getPictures(tag)
@@ -230,51 +230,56 @@ const App: FC = () => {
       {!isLoading && pictures.length !== 0 && (
       <View style={styles.pictureHolder}>
         {filteredPictures.map((picture, index) => (
-          <View style={styles.pictureHolder} key={picture.image}>
-            <Image
-              style={styles.picture}
-              resizeMode={'cover'}
-              source={{uri: picture.image}}
-              onClick={(): void => togglePicture(index)}
-            />
+          <TouchableHighlight
+            key={picture.image}
+            underlayColor="#cccccc"
+            onPress={(): void => togglePicture(index)}
+          >
+            <View style={styles.pictureHolder} >
+              <Image
+                style={styles.picture}
+                resizeMode={'cover'}
+                source={{uri: picture.image}}
+              />
 
-            {picture.showInfo ? (
-              <View style={styles.pictureInfo}>
-                <TouchableHighlight
+              {picture.showInfo ? (
+                <View style={styles.pictureInfo}>
+                  <TouchableHighlight
                     underlayColor="#cccccc"
                     style={{...styles.button, marginLeft: 2, marginRight: 2}}
                     onPress={(): void => deletePicture(index, query) }
-                >
-                  <Text>x</Text>
-                </TouchableHighlight>
-                {renderTags(picture.tags)}
-              </View>
-            ) : null}
-          </View>
-          ))}
+                  >
+                    <Text>x</Text>
+                  </TouchableHighlight>
+                  {renderTags(picture.tags)}
+                </View>
+              ) : null}
+            </View>
+          </TouchableHighlight>
+        ))}
 
         <TouchableHighlight
-            style={{...styles.button, marginBottom: 50, marginLeft: 'auto', marginRight: 'auto'}}
-            underlayColor="#cccccc"
-            onPress={(): void => setLimit(limit + 10) }
+          style={{...styles.button, marginBottom: 50, marginLeft: 'auto', marginRight: 'auto'}}
+          underlayColor="#cccccc"
+          onPress={(): void => setLimit(limit + 10) }
         >
           <Text>Load More</Text>
         </TouchableHighlight>
       </View>
       )}
 
-      <View style={theme === 'light' ? styles.AppFooter : styles.AppFooter}>
+      <View style={styles.footer}>
         {settingsCounter < 4 && (
           <>
             <TouchableHighlight
-                style={styles.AppFooterItem}
+                style={styles.footerLink}
                 underlayColor="#ccc"
                 onPress={(): void => { showSettings() }}
             >
               <Text>Media Viewer</Text>
             </TouchableHighlight>
             <TouchableHighlight
-                style={{...styles.AppFooterItem, borderLeftWidth: 1}}
+                style={{...styles.footerLink, borderLeftWidth: 1}}
                 underlayColor="#ccc"
                 onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
             >
@@ -283,7 +288,7 @@ const App: FC = () => {
           </>
         )}
         {settingsCounter > 20 && <TouchableHighlight
-            style={styles.AppFooterItem}
+            style={styles.footerLink}
             onPress={(): void => showSettings()}
             underlayColor="#ccc"
         >
@@ -291,7 +296,7 @@ const App: FC = () => {
         </TouchableHighlight>}
 
         {settingsCounter === 4 && <TouchableHighlight
-            style={styles.AppFooterItem}
+            style={styles.footerLink}
             onPress={(): void => showSettings()}
             underlayColor="#ccc"
         >
@@ -299,7 +304,7 @@ const App: FC = () => {
         </TouchableHighlight>}
 
         {settingsCounter > 4 && <TouchableHighlight
-            style={styles.AppFooterItem}
+            style={styles.footerLink}
             onPress={(): void => setSettingsCounter(0)}
             underlayColor="#ccc"
         >
@@ -307,7 +312,7 @@ const App: FC = () => {
         </TouchableHighlight>}
 
         {settingsCounter > 4 && <TouchableHighlight
-            style={{...styles.AppFooterItem, borderLeftWidth: 1}}
+            style={{...styles.footerLink, borderLeftWidth: 1}}
             underlayColor="#ccc"
             onPress={(): void => {
               localStorage.setItem('tags', JSON.stringify([]))
@@ -318,7 +323,7 @@ const App: FC = () => {
         </TouchableHighlight>}
 
         {settingsCounter > 4 && <TouchableHighlight
-            style={{...styles.AppFooterItem, borderLeftWidth: 1}}
+            style={{...styles.footerLink, borderLeftWidth: 1}}
             underlayColor="#ccc"
             onPress={(): void => {
             setPictures([])

@@ -13,13 +13,14 @@ const styles = {
   },
   button: {
     backgroundColor: '#eee',
-    padding: 6,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 11,
+    paddingRight: 11,
     borderRadius: 5,
     borderColor: '#ddd',
     borderWidth: 1,
     width: 'fit-content',
+    margin: 5,
+    padding: 5,
   } as ViewStyle,
   searchForm: {
     justifyContent: 'center',
@@ -57,14 +58,6 @@ const styles = {
     maxWidth: 800,
   } as ViewStyle,
   tag: {
-    margin: 5,
-    backgroundColor: '#eee',
-    padding: 5,
-    paddingLeft: 11,
-    paddingRight: 11,
-    borderRadius: 5,
-    borderColor: '#ddd',
-    borderWidth: 1,
   },
   message: {
     flexWrap: 'wrap',
@@ -88,7 +81,7 @@ const styles = {
     zIndex: 1,
     paddingBottom: 100,
   } as ViewStyle,
-  AppFooter: {
+  footer: {
     backgroundColor: '#ececec',
     padding: '10 0',
     position: 'absolute',
@@ -100,7 +93,7 @@ const styles = {
     flexDirection: 'row',
     flexWrap: 'wrap',
   } as ViewStyle,
-  AppFooterItem: {
+  footerLink: {
     margin: '0 5',
     borderColor: '#999999',
     padding: 5,
@@ -111,19 +104,18 @@ const styles = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    position: 'relative',
     //overflow: 'hidden',
   } as ViewStyle,
   picture: {
     marginTop: '4%',
-    marginBottom: '10%',
-    position: 'relative',
-    width: imageWidth - 14,
+    marginBottom: '8%',
+    width: imageWidth - 16,
     height: imageHeight,
   } as ImageStyle,
   pictureInfo: {
     position: 'absolute',
-    bottom: '3%',
-    padding: 10,
+    bottom: '17%',
     flexDirection: 'row',
     alignSelf: 'center',
   } as ViewStyle,
