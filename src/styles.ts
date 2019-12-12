@@ -101,8 +101,7 @@ const styles = {
     paddingRight: 10,
   } as ViewStyle,
   pictureHolder: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
     justifyContent: 'center',
     position: 'relative',
     //overflow: 'hidden',

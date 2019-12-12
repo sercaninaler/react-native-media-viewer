@@ -1,38 +1,54 @@
-import AsyncStorage from '@react-native-community/async-storage'
+import AsyncStorageFactory from '@react-native-community/async-storage';
+import WebStorage from '@react-native-community/async-storage-backend-web';
+//import LegacyStorage from '@react-native-community/async-storage-backend-legacy';
 
-export const storeData = async () => {
+import { TAGS, SETTINGS } from './constants'
+
+const webStorage = new WebStorage();
+//const legacyStorage = new LegacyStorage();
+const storage = AsyncStorageFactory.create(webStorage, {});
+
+
+export const setData = async (key: string, value: string): Promise<void> => {
   try {
-    await AsyncStorage.setItem('@storage_Key', 'stored value')
+    await storage.set(key, value)
   } catch (e) {
-    // saving error
+    // throw error
   }
 }
 
-export const getData = async () => {
+export const getData = async (key: string): Promise<void> => {
   try {
-    const value = await AsyncStorage.getItem('@storage_Key')
-    if(value !== null) {
-      // value previously stored
+    const value = await storage.get(key)
+    if (value !== null) {
+      return value
     }
   } catch(e) {
-    // error reading value
+    // throw error
   }
 }
-
-const tags = ['animals', 'fruits', 'planets']
-const settings = { imageWidth: 640, theme: 'light' }
 
 export const initLocalStorage = (): void => {
-  if (!localStorage.getItem('pictures')) {
-    localStorage.setItem('pictures', JSON.stringify({}))
-  }
-  if (!localStorage.getItem('tags')) {
-    localStorage.setItem('tags', JSON.stringify(tags))
-  }
-  if (!localStorage.getItem('settings')) {
-    localStorage.setItem('settings', JSON.stringify(settings))
-  }
+  getData('pictures').then(result => {
+    if (!result) {
+      setData('pictures', JSON.stringify({}))
+    }
+  })
+
+  getData('tags').then(result => {
+    if (!result) {
+      setData('tags', JSON.stringify(TAGS))
+    }
+  })
+
+  getData('settings').then(result => {
+    if (!result) {
+      setData('settings', JSON.stringify(SETTINGS))
+    }
+  })
 }
+/*
 
 export const localStorageTags = localStorage.getItem('tags') ? JSON.parse(localStorage.getItem('tags') || '') : tags
 export const localStorageSettings = localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings') || '') : settings
+*/

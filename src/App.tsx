@@ -1,28 +1,12 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { View, Text, TextInput, TouchableHighlight, Image, ActivityIndicator } from 'react-native'
 //import Constants from 'expo-constants';
 import axios from 'axios'
-import { pixabayApi } from './constants'
-import { initLocalStorage, localStorageTags, localStorageSettings } from './helpers'
+import { pixabayApi, TAGS, SETTINGS } from './constants'
+import { initLocalStorage, getData, setData } from './helpers'
+import { ApiResults, Pictures, Settings } from './types'
 
 import importedStyles from './styles'
-
-type ApiResults = {
-  webformatURL: string;
-  tags: string;
-}
-
-type Settings = {
-  theme: string;
-  imageWidth: number;
-}
-
-type Pictures = {
-  isDeleted: boolean;
-  showInfo: boolean;
-  image: string;
-  tags: string;
-}
 
 const App: FC = () => {
   initLocalStorage()
@@ -30,12 +14,21 @@ const App: FC = () => {
   const [pictures, setPictures] = useState<Pictures[]>([])
   /* const [sounds, setSounds] = useState([]) */
   const [query, setQuery] = useState<string>('')
-  const [tags, setTags] = useState<string[]>(localStorageTags)
   const [settingsCounter, setSettingsCounter] = useState<number>(0)
-  const [settings, setSettings] = useState<Settings>(localStorageSettings )
   const [message, setMessage] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [limit, setLimit] = useState<number>(10)
+  const [settings, setSettings] = useState<Settings>(SETTINGS)
+  const [tags, setTags] = useState<string[]>(TAGS)
+
+  useEffect( () => {
+     getData('settings').then((settings)=> {
+       setSettings(JSON.parse(settings))
+    })
+    getData('tags').then((tags)=> {
+       setTags(JSON.parse(tags))
+    })
+  }, [])
 
   let styles = importedStyles
   const { theme } = settings
@@ -310,6 +303,7 @@ const App: FC = () => {
             onPress={(): void => {
               localStorage.setItem('tags', JSON.stringify([]))
               setTags([])
+              setQuery('')
             }}
         >
           <Text>Clear tags</Text>
