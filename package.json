@@ -16,11 +16,13 @@
     "tsc": "tsc"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^2.0.0-rc.1",
+    "@react-native-community/async-storage-backend-legacy": "^2.0.0-rc.1",
+    "@react-native-community/async-storage-backend-web": "^2.0.0-rc.1",
     "axios": "^0.19.0",
     "expo": "^36.0.0",
-    "react": "16.9.0",
-    "react-dom": "16.9.0",
-    "react-loader-spinner": "^3.1.5",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
     "react-native-web": "^0.11.7"
   },
@@ -28,8 +30,7 @@
     "@types/jest": "^24.0.23",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
-    "@types/react-loader-spinner": "^3.1.0",
-    "@types/react-native": "^0.60.24",
+    "@types/react-native": "^0.60.25",
     "@types/react-test-renderer": "^16.9.1",
     "@typescript-eslint/eslint-plugin": "^2.11.0",
     "@typescript-eslint/parser": "^2.11.0",

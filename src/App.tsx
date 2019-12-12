@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react'
-import { View, Text, TextInput, TouchableHighlight, Image } from 'react-native'
+import { View, Text, TextInput, TouchableHighlight, Image, ActivityIndicator } from 'react-native'
 //import Constants from 'expo-constants';
 import axios from 'axios'
-import Loader from 'react-loader-spinner'
 import { pixabayApi } from './constants'
 import { initLocalStorage, localStorageTags, localStorageSettings } from './helpers'
 
@@ -39,7 +38,7 @@ const App: FC = () => {
   const [limit, setLimit] = useState<number>(10)
 
   let styles = importedStyles
-  const { theme, imageWidth } = settings
+  const { theme } = settings
 
   if (theme === 'light') {
     styles = {
@@ -217,13 +216,7 @@ const App: FC = () => {
 
       {isLoading && (
         <View style={styles.loader}>
-          <Loader
-            type="BallTriangle"
-            color="#FFF"
-            height={100}
-            width={100}
-            timeout={500000}
-          />
+          <ActivityIndicator size="large" color="#0000ff" />
         </View>
       )}
 

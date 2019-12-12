@@ -1,3 +1,24 @@
+import AsyncStorage from '@react-native-community/async-storage'
+
+export const storeData = async () => {
+  try {
+    await AsyncStorage.setItem('@storage_Key', 'stored value')
+  } catch (e) {
+    // saving error
+  }
+}
+
+export const getData = async () => {
+  try {
+    const value = await AsyncStorage.getItem('@storage_Key')
+    if(value !== null) {
+      // value previously stored
+    }
+  } catch(e) {
+    // error reading value
+  }
+}
+
 const tags = ['animals', 'fruits', 'planets']
 const settings = { imageWidth: 640, theme: 'light' }
 

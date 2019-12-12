@@ -9,7 +9,7 @@ React
 React Native (Expo)
 Typescript
 React Native Web
-Eslint
+AsyncStorage(legacy&web)
 Axios
 ```
 
