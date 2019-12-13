@@ -22,11 +22,15 @@ const App: FC = () => {
   const [tags, setTags] = useState<string[]>(TAGS)
 
   useEffect( () => {
-     getData('settings').then((settings)=> {
-       setSettings(JSON.parse(settings))
+    getData('settings').then((settings) => {
+      setSettings(JSON.parse(settings))
     })
-    getData('tags').then((tags)=> {
-       setTags(JSON.parse(tags))
+    getData('tags').then((tags) => {
+      setTags(JSON.parse(tags))
+    })
+    getData('pictures').then((pictures) => {
+      setPictures(JSON.parse(pictures))
+      console.log('here')
     })
   }, [])
 
@@ -44,22 +48,23 @@ const App: FC = () => {
     if (tag !== '' && tags.indexOf(tag) === -1) {
       tags.unshift(tag)
       setTags(tags)
-      localStorage.setItem('tags', JSON.stringify(tags))
+      setData('tags', JSON.stringify(tags))
     }
   }
 
   const getPictures = async (keyword: string): Promise<void> => {
-    const pictureQuery = keyword.trim()
+    const query = keyword.trim()
     setMessage(null)
     setLimit(10)
-    const localData = JSON.parse(localStorage.getItem('pictures') || '')
 
-    if ((!Array.isArray(localData[pictureQuery]) ||
-        !localData[pictureQuery].length) ||
-        Math.round(new Date().getTime() / 1000) - localData[`${pictureQuery}_lastUpdate`] > 12 * 60 * 60
+      console.log(pictures)
+
+    if ((!Array.isArray(pictures[query]) ||
+        !pictures[query].length) ||
+        Math.round(new Date().getTime() / 1000) - pictures[`${query}_lastUpdate`] > 12 * 60 * 60
     ) {
       setIsLoading(true)
-      const response = await axios.get(pixabayApi(pictureQuery))
+      const response = await axios.get(pixabayApi(query))
       const data = response.data.hits
 
       if (data.length) {
@@ -74,26 +79,24 @@ const App: FC = () => {
           })
         })
 
-        localData[pictureQuery] = newPictures
-        localData[`${pictureQuery}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
-        localStorage.setItem('pictures', JSON.stringify(localData))
-        setPictures(newPictures)
+        pictures[query] = newPictures
+        pictures[`${query}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
+        setData('pictures', JSON.stringify(pictures))
 
-        insertTag(pictureQuery)
+        insertTag(query)
       } else {
         setTimeout(() => {
           setMessage('Couldn\'t find any results ')
         }, 500)
-        setPictures([])
       }
+      setPictures(pictures)
+
       setTimeout(() => {
         setIsLoading(false)
       }, 500)
     } else {
-      setPictures(localData[pictureQuery])
-
-      if (tags.indexOf(pictureQuery) === -1) {
-        insertTag(pictureQuery)
+      if (tags.indexOf(query) === -1) {
+        insertTag(query)
       }
     }
   }
@@ -126,10 +129,9 @@ const App: FC = () => {
     newPictures[index].isDeleted = true
     setPictures(newPictures)
 
-    const localData = JSON.parse(localStorage.getItem('pictures') || '')
-    localData[tag] = newPictures
-    localData[`${tag}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
-    localStorage.setItem('pictures', JSON.stringify(localData))
+    pictures[tag] = newPictures
+    pictures[`${tag}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
+    setData('pictures', JSON.stringify(pictures))
   }
 
   const onSubmit = (): void => {
@@ -154,7 +156,7 @@ const App: FC = () => {
       [key]: value,
     }
     setSettings(newSettings)
-    localStorage.setItem('settings', JSON.stringify(newSettings))
+    setData('settings', JSON.stringify(newSettings))
   }
 
   const renderTags = (text: string): object => {
@@ -174,7 +176,7 @@ const App: FC = () => {
     ))
   }
 
-  const filteredPictures = pictures.filter(picture => !picture.isDeleted).slice(0, limit)
+  const filteredPictures = pictures[query] ? pictures[query].filter(picture => !picture.isDeleted).slice(0, limit) : []
 
   //console.log(Constants)
 

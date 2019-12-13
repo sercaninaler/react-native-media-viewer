@@ -57,8 +57,6 @@ const styles = {
     marginRight: 'auto',
     maxWidth: 800,
   } as ViewStyle,
-  tag: {
-  },
   message: {
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -75,9 +73,9 @@ const styles = {
     position: 'absolute',
     top: 0,
     width: '100%',
-    backgroundColor: '#EEE',
+    backgroundColor: '#FFF',
     height: '100%',
-    opacity: 0.5,
+    opacity: 0.7,
     zIndex: 1,
     paddingBottom: 100,
   } as ViewStyle,
@@ -104,7 +102,7 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     position: 'relative',
-    //overflow: 'hidden',
+    alignItems: 'center',
   } as ViewStyle,
   picture: {
     marginTop: '4%',

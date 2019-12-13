@@ -8,7 +8,6 @@ const webStorage = new WebStorage();
 //const legacyStorage = new LegacyStorage();
 const storage = AsyncStorageFactory.create(webStorage, {});
 
-
 export const setData = async (key: string, value: string): Promise<void> => {
   try {
     await storage.set(key, value)
@@ -47,8 +46,3 @@ export const initLocalStorage = (): void => {
     }
   })
 }
-/*
-
-export const localStorageTags = localStorage.getItem('tags') ? JSON.parse(localStorage.getItem('tags') || '') : tags
-export const localStorageSettings = localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings') || '') : settings
-*/
