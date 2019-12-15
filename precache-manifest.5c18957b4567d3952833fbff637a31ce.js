@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "536cbfe7b6f3b0505019",
-    "url": "/react-native-media-viewer/static/js/app.0902ece6.chunk.js"
+    "revision": "d7122964d8c34da24832",
+    "url": "/react-native-media-viewer/static/js/app.eeea81b5.chunk.js"
   },
   {
     "revision": "b651ec6ee3f07fc88480",
@@ -32,12 +32,12 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/manifest.json"
   },
   {
-    "revision": "85c37aa1de33ff100cbc685614754b94",
+    "revision": "63008805b3349633d6868949fce619cd",
     "url": "/react-native-media-viewer/index.html"
   },
   {
-    "revision": "ebca72d3202a5e094c6525f41cc49bfa",
-    "url": "/react-native-media-viewer/static/js/app.0902ece6.chunk.js.gz"
+    "revision": "06297508ea5fac737bc1eeb116fb7854",
+    "url": "/react-native-media-viewer/static/js/app.eeea81b5.chunk.js.gz"
   },
   {
     "revision": "1e4ea387a53522007dc7c24cc22f6986",
