@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react'
-import { View, Text, TextInput, TouchableHighlight, Image, ActivityIndicator } from 'react-native'
+import { View, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, Image, ActivityIndicator } from 'react-native'
 //import Constants from 'expo-constants';
 import axios from 'axios'
 import { pixabayApi, TAGS, SETTINGS } from './constants'
@@ -30,7 +30,6 @@ const App: FC = () => {
     })
     getData('pictures').then((pictures) => {
       setPictures(JSON.parse(pictures))
-      console.log('here')
     })
   }, [])
 
@@ -44,30 +43,22 @@ const App: FC = () => {
     }
   }
 
-  const insertTag = (tag: string): void => {
-    if (tag !== '' && tags.indexOf(tag) === -1) {
-      tags.unshift(tag)
-      setTags(tags)
-      setData('tags', JSON.stringify(tags))
-    }
-  }
-
-  const getPictures = async (keyword: string): Promise<void> => {
-    const query = keyword.trim()
+  const getPictures = async (tag: string): Promise<void> => {
+    const keyword = tag.trim()
     setMessage(null)
     setLimit(10)
 
-      console.log(pictures)
-
-    if ((!Array.isArray(pictures[query]) ||
-        !pictures[query].length) ||
-        Math.round(new Date().getTime() / 1000) - pictures[`${query}_lastUpdate`] > 12 * 60 * 60
+    if ((!Array.isArray(pictures[keyword]) ||
+        !pictures[keyword].length) ||
+        Math.round(new Date().getTime() / 1000) - pictures[`${keyword}_lastUpdate`] > 12 * 60 * 60
     ) {
       setIsLoading(true)
-      const response = await axios.get(pixabayApi(query))
+      const response = await axios.get(pixabayApi(keyword))
       const data = response.data.hits
 
       if (data.length) {
+        insertTag(keyword)
+
         const newPictures: Pictures[] = []
 
         data.forEach((item: ApiResults) => {
@@ -79,25 +70,31 @@ const App: FC = () => {
           })
         })
 
-        pictures[query] = newPictures
-        pictures[`${query}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
+        pictures[keyword] = newPictures
+        pictures[`${keyword}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
         setData('pictures', JSON.stringify(pictures))
-
-        insertTag(query)
+        setPictures({...pictures})
       } else {
         setTimeout(() => {
           setMessage('Couldn\'t find any results ')
         }, 500)
       }
-      setPictures(pictures)
 
       setTimeout(() => {
         setIsLoading(false)
       }, 500)
     } else {
-      if (tags.indexOf(query) === -1) {
-        insertTag(query)
+      if (tags.indexOf(keyword) === -1) {
+        insertTag(keyword)
       }
+    }
+  }
+
+  const insertTag = (tag: string): void => {
+    if (tag !== '' && tags.indexOf(tag) === -1) {
+      tags.unshift(tag)
+      setTags(tags)
+      setData('tags', JSON.stringify(tags))
     }
   }
 
@@ -118,20 +115,16 @@ const App: FC = () => {
   } */
 
   const togglePicture = (index: number): void => {
-    const newPictures = [...pictures]
-    newPictures[index].showInfo = !newPictures[index].showInfo
-
-    setPictures(newPictures)
+    pictures[query][index].showInfo = !pictures[query][index].showInfo
+    setData('pictures', JSON.stringify(pictures))
+    setPictures({...pictures})
   }
 
-  const deletePicture = (index: number, tag: string): void => {
-    const newPictures = [...pictures]
-    newPictures[index].isDeleted = true
-    setPictures(newPictures)
-
-    pictures[tag] = newPictures
-    pictures[`${tag}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
+  const deletePicture = (index: number): void => {
+    pictures[query][index].isDeleted = true
+    pictures[`${query}_lastUpdate`] = Math.round(new Date().getTime() / 1000)
     setData('pictures', JSON.stringify(pictures))
+    setPictures({...pictures})
   }
 
   const onSubmit = (): void => {
@@ -159,7 +152,7 @@ const App: FC = () => {
     setData('settings', JSON.stringify(newSettings))
   }
 
-  const renderTags = (text: string): object => {
+  const renderPictureTags = (text: string): object => {
     const pictureTags = text.split(',')
     return pictureTags.map((tag) => (
       <TouchableHighlight
@@ -167,7 +160,7 @@ const App: FC = () => {
         style={{...styles.button, marginLeft: 2, marginRight: 2}}
         underlayColor="#cccccc"
         onPress={(): void => {
-           setQuery(tag)
+           setQuery(tag.trim())
            getPictures(tag)
         }}
       >
@@ -177,8 +170,6 @@ const App: FC = () => {
   }
 
   const filteredPictures = pictures[query] ? pictures[query].filter(picture => !picture.isDeleted).slice(0, limit) : []
-
-  //console.log(Constants)
 
   return (
     <View style={styles.app}>
@@ -197,6 +188,7 @@ const App: FC = () => {
           <TouchableHighlight
               key={tag}
               style={styles.button}
+              underlayColor="#cccccc"
               onPress={(): void => {
                 setQuery(tag)
                 getPictures(tag)
@@ -215,13 +207,12 @@ const App: FC = () => {
         </View>
       )}
 
-      {!isLoading && pictures.length !== 0 && (
+      {!isLoading && filteredPictures.length !== 0 && (
       <View style={styles.pictureHolder}>
         {filteredPictures.map((picture, index) => (
-          <TouchableHighlight
+          <TouchableWithoutFeedback
             key={picture.image}
-            underlayColor="#cccccc"
-            onPress={(): void => togglePicture(index)}
+            onLongPress={(): void => togglePicture(index)}
           >
             <View style={styles.pictureHolder} >
               <Image
@@ -230,7 +221,7 @@ const App: FC = () => {
                 source={{uri: picture.image}}
               />
 
-              {picture.showInfo ? (
+              {picture.showInfo && (
                 <View style={styles.pictureInfo}>
                   <TouchableHighlight
                     underlayColor="#cccccc"
@@ -239,11 +230,11 @@ const App: FC = () => {
                   >
                     <Text>x</Text>
                   </TouchableHighlight>
-                  {renderTags(picture.tags)}
+                  {renderPictureTags(picture.tags)}
                 </View>
-              ) : null}
+              )}
             </View>
-          </TouchableHighlight>
+          </TouchableWithoutFeedback>
         ))}
 
         <TouchableHighlight

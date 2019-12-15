@@ -6,7 +6,7 @@ const imageWidth = dimensions.width;
 
 const styles = {
   app: {
-    paddingTop: 15,
+    paddingTop: 17,
     paddingBottom: 30,
     height: '100%',
     backgroundColor: '#000000',
@@ -19,8 +19,8 @@ const styles = {
     borderColor: '#ddd',
     borderWidth: 1,
     width: 'fit-content',
-    margin: 5,
-    padding: 5,
+    margin: 1,
+    padding: 4,
   } as ViewStyle,
   searchForm: {
     justifyContent: 'center',
@@ -107,8 +107,8 @@ const styles = {
   picture: {
     marginTop: '4%',
     marginBottom: '8%',
-    width: imageWidth - 16,
-    height: imageHeight,
+    width: imageWidth,
+    height: imageHeight + 100,
   } as ImageStyle,
   pictureInfo: {
     position: 'absolute',
