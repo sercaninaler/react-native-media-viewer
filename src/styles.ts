@@ -7,7 +7,7 @@ const styles = {
     height: '100%',
     backgroundColor: '#000000',
     overflow: 'hidden',
-  },
+  } as ViewStyle,
   button: {
     backgroundColor: '#eee',
     padding: 3,

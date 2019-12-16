@@ -57,12 +57,12 @@ const App: FC = () => {
     const keyword = tag.trim()
     setMessage(null)
     setLimit(10)
+    setIsLoading(true)
 
     if ((!Array.isArray(pictures[keyword]) ||
         !pictures[keyword].length) ||
         Math.round(new Date().getTime() / 1000) - pictures[`${keyword}_lastUpdate`] > 12 * 60 * 60
     ) {
-      setIsLoading(true)
       const response = await axios.get(pixabayApi(keyword))
       const data = response.data.hits
 
@@ -88,15 +88,15 @@ const App: FC = () => {
           setMessage('Couldn\'t find any results ')
         }, 500)
       }
-
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 500)
     } else {
       if (tags.indexOf(keyword) === -1) {
         insertTag(keyword)
       }
     }
+
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 100)
   }
 
   const insertTag = (tag: string): void => {
@@ -258,7 +258,7 @@ const App: FC = () => {
         ))}
 
         <TouchableHighlight
-          style={{...styles.button, marginBottom: 50, marginLeft: 'auto', marginRight: 'auto'}}
+          style={{...styles.button, marginBottom: 70, marginLeft: 'auto', marginRight: 'auto'}}
           underlayColor="#cccccc"
           onPress={(): void => setLimit(limit + 10) }
         >
