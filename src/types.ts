@@ -9,7 +9,6 @@ export type Settings = {
 
 export type Pictures = {
   isDeleted: boolean;
-  showInfo: boolean;
   image: string;
   tags: string;
 }

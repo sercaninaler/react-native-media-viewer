@@ -29,20 +29,20 @@ export const getData = async (key: string): Promise<void> => {
 
 export const initLocalStorage = (): void => {
   getData('pictures').then(result => {
-    if (!result) {
-      setData('pictures', JSON.stringify({}))
+    if (result !== null) {
+      setData('pictures', JSON.stringify({})).then()
     }
   })
 
   getData('tags').then(result => {
-    if (!result) {
-      setData('tags', JSON.stringify(TAGS))
+    if (result !== null) {
+      setData('tags', JSON.stringify(TAGS)).then()
     }
   })
 
   getData('settings').then(result => {
-    if (!result) {
-      setData('settings', JSON.stringify(SETTINGS))
+    if (result !== null) {
+      setData('settings', JSON.stringify(SETTINGS)).then()
     }
   })
 }

@@ -66,7 +66,6 @@ const App: FC = () => {
             image: item.webformatURL,
             tags: item.tags,
             isDeleted: false,
-            showInfo: false,
           })
         })
 
@@ -114,10 +113,20 @@ const App: FC = () => {
     sound.play()
   } */
 
-  const togglePicture = (index: number): void => {
+  let lastTap = null;
+
+  const handleToggleInfo = (index: number): void => {
     pictures[query][index].showInfo = !pictures[query][index].showInfo
-    setData('pictures', JSON.stringify(pictures))
     setPictures({...pictures})
+  }
+
+  const handleDoubleTap = (index: number) => {
+    const now = Date.now();
+    if (lastTap && (now - lastTap) < 200) {
+      handleToggleInfo(index);
+    } else {
+      lastTap = now;
+    }
   }
 
   const deletePicture = (index: number): void => {
@@ -212,7 +221,8 @@ const App: FC = () => {
         {filteredPictures.map((picture, index) => (
           <TouchableWithoutFeedback
             key={picture.image}
-            onLongPress={(): void => togglePicture(index)}
+            onLongPress={(): void => handleToggleInfo(index)}
+            onPress={(): void => handleDoubleTap(index)}
           >
             <View style={styles.pictureHolder} >
               <Image

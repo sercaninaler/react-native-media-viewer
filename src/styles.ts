@@ -1,13 +1,13 @@
 import {ViewStyle, ImageStyle, Dimensions } from "react-native";
 
-const dimensions = Dimensions.get('window');
-const imageHeight = Math.round(dimensions.width * 9 / 16);
-const imageWidth = dimensions.width;
+const windowSize = Dimensions.get('window');
+const imageHeight = Math.round(windowSize.width * 9 / 16);
+const imageWidth = windowSize.width;
 
 const styles = {
   app: {
-    paddingTop: 17,
-    paddingBottom: 30,
+    paddingTop: 15,
+    paddingBottom: 10,
     height: '100%',
     backgroundColor: '#000000',
   },
@@ -15,12 +15,14 @@ const styles = {
     backgroundColor: '#eee',
     paddingLeft: 11,
     paddingRight: 11,
-    borderRadius: 5,
+    borderRadius: 4,
     borderColor: '#ddd',
     borderWidth: 1,
     width: 'fit-content',
-    margin: 1,
-    padding: 4,
+    margin: 2,
+    marginLeft: 1,
+    marginTop: 1,
+    padding: 3,
   } as ViewStyle,
   searchForm: {
     justifyContent: 'center',
@@ -105,10 +107,10 @@ const styles = {
     alignItems: 'center',
   } as ViewStyle,
   picture: {
-    marginTop: '4%',
-    marginBottom: '8%',
+    marginTop: '5%',
+    marginBottom: '10%',
     width: imageWidth,
-    height: imageHeight + 100,
+    height: imageHeight,
   } as ImageStyle,
   pictureInfo: {
     position: 'absolute',
