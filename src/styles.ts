@@ -1,8 +1,4 @@
-import {ViewStyle, ImageStyle, Dimensions } from "react-native";
-
-const windowSize = Dimensions.get('window');
-const imageHeight = Math.round(windowSize.width * 9 / 16);
-const imageWidth = windowSize.width;
+import { ViewStyle, ImageStyle } from 'react-native'
 
 const styles = {
   app: {
@@ -10,19 +6,18 @@ const styles = {
     paddingBottom: 10,
     height: '100%',
     backgroundColor: '#000000',
+    overflow: 'hidden',
   },
   button: {
     backgroundColor: '#eee',
-    paddingLeft: 11,
-    paddingRight: 11,
+    padding: 3,
+    paddingLeft: 8,
+    paddingRight: 8,
     borderRadius: 4,
     borderColor: '#ddd',
     borderWidth: 1,
     width: 'fit-content',
     margin: 2,
-    marginLeft: 1,
-    marginTop: 1,
-    padding: 3,
   } as ViewStyle,
   searchForm: {
     justifyContent: 'center',
@@ -95,7 +90,7 @@ const styles = {
   } as ViewStyle,
   footerLink: {
     margin: '0 5',
-    borderColor: '#999999',
+    borderColor: '#ddd',
     padding: 5,
     paddingLeft: 10,
     paddingRight: 10,
@@ -109,8 +104,6 @@ const styles = {
   picture: {
     marginTop: '5%',
     marginBottom: '10%',
-    width: imageWidth,
-    height: imageHeight,
   } as ImageStyle,
   pictureInfo: {
     position: 'absolute',

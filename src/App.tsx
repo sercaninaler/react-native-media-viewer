@@ -1,10 +1,20 @@
 import React, { FC, useState, useEffect } from 'react'
-import { View, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, Image, ActivityIndicator } from 'react-native'
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+  ActivityIndicator,
+  Dimensions,
+} from 'react-native'
+
 //import Constants from 'expo-constants';
 import axios from 'axios'
-import { pixabayApi, TAGS, SETTINGS } from './constants'
+import { pixabayApi, SETTINGS } from './constants'
 import { initLocalStorage, getData, setData } from './helpers'
 import { ApiResults, Pictures, Settings } from './types'
+import Image from 'react-native-scalable-image'
 
 import importedStyles from './styles'
 
@@ -19,7 +29,7 @@ const App: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [limit, setLimit] = useState<number>(10)
   const [settings, setSettings] = useState<Settings>(SETTINGS)
-  const [tags, setTags] = useState<string[]>(TAGS)
+  const [tags, setTags] = useState<string[]>([])
 
   useEffect( () => {
     getData('settings').then((settings) => {
@@ -227,8 +237,8 @@ const App: FC = () => {
             <View style={styles.pictureHolder} >
               <Image
                 style={styles.picture}
-                resizeMode={'cover'}
                 source={{uri: picture.image}}
+                width={Dimensions.get('window').width}
               />
 
               {picture.showInfo && (

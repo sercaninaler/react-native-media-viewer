@@ -18,10 +18,7 @@ export const setData = async (key: string, value: string): Promise<void> => {
 
 export const getData = async (key: string): Promise<void> => {
   try {
-    const value = await storage.get(key)
-    if (value !== null) {
-      return value
-    }
+    return await storage.get(key)
   } catch(e) {
     // throw error
   }
@@ -29,19 +26,19 @@ export const getData = async (key: string): Promise<void> => {
 
 export const initLocalStorage = (): void => {
   getData('pictures').then(result => {
-    if (result !== null) {
+    if (result === null) {
       setData('pictures', JSON.stringify({})).then()
     }
   })
 
   getData('tags').then(result => {
-    if (result !== null) {
+    if (result === null) {
       setData('tags', JSON.stringify(TAGS)).then()
     }
   })
 
   getData('settings').then(result => {
-    if (result !== null) {
+    if (result === null) {
       setData('settings', JSON.stringify(SETTINGS)).then()
     }
   })
