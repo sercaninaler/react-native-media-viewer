@@ -41,6 +41,12 @@ const App: FC = () => {
     getData('pictures').then((pictures) => {
       setPictures(JSON.parse(pictures))
     })
+
+    /*
+    Dimensions.addEventListener("change", (e) => {
+      console.log(e.window);
+    });
+    */
   }, [])
 
   let styles = importedStyles
@@ -132,7 +138,7 @@ const App: FC = () => {
 
   const handleDoubleTap = (index: number) => {
     const now = Date.now();
-    if (lastTap && (now - lastTap) < 200) {
+    if (lastTap && (now - lastTap) < 300) {
       handleToggleInfo(index);
     } else {
       lastTap = now;
@@ -264,6 +270,8 @@ const App: FC = () => {
         >
           <Text>Load More</Text>
         </TouchableHighlight>
+
+
       </View>
       )}
 
