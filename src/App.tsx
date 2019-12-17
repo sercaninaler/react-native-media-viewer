@@ -8,11 +8,11 @@ import {
   ActivityIndicator,
   Dimensions,
 } from 'react-native'
-
 //import Constants from 'expo-constants';
 import axios from 'axios'
 import { pixabayApi, SETTINGS } from './constants'
 import { initLocalStorage, getData, setData } from './helpers'
+import { Button } from './components'
 import { ApiResults, Pictures, Settings } from './types'
 import Image from 'react-native-scalable-image'
 
@@ -263,15 +263,11 @@ const App: FC = () => {
           </TouchableWithoutFeedback>
         ))}
 
-        <TouchableHighlight
-          style={{...styles.button, marginBottom: 70, marginLeft: 'auto', marginRight: 'auto'}}
-          underlayColor="#cccccc"
+        <Button
           onPress={(): void => setLimit(limit + 10) }
-        >
-          <Text>Load More</Text>
-        </TouchableHighlight>
-
-
+          text="Load More"
+          addStyles={{marginBottom: 70, marginLeft: 'auto', marginRight: 'auto'}}
+        />
       </View>
       )}
 

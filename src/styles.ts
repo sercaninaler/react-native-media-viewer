@@ -11,8 +11,8 @@ const styles = {
   button: {
     backgroundColor: '#eee',
     padding: 3,
-    paddingLeft: 8,
-    paddingRight: 8,
+    paddingLeft: 7,
+    paddingRight: 7,
     borderRadius: 4,
     borderColor: '#ddd',
     borderWidth: 1,
