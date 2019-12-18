@@ -1,4 +1,4 @@
-import { ViewStyle, ImageStyle } from 'react-native'
+import {ViewStyle, ImageStyle, TextStyle} from 'react-native'
 
 const styles = {
   app: {
@@ -19,6 +19,10 @@ const styles = {
     width: 'fit-content',
     margin: 2,
   } as ViewStyle,
+  buttonText: {
+    fontFamily: 'Ubuntu Mono',
+    fontSize: 16,
+  } as TextStyle,
   searchForm: {
     justifyContent: 'center',
     flexDirection: 'row',
@@ -37,12 +41,14 @@ const styles = {
   searchInput: {
     fontSize: 16,
     padding: 8,
-    backgroundColor: '#eee',
+    backgroundColor: '#f8f8f8',
     borderColor: '#ddd',
     borderWidth: 1,
     borderRadius: 5,
     width: 260,
     height: 40,
+    fontFamily: 'Ubuntu Mono',
+    outline: 'none',
   },
   tags: {
     flexDirection: 'row',

@@ -12,7 +12,7 @@
     "web": "expo start --web",
     "build": "expo build:web --no-pwa",
     "post-build": "./post-build.sh",
-    "deploy": "yarn build && yarn post-build && npx gh-pages -d web-build",
+    "deploy": "npx gh-pages -d web-build",
     "eslint": "eslint src/**/*.ts*",
     "eslint-fix": "eslint --fix src",
     "tsc": "tsc"
@@ -27,7 +27,8 @@
     "react-dom": "16.12.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
     "react-native-scalable-image": "^1.0.0",
-    "react-native-web": "^0.11.7"
+    "react-native-web": "^0.11.7",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",

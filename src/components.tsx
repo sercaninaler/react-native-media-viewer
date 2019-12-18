@@ -8,6 +8,6 @@ export const Button: FC = (props) => (
     underlayColor="#cccccc"
     onPress={props.onPress}
   >
-    <Text>{props.text}</Text>
+    <Text style={styles.buttonText}>{props.text}</Text>
   </TouchableHighlight>
 )

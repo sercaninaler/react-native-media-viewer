@@ -180,17 +180,14 @@ const App: FC = () => {
   const renderPictureTags = (text: string): object => {
     const pictureTags = text.split(',')
     return pictureTags.map((tag) => (
-      <TouchableHighlight
-        key={tag}
-        style={{...styles.button, marginLeft: 2, marginRight: 2}}
-        underlayColor="#cccccc"
+      <Button
         onPress={(): void => {
-           setQuery(tag.trim())
-           getPictures(tag)
+          setQuery(tag.trim())
+          getPictures(tag)
         }}
-      >
-        <Text>{tag}</Text>
-      </TouchableHighlight>
+        text={tag}
+        key={tag}
+      />
     ))
   }
 
@@ -210,17 +207,14 @@ const App: FC = () => {
       </View>
       <View style={styles.tags}>
         {tags.map((tag) => (
-          <TouchableHighlight
-              key={tag}
-              style={styles.button}
-              underlayColor="#cccccc"
-              onPress={(): void => {
-                setQuery(tag)
-                getPictures(tag)
-              }}
-          >
-            <Text>{tag}</Text>
-          </TouchableHighlight>
+          <Button
+            key={tag}
+            text={tag}
+            onPress={(): void => {
+              setQuery(tag)
+              getPictures(tag)
+            }}
+          />
         ))}
       </View>
 
@@ -256,6 +250,7 @@ const App: FC = () => {
                   >
                     <Text>x</Text>
                   </TouchableHighlight>
+
                   {renderPictureTags(picture.tags)}
                 </View>
               )}
@@ -265,7 +260,7 @@ const App: FC = () => {
 
         <Button
           onPress={(): void => setLimit(limit + 10) }
-          text="Load More"
+          text="more"
           addStyles={{marginBottom: 70, marginLeft: 'auto', marginRight: 'auto'}}
         />
       </View>
