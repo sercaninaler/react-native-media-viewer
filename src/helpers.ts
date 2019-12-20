@@ -1,16 +1,11 @@
-import AsyncStorageFactory from '@react-native-community/async-storage';
-import WebStorage from '@react-native-community/async-storage-backend-web';
-//import LegacyStorage from '@react-native-community/async-storage-backend-legacy';
-
+import { AsyncStorage, Platform } from 'react-native'
 import { TAGS, SETTINGS } from './constants'
 
-const webStorage = new WebStorage();
-//const legacyStorage = new LegacyStorage();
-const storage = AsyncStorageFactory.create(webStorage, {});
+const storage = Platform.OS === 'web' ? localStorage : AsyncStorage
 
 export const setData = async (key: string, value: string): Promise<void> => {
   try {
-    await storage.set(key, value)
+    await storage.setItem(key, value)
   } catch (e) {
     // throw error
   }
@@ -18,7 +13,7 @@ export const setData = async (key: string, value: string): Promise<void> => {
 
 export const getData = async (key: string): Promise<void> => {
   try {
-    return await storage.get(key)
+    return await storage.getItem(key)
   } catch(e) {
     // throw error
   }

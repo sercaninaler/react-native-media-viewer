@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect } from 'react'
 import {
   View,
   Text,
+  ScrollView,
   TextInput,
   TouchableHighlight,
   TouchableWithoutFeedback,
@@ -227,7 +228,7 @@ const App: FC = () => {
       )}
 
       {!isLoading && filteredPictures.length !== 0 && (
-      <View style={styles.pictureHolder}>
+      <ScrollView style={styles.pictureHolder}>
         {filteredPictures.map((picture, index) => (
           <TouchableWithoutFeedback
             key={picture.image}
@@ -263,26 +264,22 @@ const App: FC = () => {
           text="more"
           addStyles={{marginBottom: 70, marginLeft: 'auto', marginRight: 'auto'}}
         />
-      </View>
+      </ScrollView>
       )}
 
       <View style={styles.footer}>
         {settingsCounter < 4 && (
           <>
-            <TouchableHighlight
-                style={styles.footerLink}
-                underlayColor="#ccc"
-                onPress={(): void => { showSettings() }}
-            >
-              <Text>Media Viewer</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-                style={{...styles.footerLink, borderLeftWidth: 1}}
-                underlayColor="#ccc"
-                onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
-            >
-              <Text>{theme === 'dark' ? 'Light' : 'Dark'} Mode</Text>
-            </TouchableHighlight>
+            <Button
+              onPress={(): void => { showSettings() }}
+              text="media viewer"
+              addStyles={styles.footerLink}
+            />
+            <Button
+              onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
+              text={theme === 'dark' ? 'light mode' : 'dark mode'}
+              addStyles={styles.footerLink}
+            />
           </>
         )}
         {settingsCounter > 20 && <TouchableHighlight

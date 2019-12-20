@@ -1,14 +1,35 @@
 /* eslint-disable */
-import React  from 'react'
-import WebFont from 'webfontloader'
+import React, {useEffect, useState} from 'react'
 import App from './src/App'
+import * as Font from 'expo-font'
+import { Platform } from 'react-native'
 
-window.oncontextmenu = (event) => {
-  event.preventDefault()
-  event.stopPropagation()
-  return false
+if (Platform.OS === 'web') {
+  window.oncontextmenu = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    return false
+  }
 }
 
-WebFont.load({google: {families: ['Ubuntu Mono']}});
+const AppContainer = () => {
+  const [isLoading, setIsLoading] = useState(true)
 
-export default App
+  const loadAssetsAsync = async () => {
+    await Font.loadAsync({
+      'Ubuntu Mono': require('./assets/fonts/UbuntuMono-R.ttf'),
+    });
+
+    setIsLoading(false)
+  }
+
+  useEffect( () => {
+    loadAssetsAsync()
+  }, [])
+
+  return(
+    !isLoading && <App />
+  )
+}
+
+export default AppContainer

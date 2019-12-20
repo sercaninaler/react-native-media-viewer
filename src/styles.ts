@@ -2,7 +2,7 @@ import {ViewStyle, ImageStyle, TextStyle} from 'react-native'
 
 const styles = {
   app: {
-    paddingTop: 15,
+    paddingTop: 40,
     paddingBottom: 10,
     height: '100%',
     backgroundColor: '#000000',
@@ -16,7 +16,7 @@ const styles = {
     borderRadius: 4,
     borderColor: '#ddd',
     borderWidth: 1,
-    width: 'fit-content',
+    //width: 'fit-content',
     margin: 2,
   } as ViewStyle,
   buttonText: {
@@ -39,23 +39,23 @@ const styles = {
     borderRadius: 7,
   },
   searchInput: {
-    fontSize: 16,
+    fontSize: 18,
     padding: 8,
     backgroundColor: '#f8f8f8',
     borderColor: '#ddd',
     borderWidth: 1,
     borderRadius: 5,
-    width: 260,
-    height: 40,
+    width: 300,
+    height: 36,
     fontFamily: 'Ubuntu Mono',
-    outline: 'none',
+    //outline: 'none',
   },
   tags: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     marginTop: 15,
-    marginBottom: 15,
+    marginBottom: 25,
     marginLeft: 'auto',
     marginRight: 'auto',
     maxWidth: 800,
@@ -84,7 +84,7 @@ const styles = {
   } as ViewStyle,
   footer: {
     backgroundColor: '#ececec',
-    padding: '10 0',
+    padding: 10,
     position: 'absolute',
     width: '100%',
     bottom: 0,
@@ -95,7 +95,7 @@ const styles = {
     flexWrap: 'wrap',
   } as ViewStyle,
   footerLink: {
-    margin: '0 5',
+    borderWidth: 0,
     borderColor: '#ddd',
     padding: 5,
     paddingLeft: 10,
@@ -103,13 +103,10 @@ const styles = {
   } as ViewStyle,
   pictureHolder: {
     flexDirection: 'column',
-    justifyContent: 'center',
     position: 'relative',
-    alignItems: 'center',
   } as ViewStyle,
   picture: {
-    marginTop: '5%',
-    marginBottom: '10%',
+    marginBottom: 40,
   } as ImageStyle,
   pictureInfo: {
     position: 'absolute',
