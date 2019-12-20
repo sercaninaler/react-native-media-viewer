@@ -51,7 +51,7 @@ const App: FC = () => {
   }, [])
 
   let styles = importedStyles
-  const { theme } = settings
+  const theme = settings && settings.theme
 
   if (theme === 'light') {
     styles = {
