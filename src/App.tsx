@@ -32,6 +32,18 @@ const App: FC = () => {
   const [settings, setSettings] = useState<Settings>(SETTINGS)
   const [tags, setTags] = useState<string[]>([])
 
+  const width = Dimensions.get('window').width
+
+  let styles = importedStyles
+  const theme = settings && settings.theme
+
+  if (theme === 'light') {
+    styles = {
+      ...importedStyles,
+      app: { ...importedStyles.app, backgroundColor: '#FFFFFF' },
+    }
+  }
+
   useEffect( () => {
     getData('settings').then((settings) => {
       setSettings(JSON.parse(settings))
@@ -49,16 +61,6 @@ const App: FC = () => {
     });
     */
   }, [])
-
-  let styles = importedStyles
-  const theme = settings && settings.theme
-
-  if (theme === 'light') {
-    styles = {
-      ...importedStyles,
-      app: { ...importedStyles.app, backgroundColor: '#FFFFFF' },
-    }
-  }
 
   const getPictures = async (tag: string): Promise<void> => {
     const keyword = tag.trim()
@@ -239,7 +241,7 @@ const App: FC = () => {
               <Image
                 style={styles.picture}
                 source={{uri: picture.image}}
-                width={Dimensions.get('window').width}
+                width={width > 1000 ? 1000 : width}
               />
 
               {picture.showInfo && (
@@ -261,8 +263,8 @@ const App: FC = () => {
 
         <Button
           onPress={(): void => setLimit(limit + 10) }
-          text="more"
-          addStyles={{marginBottom: 70, marginLeft: 'auto', marginRight: 'auto'}}
+          text="load more"
+          addStyles={{marginBottom: 70, alignSelf: 'center'}}
         />
       </ScrollView>
       )}
@@ -272,62 +274,52 @@ const App: FC = () => {
           <>
             <Button
               onPress={(): void => { showSettings() }}
-              text="media viewer"
+              text="media viewer for oscar"
               addStyles={styles.footerLink}
             />
             <Button
               onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
               text={theme === 'dark' ? 'light mode' : 'dark mode'}
-              addStyles={styles.footerLink}
+              addStyles={{...styles.footerLink, borderLeftWidth: 1}}
             />
           </>
         )}
-        {settingsCounter > 20 && <TouchableHighlight
-            style={styles.footerLink}
-            onPress={(): void => showSettings()}
-            underlayColor="#ccc"
-        >
-          <Text>Language (English)</Text>
-        </TouchableHighlight>}
+        {settingsCounter > 20 && <Button
+          onPress={(): void => showSettings()}
+          text="language: english"
+          addStyles={styles.footerLink}
+        />}
 
-        {settingsCounter === 4 && <TouchableHighlight
-            style={styles.footerLink}
-            onPress={(): void => showSettings()}
-            underlayColor="#ccc"
-        >
-          <Text>Settings</Text>
-        </TouchableHighlight>}
+        {settingsCounter === 4 && <Button
+          onPress={(): void => showSettings()}
+          text="settings"
+          addStyles={styles.footerLink}
+          />}
 
-        {settingsCounter > 4 && <TouchableHighlight
-            style={styles.footerLink}
-            onPress={(): void => setSettingsCounter(0)}
-            underlayColor="#ccc"
-        >
-          <Text>Back</Text>
-        </TouchableHighlight>}
+        {settingsCounter > 4 && <Button
+          onPress={(): void => setSettingsCounter(0)}
+          text="back"
+          addStyles={styles.footerLink}
+        />}
 
-        {settingsCounter > 4 && <TouchableHighlight
-            style={{...styles.footerLink, borderLeftWidth: 1}}
-            underlayColor="#ccc"
-            onPress={(): void => {
-              localStorage.setItem('tags', JSON.stringify([]))
-              setTags([])
-              setQuery('')
-            }}
-        >
-          <Text>Clear tags</Text>
-        </TouchableHighlight>}
+        {settingsCounter > 4 && <Button
+          onPress={(): void => {
+            setData('tags', JSON.stringify([]))
+            setTags([])
+            setQuery('')
+          }}
+          text="clear tags"
+          addStyles={{...styles.footerLink, borderLeftWidth: 1}}
+        />}
 
-        {settingsCounter > 4 && <TouchableHighlight
-            style={{...styles.footerLink, borderLeftWidth: 1}}
-            underlayColor="#ccc"
-            onPress={(): void => {
+        {settingsCounter > 4 && <Button
+          onPress={(): void => {
             setPictures([])
-            localStorage.setItem('pictures', JSON.stringify({}))
-            }}
-        >
-          <Text>Clear cache</Text>
-        </TouchableHighlight>}
+            setData('pictures', JSON.stringify({}))
+          }}
+          text="clear cache"
+          addStyles={{...styles.footerLink, borderLeftWidth: 1}}
+        />}
       </View>
     </View>
   )

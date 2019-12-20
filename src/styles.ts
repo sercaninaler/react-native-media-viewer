@@ -16,8 +16,8 @@ const styles = {
     borderRadius: 4,
     borderColor: '#ddd',
     borderWidth: 1,
-    //width: 'fit-content',
-    margin: 2,
+    marginLeft: 3,
+    marginRight: 3,
   } as ViewStyle,
   buttonText: {
     fontFamily: 'Ubuntu Mono',
@@ -41,6 +41,7 @@ const styles = {
   searchInput: {
     fontSize: 18,
     padding: 8,
+    paddingLeft: 10,
     backgroundColor: '#f8f8f8',
     borderColor: '#ddd',
     borderWidth: 1,
@@ -84,7 +85,6 @@ const styles = {
   } as ViewStyle,
   footer: {
     backgroundColor: '#ececec',
-    padding: 10,
     position: 'absolute',
     width: '100%',
     bottom: 0,
@@ -99,14 +99,17 @@ const styles = {
     borderColor: '#ddd',
     padding: 5,
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 6,
+    borderRadius: 0,
   } as ViewStyle,
   pictureHolder: {
     flexDirection: 'column',
     position: 'relative',
+    maxWidth: 1000,
+    alignSelf: 'center',
   } as ViewStyle,
   picture: {
-    marginBottom: 40,
+    marginBottom: 100,
   } as ImageStyle,
   pictureInfo: {
     position: 'absolute',
