@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/react-native-media-viewer/precache-manifest.a4299274c3eaa5e4372c555c355eb8b9.js"
+  "/react-native-media-viewer/precache-manifest.bfced4f5dc4f378efa0c8a2a86568680.js"
 );
 
 workbox.skipWaiting();
