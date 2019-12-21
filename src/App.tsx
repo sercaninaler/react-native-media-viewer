@@ -17,7 +17,9 @@ import { Button } from './components'
 import { ApiResults, Pictures, Settings } from './types'
 import Image from 'react-native-scalable-image'
 
-import importedStyles from './styles'
+import { getStyles } from './styles'
+
+export const ThemeContext = React.createContext('light');
 
 const App: FC = () => {
   initLocalStorage()
@@ -33,16 +35,8 @@ const App: FC = () => {
   const [tags, setTags] = useState<string[]>([])
 
   const width = Dimensions.get('window').width
-
-  let styles = importedStyles
   const theme = settings && settings.theme
-
-  if (theme === 'light') {
-    styles = {
-      ...importedStyles,
-      app: { ...importedStyles.app, backgroundColor: '#FFFFFF' },
-    }
-  }
+  const styles = getStyles(theme)
 
   useEffect( () => {
     getData('settings').then((settings) => {
@@ -182,6 +176,7 @@ const App: FC = () => {
 
   const renderPictureTags = (text: string): object => {
     const pictureTags = text.split(',')
+
     return pictureTags.map((tag) => (
       <Button
         onPress={(): void => {
@@ -197,131 +192,133 @@ const App: FC = () => {
   const filteredPictures = pictures[query] ? pictures[query].filter(picture => !picture.isDeleted).slice(0, limit) : []
 
   return (
-    <View style={styles.app}>
-      <View style={styles.searchForm}>
-        <TextInput
-          style={styles.searchInput}
-          value={query}
-          onChangeText={(text: string): void => onChangeText(text)}
-          onSubmitEditing={onSubmit}
-          placeholder="cats, planets, fruits,..."
-          selectTextOnFocus
-        />
-      </View>
-      <View style={styles.tags}>
-        {tags.map((tag) => (
-          <Button
-            key={tag}
-            text={tag}
-            onPress={(): void => {
-              setQuery(tag)
-              getPictures(tag)
-            }}
+    <ThemeContext.Provider value={theme}>
+      <View style={styles.app}>
+        <View style={styles.searchForm}>
+          <TextInput
+            style={styles.searchInput}
+            value={query}
+            onChangeText={(text: string): void => onChangeText(text)}
+            onSubmitEditing={onSubmit}
+            placeholder="cats, planets, fruits,..."
+            selectTextOnFocus
           />
-        ))}
-      </View>
-
-      {message && <Text style={styles.message}>{message}</Text>}
-
-      {isLoading && (
-        <View style={styles.loader}>
-          <ActivityIndicator size="large" color="#0000ff" />
         </View>
-      )}
-
-      {!isLoading && filteredPictures.length !== 0 && (
-      <ScrollView style={styles.pictureHolder}>
-        {filteredPictures.map((picture, index) => (
-          <TouchableWithoutFeedback
-            key={picture.image}
-            onLongPress={(): void => handleToggleInfo(index)}
-            onPress={(): void => handleDoubleTap(index)}
-          >
-            <View style={styles.pictureHolder} >
-              <Image
-                style={styles.picture}
-                source={{uri: picture.image}}
-                width={width > 1000 ? 1000 : width}
-              />
-
-              {picture.showInfo && (
-                <View style={styles.pictureInfo}>
-                  <TouchableHighlight
-                    underlayColor="#cccccc"
-                    style={{...styles.button, marginLeft: 2, marginRight: 2}}
-                    onPress={(): void => deletePicture(index, query) }
-                  >
-                    <Text>x</Text>
-                  </TouchableHighlight>
-
-                  {renderPictureTags(picture.tags)}
-                </View>
-              )}
-            </View>
-          </TouchableWithoutFeedback>
-        ))}
-
-        <Button
-          onPress={(): void => setLimit(limit + 10) }
-          text="load more"
-          addStyles={{marginBottom: 70, alignSelf: 'center'}}
-        />
-      </ScrollView>
-      )}
-
-      <View style={styles.footer}>
-        {settingsCounter < 4 && (
-          <>
+        <View style={styles.tags}>
+          {tags.map((tag) => (
             <Button
-              onPress={(): void => { showSettings() }}
-              text="media viewer for oscar"
-              addStyles={styles.footerLink}
+              key={tag}
+              text={tag}
+              onPress={(): void => {
+                setQuery(tag)
+                getPictures(tag)
+              }}
             />
-            <Button
-              onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
-              text={theme === 'dark' ? 'light mode' : 'dark mode'}
-              addStyles={{...styles.footerLink, borderLeftWidth: 1}}
-            />
-          </>
+          ))}
+        </View>
+
+        {message && <Text style={styles.message}>{message}</Text>}
+
+        {isLoading && (
+          <View style={styles.loader}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
         )}
-        {settingsCounter > 20 && <Button
-          onPress={(): void => showSettings()}
-          text="language: english"
-          addStyles={styles.footerLink}
-        />}
 
-        {settingsCounter === 4 && <Button
-          onPress={(): void => showSettings()}
-          text="settings"
-          addStyles={styles.footerLink}
+        {!isLoading && filteredPictures.length !== 0 && (
+        <ScrollView style={styles.pictureHolder}>
+          {filteredPictures.map((picture, index) => (
+            <TouchableWithoutFeedback
+              key={picture.image}
+              onLongPress={(): void => handleToggleInfo(index)}
+              onPress={(): void => handleDoubleTap(index)}
+            >
+              <View style={styles.pictureHolder} >
+                <Image
+                  style={styles.picture}
+                  source={{uri: picture.image}}
+                  width={width > 640 ? 640 : width}
+                />
+
+                {picture.showInfo && (
+                  <View style={styles.pictureInfo}>
+                    <TouchableHighlight
+                      underlayColor="#cccccc"
+                      style={{...styles.button, marginLeft: 2, marginRight: 2}}
+                      onPress={(): void => deletePicture(index, query) }
+                    >
+                      <Text>x</Text>
+                    </TouchableHighlight>
+
+                    {renderPictureTags(picture.tags)}
+                  </View>
+                )}
+              </View>
+            </TouchableWithoutFeedback>
+          ))}
+
+          <Button
+            onPress={(): void => setLimit(limit + 10) }
+            text="load more"
+            addStyles={{marginBottom: '13%', alignSelf: 'center'}}
+          />
+        </ScrollView>
+        )}
+
+        <View style={styles.footer}>
+          {settingsCounter < 4 && (
+            <>
+              <Button
+                onPress={(): void => { showSettings() }}
+                text="media viewer"
+                addStyles={styles.footerLink}
+              />
+              <Button
+                onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
+                text={theme === 'dark' ? 'light mode' : 'dark mode'}
+                addStyles={{...styles.footerLink, borderLeftWidth: 1}}
+              />
+            </>
+          )}
+          {settingsCounter > 20 && <Button
+            onPress={(): void => showSettings()}
+            text="language: english"
+            addStyles={styles.footerLink}
           />}
 
-        {settingsCounter > 4 && <Button
-          onPress={(): void => setSettingsCounter(0)}
-          text="back"
-          addStyles={styles.footerLink}
-        />}
+          {settingsCounter === 4 && <Button
+            onPress={(): void => showSettings()}
+            text="settings"
+            addStyles={styles.footerLink}
+            />}
 
-        {settingsCounter > 4 && <Button
-          onPress={(): void => {
-            setData('tags', JSON.stringify([]))
-            setTags([])
-            setQuery('')
-          }}
-          text="clear tags"
-          addStyles={{...styles.footerLink, borderLeftWidth: 1}}
-        />}
+          {settingsCounter > 4 && <Button
+            onPress={(): void => setSettingsCounter(0)}
+            text="back"
+            addStyles={styles.footerLink}
+          />}
 
-        {settingsCounter > 4 && <Button
-          onPress={(): void => {
-            setPictures([])
-            setData('pictures', JSON.stringify({}))
-          }}
-          text="clear cache"
-          addStyles={{...styles.footerLink, borderLeftWidth: 1}}
-        />}
+          {settingsCounter > 4 && <Button
+            onPress={(): void => {
+              setData('tags', JSON.stringify([]))
+              setTags([])
+              setQuery('')
+            }}
+            text="clear tags"
+            addStyles={{...styles.footerLink, borderLeftWidth: 1}}
+          />}
+
+          {settingsCounter > 4 && <Button
+            onPress={(): void => {
+              setPictures([])
+              setData('pictures', JSON.stringify({}))
+            }}
+            text="clear cache"
+            addStyles={{...styles.footerLink, borderLeftWidth: 1}}
+          />}
+        </View>
       </View>
-    </View>
+    </ThemeContext.Provider>
   )
 }
 
