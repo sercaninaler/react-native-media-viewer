@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "33a0cde27da4f7b51839",
-    "url": "/react-native-media-viewer/static/js/app.e48ea412.chunk.js"
+    "revision": "8b18818048649113190d",
+    "url": "/react-native-media-viewer/static/js/app.60089ff4.chunk.js"
   },
   {
     "revision": "b651ec6ee3f07fc88480",
@@ -16,14 +16,6 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/./fonts/UbuntuMono-R.ttf"
   },
   {
-    "revision": "020fd499a2d2bc45c4c3b6021e472b43",
-    "url": "/react-native-media-viewer/register-service-worker.js"
-  },
-  {
-    "revision": "5e695e96a003a79f7f97060bf49409a9",
-    "url": "/react-native-media-viewer/expo-service-worker.js"
-  },
-  {
     "revision": "7a7bc7ead25db795e58b336f04d2624c",
     "url": "/react-native-media-viewer/favicon.ico"
   },
@@ -32,11 +24,19 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/serve.json"
   },
   {
+    "revision": "5e695e96a003a79f7f97060bf49409a9",
+    "url": "/react-native-media-viewer/expo-service-worker.js"
+  },
+  {
+    "revision": "020fd499a2d2bc45c4c3b6021e472b43",
+    "url": "/react-native-media-viewer/register-service-worker.js"
+  },
+  {
     "revision": "e57e19ecf03310fe6632263fbcee838f",
     "url": "/react-native-media-viewer/manifest.json"
   },
   {
-    "revision": "fc57523950c9811797a83370356f21f6",
+    "revision": "23f7d87c0f59696dac0f50f7479304f0",
     "url": "/react-native-media-viewer/index.html"
   },
   {
@@ -44,12 +44,12 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js.gz"
   },
   {
-    "revision": "14a17f021fb3ad7ce7afe285d1e6c3ba",
-    "url": "/react-native-media-viewer/static/js/app.e48ea412.chunk.js.gz"
-  },
-  {
     "revision": "bd56db0844d50841ee6e0b69eb5e794d",
     "url": "/react-native-media-viewer/expo-service-worker.js.gz"
+  },
+  {
+    "revision": "11f9e57c4fd3c5b61a4a3bb6c2927cfa",
+    "url": "/react-native-media-viewer/static/js/app.60089ff4.chunk.js.gz"
   },
   {
     "revision": "b180fc58b68874765c16f784b7dccc78",
