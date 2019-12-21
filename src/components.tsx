@@ -2,10 +2,11 @@ import {Text, TouchableHighlight} from 'react-native'
 import React, { FC, useContext } from 'react'
 import { getStyles } from './styles'
 import { ThemeContext } from './App'
+import { ButtonType } from './types'
 
-export const Button: FC = (props) => {
+export const Button: FC<ButtonType> = (props: ButtonType) => {
   const theme = useContext(ThemeContext)
-  let styles = getStyles(theme)
+  const styles = getStyles(theme)
 
   return (
     <TouchableHighlight

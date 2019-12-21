@@ -11,7 +11,7 @@ export const setData = async (key: string, value: string): Promise<void> => {
   }
 }
 
-export const getData = async (key: string): Promise<void> => {
+export const getData = async (key: string): Promise<string | null | undefined> => {
   try {
     return await storage.getItem(key)
   } catch(e) {

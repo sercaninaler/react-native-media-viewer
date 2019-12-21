@@ -14,7 +14,7 @@ import axios from 'axios'
 import { pixabayApi, SETTINGS } from './constants'
 import { initLocalStorage, getData, setData } from './helpers'
 import { Button } from './components'
-import { ApiResults, Pictures, Settings } from './types'
+import { ApiResults, PictureType, Settings } from './types'
 import Image from 'react-native-scalable-image'
 
 import { getStyles } from './styles'
@@ -24,7 +24,7 @@ export const ThemeContext = React.createContext('light');
 const App: FC = () => {
   initLocalStorage()
 
-  const [pictures, setPictures] = useState<Pictures[]>([])
+  const [pictures, setPictures] = useState<PictureType[]>([])
   /* const [sounds, setSounds] = useState([]) */
   const [query, setQuery] = useState<string>('')
   const [settingsCounter, setSettingsCounter] = useState<number>(0)
@@ -209,7 +209,7 @@ const App: FC = () => {
             <Button
               key={tag}
               text={tag}
-              onPress={(): void => {
+              onPress={() => {
                 setQuery(tag)
                 getPictures(tag)
               }}
@@ -227,7 +227,7 @@ const App: FC = () => {
 
         {!isLoading && filteredPictures.length !== 0 && (
         <ScrollView style={styles.pictureHolder}>
-          {filteredPictures.map((picture, index) => (
+          {filteredPictures.map((picture, index: number) => (
             <TouchableWithoutFeedback
               key={picture.image}
               onLongPress={(): void => handleToggleInfo(index)}
@@ -245,7 +245,7 @@ const App: FC = () => {
                     <TouchableHighlight
                       underlayColor="#cccccc"
                       style={{...styles.button, marginLeft: 2, marginRight: 2}}
-                      onPress={(): void => deletePicture(index, query) }
+                      onPress={(): void => deletePicture(index) }
                     >
                       <Text>x</Text>
                     </TouchableHighlight>

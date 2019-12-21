@@ -1,7 +1,6 @@
 import {ViewStyle, ImageStyle, TextStyle} from 'react-native'
 
-
-export const getStyles = (theme) => {
+export const getStyles = (theme: string) => {
 
   let styles = {
     app: {
@@ -51,6 +50,7 @@ export const getStyles = (theme) => {
       width: 300,
       height: 36,
       fontFamily: 'Ubuntu Mono',
+      color: '#000',
       //outline: 'none',
     },
     tags: {
