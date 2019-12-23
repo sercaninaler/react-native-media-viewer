@@ -12,13 +12,14 @@ export const getStyles = (theme: string) => {
     } as ViewStyle,
     button: {
       backgroundColor: '#EEE',
-      padding: 3,
-      paddingLeft: 7,
-      paddingRight: 7,
+      paddingLeft: 8,
+      paddingRight: 8,
       borderRadius: 4,
       borderColor: '#DDD',
       borderWidth: 1,
       margin: 3,
+      justifyContent: 'center',
+      height: 26,
     } as ViewStyle,
     buttonText: {
       fontFamily: 'Ubuntu Mono',

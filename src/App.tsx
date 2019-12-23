@@ -196,6 +196,20 @@ const App: FC = () => {
 
   const filteredPictures = pictures[query] ? pictures[query].filter((picture: PictureType) => !picture.isDeleted).slice(0, limit) : []
 
+  const recommendedTags: string[] = []
+
+  filteredPictures.forEach((picture: PictureType) => {
+    if (picture.tags) {
+      const tags = picture.tags.split(',')
+      tags.forEach((tag) => {
+        tag = tag.trim()
+        if (recommendedTags.indexOf(tag) === -1) {
+          recommendedTags.push(tag)
+        }
+      })
+    }
+  })
+
   return (
     <ThemeContext.Provider value={theme}>
       <View style={styles.app}>
@@ -267,6 +281,19 @@ const App: FC = () => {
             text="load more"
             addStyles={{marginBottom: '13%', alignSelf: 'center'}}
           />
+
+          <View style={styles.tags}>
+            {recommendedTags.map((tag) => (
+              <Button
+                key={tag}
+                text={tag}
+                onPress={() => {
+                  setQuery(tag)
+                  getPictures(tag)
+                }}
+              />
+            ))}
+          </View>
         </ScrollView>
         )}
 
