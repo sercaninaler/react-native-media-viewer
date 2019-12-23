@@ -1,5 +1,3 @@
-import {GestureResponderEvent} from "react-native";
-
 export type ApiResults = {
   webformatURL: string;
   tags: string;
@@ -11,12 +9,13 @@ export type Settings = {
 
 export type PictureType = {
   isDeleted: boolean;
+  showInfo?: number;
   image: string;
   tags: string;
 }
 
 export type ButtonType = {
   text: string;
-  addStyles: object;
+  addStyles?: object;
   onPress: () => void;
 }

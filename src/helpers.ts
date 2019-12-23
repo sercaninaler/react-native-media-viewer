@@ -1,7 +1,10 @@
-import { AsyncStorage, Platform } from 'react-native'
-import { TAGS, SETTINGS } from './constants'
+import { Platform } from 'react-native'
+//import AsyncStorage from '@react-native-community/async-storage'
 
-const storage = Platform.OS === 'web' ? localStorage : AsyncStorage
+const storage = localStorage
+//const storage = Platform.OS === 'web' ? window.localstorage : AsyncStorage
+
+import { TAGS, SETTINGS } from './constants'
 
 export const setData = async (key: string, value: string): Promise<void> => {
   try {

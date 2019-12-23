@@ -9,7 +9,6 @@ import {
   ActivityIndicator,
   Dimensions,
 } from 'react-native'
-//import Constants from 'expo-constants';
 import axios from 'axios'
 import { pixabayApi, SETTINGS } from './constants'
 import { initLocalStorage, getData, setData } from './helpers'
@@ -40,13 +39,19 @@ const App: FC = () => {
 
   useEffect( () => {
     getData('settings').then((settings) => {
-      setSettings(JSON.parse(settings))
+      if (settings) {
+        setSettings(JSON.parse(settings))
+      }
     })
     getData('tags').then((tags) => {
-      setTags(JSON.parse(tags))
+      if (tags) {
+        setTags(JSON.parse(tags))
+      }
     })
     getData('pictures').then((pictures) => {
-      setPictures(JSON.parse(pictures))
+      if (pictures) {
+        setPictures(JSON.parse(pictures))
+      }
     })
 
     /*
@@ -55,6 +60,14 @@ const App: FC = () => {
     });
     */
   }, [])
+
+  const insertTag = (tag: string): void => {
+    if (tag !== '' && tags.indexOf(tag) === -1) {
+      tags.unshift(tag)
+      setTags(tags)
+      setData('tags', JSON.stringify(tags))
+    }
+  }
 
   const getPictures = async (tag: string): Promise<void> => {
     const keyword = tag.trim()
@@ -72,7 +85,7 @@ const App: FC = () => {
       if (data.length) {
         insertTag(keyword)
 
-        const newPictures: Pictures[] = []
+        const newPictures: PictureType[] = []
 
         data.forEach((item: ApiResults) => {
           newPictures.push({
@@ -102,14 +115,6 @@ const App: FC = () => {
     }, 100)
   }
 
-  const insertTag = (tag: string): void => {
-    if (tag !== '' && tags.indexOf(tag) === -1) {
-      tags.unshift(tag)
-      setTags(tags)
-      setData('tags', JSON.stringify(tags))
-    }
-  }
-
   /* const getSounds = async (query) => {
     const response = await axios.get(freesoundApi(query))
     const sounds = response.data.results
@@ -126,7 +131,7 @@ const App: FC = () => {
     sound.play()
   } */
 
-  let lastTap = null;
+  let lastTap: number | null = null;
 
   const handleToggleInfo = (index: number): void => {
     pictures[query][index].showInfo = !pictures[query][index].showInfo
@@ -189,7 +194,7 @@ const App: FC = () => {
     ))
   }
 
-  const filteredPictures = pictures[query] ? pictures[query].filter(picture => !picture.isDeleted).slice(0, limit) : []
+  const filteredPictures = pictures[query] ? pictures[query].filter((picture: PictureType) => !picture.isDeleted).slice(0, limit) : []
 
   return (
     <ThemeContext.Provider value={theme}>
@@ -227,10 +232,10 @@ const App: FC = () => {
 
         {!isLoading && filteredPictures.length !== 0 && (
         <ScrollView style={styles.pictureHolder}>
-          {filteredPictures.map((picture, index: number) => (
+          {filteredPictures.map((picture: PictureType, index: number) => (
             <TouchableWithoutFeedback
               key={picture.image}
-              onLongPress={(): void => handleToggleInfo(index)}
+              //onLongPress={(): void => handleToggleInfo(index)}
               onPress={(): void => handleDoubleTap(index)}
             >
               <View style={styles.pictureHolder} >
