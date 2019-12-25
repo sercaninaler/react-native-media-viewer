@@ -32,6 +32,7 @@ const App: FC = () => {
   const [limit, setLimit] = useState<number>(10)
   const [settings, setSettings] = useState<Settings>(SETTINGS)
   const [tags, setTags] = useState<string[]>([])
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false)
 
   const width = Dimensions.get('window').width
   const theme = settings && settings.theme
@@ -74,6 +75,7 @@ const App: FC = () => {
     setMessage(null)
     setLimit(10)
     setIsLoading(true)
+    setShowSuggestions(false)
 
     if ((!Array.isArray(pictures[keyword]) ||
         !pictures[keyword].length) ||
@@ -138,7 +140,7 @@ const App: FC = () => {
     setPictures({...pictures})
   }
 
-  const handleDoubleTap = (index: number) => {
+  const handleDoubleTap = (index: number): void => {
     const now = Date.now();
     if (lastTap && (now - lastTap) < 300) {
       handleToggleInfo(index);
@@ -228,7 +230,7 @@ const App: FC = () => {
             <Button
               key={tag}
               text={tag}
-              onPress={() => {
+              onPress={(): void => {
                 setQuery(tag)
                 getPictures(tag)
               }}
@@ -276,24 +278,29 @@ const App: FC = () => {
             </TouchableWithoutFeedback>
           ))}
 
-          <Button
-            onPress={(): void => setLimit(limit + 10) }
-            text="load more"
-            addStyles={{marginBottom: '13%', alignSelf: 'center'}}
-          />
-
           <View style={styles.tags}>
+            <Button
+              onPress={(): void => setLimit(limit + 10) }
+              text="more pictures"
+            />
+            <Button
+              onPress={(): void => setShowSuggestions(!showSuggestions) }
+              text="more tags"
+            />
+          </View>
+
+          {showSuggestions && <View style={styles.tags}>
             {recommendedTags.map((tag) => (
               <Button
                 key={tag}
                 text={tag}
-                onPress={() => {
+                onPress={(): void => {
                   setQuery(tag)
                   getPictures(tag)
                 }}
               />
             ))}
-          </View>
+          </View>}
         </ScrollView>
         )}
 

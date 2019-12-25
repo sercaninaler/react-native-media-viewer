@@ -1,11 +1,10 @@
 import {ViewStyle, ImageStyle, TextStyle} from 'react-native'
 
 export const getStyles = (theme: string) => {
-
   let styles = {
     app: {
       paddingTop: 30,
-      paddingBottom: 10,
+      paddingBottom: 30,
       height: '100%',
       backgroundColor: '#FFF',
       overflow: 'hidden',
