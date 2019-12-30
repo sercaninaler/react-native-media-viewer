@@ -13,6 +13,7 @@ export const freesoundApi = (query: string): string => `${FREESOUND_API_URL}?que
 export const TAGS = ['animals', 'fruits', 'planets']
 export const SETTINGS = {
   language: 'en',
+  resolution: 640,
   suggestions: false,
   theme: 'light',
 }

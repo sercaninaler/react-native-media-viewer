@@ -108,7 +108,7 @@ export const getStyles = (theme: string) => {
     pictureHolder: {
       flexDirection: 'column',
       position: 'relative',
-      maxWidth: 640,
+      maxWidth: 1280,
       alignSelf: 'center',
     } as ViewStyle,
     picture: {

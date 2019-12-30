@@ -4,7 +4,6 @@ import {
   Text,
   ScrollView,
   TextInput,
-  TouchableHighlight,
   TouchableWithoutFeedback,
   ActivityIndicator,
   Dimensions,
@@ -34,7 +33,7 @@ const App: FC = () => {
   const [tags, setTags] = useState<string[]>([])
 
   const width = Dimensions.get('window').width
-  const { theme, language, suggestions } = settings
+  const { theme, language, suggestions, resolution } = settings
   const styles = getStyles(theme)
 
   useEffect( () => {
@@ -100,6 +99,7 @@ const App: FC = () => {
         data.forEach((item: ApiResults) => {
           newPictures.push({
             image: item.webformatURL,
+            imageBig: item.largeImageURL,
             tags: item.tags,
             isDeleted: false,
           })
@@ -225,6 +225,12 @@ const App: FC = () => {
           />
         </View>
         <View style={styles.tags}>
+          <Button
+            text="x"
+            onPress={(): void => {
+              setQuery('')
+            }}
+          />
           {tags.map((tag) => (
             <Button
               key={tag}
@@ -256,19 +262,17 @@ const App: FC = () => {
               <View style={styles.pictureHolder} >
                 <Image
                   style={styles.picture}
-                  source={{uri: picture.image}}
-                  width={width > 640 ? 640 : width}
+                  source={{uri: resolution === 640 ? picture.image : picture.imageBig}}
+                  width={width > resolution ? resolution : width}
                 />
 
                 {picture.showInfo && (
                   <View style={styles.pictureInfo}>
-                    <TouchableHighlight
-                      underlayColor="#cccccc"
-                      style={{...styles.button, marginLeft: 2, marginRight: 2}}
-                      onPress={(): void => deletePicture(index) }
-                    >
-                      <Text>x</Text>
-                    </TouchableHighlight>
+                    <Button
+                      onPress={(): void => deletePicture(index)}
+                      text="x"
+                      addStyles={{marginLeft: 2, marginRight: 2}}
+                    />
 
                     {renderPictureTags(picture.tags)}
                   </View>
@@ -339,6 +343,11 @@ const App: FC = () => {
           <Button
             onPress={(): void => updateSettings('language', language === 'en' ? 'tr' : 'en')}
             text={language === 'en' ? 'english' : 'turkish'}
+            addStyles={{...styles.footerLink, borderLeftWidth: 1}}
+          />
+          <Button
+            onPress={(): void => updateSettings('resolution', resolution === 640 ? 1280 : 640)}
+            text={resolution === 640 ? '640p' : '1280p'}
             addStyles={{...styles.footerLink, borderLeftWidth: 1}}
           />
           <Button
