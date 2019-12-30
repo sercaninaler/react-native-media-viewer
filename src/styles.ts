@@ -58,7 +58,7 @@ export const getStyles = (theme: string) => {
       flexWrap: 'wrap',
       justifyContent: 'center',
       marginTop: 15,
-      marginBottom: 25,
+      marginBottom: 60,
       marginLeft: 'auto',
       marginRight: 'auto',
       maxWidth: 800,
@@ -112,7 +112,8 @@ export const getStyles = (theme: string) => {
       alignSelf: 'center',
     } as ViewStyle,
     picture: {
-      marginBottom: '10%',
+      marginTop: '5%',
+      marginBottom: '20%',
     } as ImageStyle,
     pictureInfo: {
       position: 'absolute',

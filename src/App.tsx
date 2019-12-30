@@ -32,10 +32,9 @@ const App: FC = () => {
   const [limit, setLimit] = useState<number>(10)
   const [settings, setSettings] = useState<Settings>(SETTINGS)
   const [tags, setTags] = useState<string[]>([])
-  const [showSuggestions, setShowSuggestions] = useState<boolean>(false)
 
   const width = Dimensions.get('window').width
-  const theme = settings && settings.theme
+  const { theme, language, suggestions } = settings
   const styles = getStyles(theme)
 
   useEffect( () => {
@@ -62,6 +61,15 @@ const App: FC = () => {
     */
   }, [])
 
+  const updateSettings = (key: string, value: string): void => {
+    const newSettings = {
+      ...settings,
+      [key]: value,
+    }
+    setSettings(newSettings)
+    setData('settings', JSON.stringify(newSettings))
+  }
+
   const insertTag = (tag: string): void => {
     if (tag !== '' && tags.indexOf(tag) === -1) {
       tags.unshift(tag)
@@ -75,13 +83,13 @@ const App: FC = () => {
     setMessage(null)
     setLimit(10)
     setIsLoading(true)
-    setShowSuggestions(false)
+    updateSettings('suggestions', false)
 
     if ((!Array.isArray(pictures[keyword]) ||
         !pictures[keyword].length) ||
         Math.round(new Date().getTime() / 1000) - pictures[`${keyword}_lastUpdate`] > 12 * 60 * 60
     ) {
-      const response = await axios.get(pixabayApi(keyword))
+      const response = await axios.get(pixabayApi(keyword, language))
       const data = response.data.hits
 
       if (data.length) {
@@ -172,15 +180,6 @@ const App: FC = () => {
     setSettingsCounter(settingsCounter + 1)
   }
 
-  const updateSettings = (key: string, value: string): void => {
-    const newSettings = {
-      ...settings,
-      [key]: value,
-    }
-    setSettings(newSettings)
-    setData('settings', JSON.stringify(newSettings))
-  }
-
   const renderPictureTags = (text: string): object => {
     const pictureTags = text.split(',')
 
@@ -242,7 +241,7 @@ const App: FC = () => {
 
         {isLoading && (
           <View style={styles.loader}>
-            <ActivityIndicator size="large" color="#0000ff" />
+            <ActivityIndicator size="large" color={theme === 'light' ? '#0000ff' : '#FFFFFF'} />
           </View>
         )}
 
@@ -278,18 +277,18 @@ const App: FC = () => {
             </TouchableWithoutFeedback>
           ))}
 
-          <View style={styles.tags}>
+          <View style={[styles.tags, {marginTop: '-3%', marginBottom: 60}]}>
             <Button
               onPress={(): void => setLimit(limit + 10) }
               text="more pictures"
             />
             <Button
-              onPress={(): void => setShowSuggestions(!showSuggestions) }
+              onPress={(): void => updateSettings('suggestions', !suggestions) }
               text="more tags"
             />
           </View>
 
-          {showSuggestions && <View style={styles.tags}>
+          {suggestions && <View style={styles.tags}>
             {recommendedTags.map((tag) => (
               <Button
                 key={tag}
@@ -304,40 +303,14 @@ const App: FC = () => {
         </ScrollView>
         )}
 
-        <View style={styles.footer}>
-          {settingsCounter < 4 && (
-            <>
-              <Button
-                onPress={(): void => { showSettings() }}
-                text="media viewer"
-                addStyles={styles.footerLink}
-              />
-              <Button
-                onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
-                text={theme === 'dark' ? 'light mode' : 'dark mode'}
-                addStyles={{...styles.footerLink, borderLeftWidth: 1}}
-              />
-            </>
-          )}
-          {settingsCounter > 20 && <Button
-            onPress={(): void => showSettings()}
-            text="language: english"
-            addStyles={styles.footerLink}
-          />}
-
-          {settingsCounter === 4 && <Button
-            onPress={(): void => showSettings()}
-            text="settings"
-            addStyles={styles.footerLink}
-            />}
-
-          {settingsCounter > 4 && <Button
+        {settingsCounter > 4 && <View style={[styles.footer, {bottom: 46}]}>
+          <Button
             onPress={(): void => setSettingsCounter(0)}
-            text="back"
+            text="close"
             addStyles={styles.footerLink}
-          />}
+          />
 
-          {settingsCounter > 4 && <Button
+          <Button
             onPress={(): void => {
               setData('tags', JSON.stringify([]))
               setTags([])
@@ -345,16 +318,34 @@ const App: FC = () => {
             }}
             text="clear tags"
             addStyles={{...styles.footerLink, borderLeftWidth: 1}}
-          />}
+          />
 
-          {settingsCounter > 4 && <Button
+          <Button
             onPress={(): void => {
               setPictures([])
               setData('pictures', JSON.stringify({}))
             }}
             text="clear cache"
             addStyles={{...styles.footerLink, borderLeftWidth: 1}}
-          />}
+          />
+        </View>}
+
+        <View style={styles.footer}>
+          <Button
+            onPress={(): void => { showSettings() }}
+            text="mediaViewer"
+            addStyles={styles.footerLink}
+          />
+          <Button
+            onPress={(): void => updateSettings('language', language === 'en' ? 'tr' : 'en')}
+            text={language === 'en' ? 'english' : 'turkish'}
+            addStyles={{...styles.footerLink, borderLeftWidth: 1}}
+          />
+          <Button
+            onPress={(): void => { updateSettings('theme', theme === 'dark' ? 'light' : 'dark') }}
+            text={theme === 'dark' ? 'dark' : 'light'}
+            addStyles={{...styles.footerLink, borderLeftWidth: 1}}
+          />
         </View>
       </View>
     </ThemeContext.Provider>

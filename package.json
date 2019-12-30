@@ -13,6 +13,7 @@
     "build": "expo build:web --no-pwa",
     "post-build": "./post-build.sh",
     "deploy": "npx gh-pages -d web-build",
+    "full-deploy": "yarn build && yarn post-build && yarn deploy",
     "eslint": "eslint src/**/*.ts*",
     "eslint-fix": "eslint --fix src",
     "tsc": "tsc"
