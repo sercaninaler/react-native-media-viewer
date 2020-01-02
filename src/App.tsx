@@ -60,7 +60,7 @@ const App: FC = () => {
     */
   }, [])
 
-  const updateSettings = (key: string, value: string): void => {
+  const updateSettings = (key: string, value: string | boolean | number): void => {
     const newSettings = {
       ...settings,
       [key]: value,
