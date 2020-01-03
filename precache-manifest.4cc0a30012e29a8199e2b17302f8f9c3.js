@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "8204cd0d1e0d5638d9d6",
-    "url": "/react-native-media-viewer/static/js/app.0179aeb4.chunk.js"
+    "revision": "2dacf6f059f19661d83f",
+    "url": "/react-native-media-viewer/static/js/app.9368768a.chunk.js"
   },
   {
     "revision": "b651ec6ee3f07fc88480",
@@ -16,36 +16,36 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/./fonts/UbuntuMono-R.ttf"
   },
   {
-    "revision": "020fd499a2d2bc45c4c3b6021e472b43",
-    "url": "/react-native-media-viewer/register-service-worker.js"
-  },
-  {
-    "revision": "d0c694b562b2208635f250762cd7fc79",
-    "url": "/react-native-media-viewer/serve.json"
+    "revision": "5e695e96a003a79f7f97060bf49409a9",
+    "url": "/react-native-media-viewer/expo-service-worker.js"
   },
   {
     "revision": "7a7bc7ead25db795e58b336f04d2624c",
     "url": "/react-native-media-viewer/favicon.ico"
   },
   {
-    "revision": "5e695e96a003a79f7f97060bf49409a9",
-    "url": "/react-native-media-viewer/expo-service-worker.js"
+    "revision": "d0c694b562b2208635f250762cd7fc79",
+    "url": "/react-native-media-viewer/serve.json"
+  },
+  {
+    "revision": "020fd499a2d2bc45c4c3b6021e472b43",
+    "url": "/react-native-media-viewer/register-service-worker.js"
   },
   {
     "revision": "e57e19ecf03310fe6632263fbcee838f",
     "url": "/react-native-media-viewer/manifest.json"
   },
   {
-    "revision": "80202dd89b67ad15c9a5ecae46b46805",
+    "revision": "e4bc9ff885527f3133a4b156581a9ea5",
     "url": "/react-native-media-viewer/index.html"
-  },
-  {
-    "revision": "44db8b74ea13e101b7fc9ed48fcba8e2",
-    "url": "/react-native-media-viewer/static/js/app.0179aeb4.chunk.js.gz"
   },
   {
     "revision": "1e4ea387a53522007dc7c24cc22f6986",
     "url": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js.gz"
+  },
+  {
+    "revision": "08a2a3b6303a3951458abeb411b0a513",
+    "url": "/react-native-media-viewer/static/js/app.9368768a.chunk.js.gz"
   },
   {
     "revision": "bd56db0844d50841ee6e0b69eb5e794d",
