@@ -28,6 +28,7 @@ const App: FC = () => {
   const [settingsCounter, setSettingsCounter] = useState<number>(0)
   const [message, setMessage] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [showLinks, setShowLinks] = useState<boolean>(false)
   const [limit, setLimit] = useState<number>(10)
   const [settings, setSettings] = useState<Settings>(SETTINGS)
   const [tags, setTags] = useState<string[]>([])
@@ -82,6 +83,7 @@ const App: FC = () => {
     setMessage(null)
     setLimit(10)
     setIsLoading(true)
+    setShowLinks(false)
     updateSettings('suggestions', false)
 
     if ((!Array.isArray(pictures[keyword]) ||
@@ -122,7 +124,11 @@ const App: FC = () => {
 
     setTimeout(() => {
       setIsLoading(false)
-    }, 100)
+    }, 200)
+
+    setTimeout(() => {
+      setShowLinks(true)
+    }, 600)
   }
 
   /* const getSounds = async (query) => {
@@ -281,16 +287,16 @@ const App: FC = () => {
             </TouchableWithoutFeedback>
           ))}
 
-          <View style={[styles.tags, {marginTop: '-3%', marginBottom: 60}]}>
+          {showLinks && <View style={[styles.tags, {marginTop: '-3%', marginBottom: 60}]}>
             <Button
               onPress={(): void => setLimit(limit + 10) }
-              text="more pictures"
+              text="show more pictures"
             />
             <Button
               onPress={(): void => updateSettings('suggestions', !suggestions) }
-              text="more tags"
+              text="show more tags"
             />
-          </View>
+          </View>}
 
           {suggestions && <View style={styles.tags}>
             {recommendedTags.map((tag) => (
@@ -307,7 +313,18 @@ const App: FC = () => {
         </ScrollView>
         )}
 
-        {settingsCounter > 4 && <View style={[styles.footer, {bottom: 46}]}>
+        {!query && <View style={[{paddingLeft: 10, paddingRight: 10, marginTop: 120}]}>
+          <View><Text style={{color: '#666', fontSize: 24, textAlign: 'center'}}>welcome to mediaViewer</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 12}}>this app is dedicated to my son, Oscar</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 4}}>made as a reference for my portfolio</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 4}}>build with react native & typescript. works on web, android and ios</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 18}}>click 5 times on mediaViewer in footer to access settings</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 4}}>you can change resolution, theme and language in footer as well</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 4}}>double click on images to show context menu actions</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 4}}>by sercan ;)</Text></View>
+        </View>}
+
+        {settingsCounter > 4 && <View style={[styles.footer, { bottom: 46 }]}>
           <Button
             onPress={(): void => setSettingsCounter(0)}
             text="close"
@@ -336,7 +353,7 @@ const App: FC = () => {
 
         <View style={styles.footer}>
           <Button
-            onPress={(): void => { showSettings() }}
+            onPress={showSettings}
             text="mediaViewer"
             addStyles={styles.footerLink}
           />

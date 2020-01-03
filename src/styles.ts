@@ -62,6 +62,8 @@ export const getStyles = (theme: string) => {
       marginLeft: 'auto',
       marginRight: 'auto',
       maxWidth: 800,
+      paddingLeft: 5,
+      paddingRight: 5,
     } as ViewStyle,
     message: {
       flexWrap: 'wrap',
