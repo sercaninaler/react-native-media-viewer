@@ -313,15 +313,15 @@ const App: FC = () => {
         </ScrollView>
         )}
 
-        {!query && <View style={[{paddingLeft: 10, paddingRight: 10, marginTop: 120}]}>
+        {!query && <View style={[{paddingLeft: 10, paddingRight: 10, marginTop: 100}]}>
           <View><Text style={{color: '#666', fontSize: 24, textAlign: 'center'}}>welcome to mediaViewer</Text></View>
           <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 12}}>this app is dedicated to my son, Oscar</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 4}}>made as a reference for my portfolio</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 4}}>build with react native & typescript. works on web, android and ios</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 2}}>made as a reference for my portfolio</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 2}}>build with react native & typescript. works on web, android and ios</Text></View>
           <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 18}}>click 5 times on mediaViewer in footer to access settings</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 4}}>you can change resolution, theme and language in footer as well</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 4}}>double click on images to show context menu actions</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 4}}>by sercan ;)</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 2}}>you can change resolution, theme and language in footer as well</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 2}}>double click on images to show context menu actions</Text></View>
+          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 2}}>by sercan ;)</Text></View>
         </View>}
 
         {settingsCounter > 4 && <View style={[styles.footer, { bottom: 46 }]}>
