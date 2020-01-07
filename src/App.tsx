@@ -313,15 +313,15 @@ const App: FC = () => {
         </ScrollView>
         )}
 
-        {!query && <View style={[{paddingLeft: 10, paddingRight: 10, marginTop: 100}]}>
-          <View><Text style={{color: '#666', fontSize: 24, textAlign: 'center'}}>welcome to mediaViewer</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 16}}>this app is dedicated to my son, Oscar</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center'}}>made as a reference for my portfolio</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center'}}>build with react native & typescript. works on web, android and ios</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center', marginTop: 16}}>you can change resolution, theme and language in the footer</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center'}}>double click on images to show context menu actions</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center'}}>click 5 times on mediaViewer in footer to access settings</Text></View>
-          <View><Text style={{color: '#666', fontSize: 14, textAlign: 'center'}}>by sercan ;)</Text></View>
+        {!query && <View style={[{paddingLeft: 10, paddingRight: 10, marginTop: '20%', maxWidth: 400, alignSelf: 'center'}]}>
+          <View><Text style={{color: '#666', fontSize: 24}}>welcome to mediaViewer</Text></View>
+          <View><Text style={{color: '#666', fontSize: 13, marginTop: 14}}>this app is dedicated to my son, Oscar</Text></View>
+          <View><Text style={{color: '#666', fontSize: 13}}>made as a reference for my portfolio</Text></View>
+          <View><Text style={{color: '#666', fontSize: 13}}>build with react native & typescript. works on web, android and ios</Text></View>
+          <View><Text style={{color: '#666', fontSize: 13, marginTop: 14}}>you can change resolution, theme and language in footer</Text></View>
+          <View><Text style={{color: '#666', fontSize: 13}}>double click on images to show context menu actions</Text></View>
+          <View><Text style={{color: '#666', fontSize: 13}}>click 5 times on mediaViewer in footer to access settings</Text></View>
+          <View><Text style={{color: '#666', fontSize: 13}}>by sercan ;)</Text></View>
         </View>}
 
         {settingsCounter > 4 && <View style={[styles.footer, { bottom: 46 }]}>
