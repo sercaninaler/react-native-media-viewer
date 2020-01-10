@@ -156,7 +156,7 @@ const App: FC = () => {
 
   const handleDoubleTap = (index: number): void => {
     const now = Date.now();
-    if (lastTap && (now - lastTap) < 300) {
+    if (lastTap && (now - lastTap) < 400) {
       handleToggleInfo(index);
     } else {
       lastTap = now;
@@ -201,7 +201,7 @@ const App: FC = () => {
     ))
   }
 
-  const filteredPictures = pictures[query] ? pictures[query].filter((picture: PictureType) => !picture.isDeleted).slice(0, limit) : []
+  const filteredPictures = pictures[query] ? pictures[query].slice(0, limit) : []
 
   const recommendedTags: string[] = []
 
@@ -260,7 +260,7 @@ const App: FC = () => {
         {!isLoading && filteredPictures.length !== 0 && (
         <ScrollView style={styles.pictureHolder}>
           {filteredPictures.map((picture: PictureType, index: number) => (
-            <TouchableWithoutFeedback
+            !picture.isDeleted && <TouchableWithoutFeedback
               key={picture.image}
               //onLongPress={(): void => handleToggleInfo(index)}
               onPress={(): void => handleDoubleTap(index)}

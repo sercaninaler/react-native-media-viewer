@@ -119,7 +119,7 @@ export const getStyles = (theme: string) => {
     } as ImageStyle,
     pictureInfo: {
       position: 'absolute',
-      bottom: '17%',
+      bottom: '23%',
       flexDirection: 'row',
       alignSelf: 'center',
     } as ViewStyle,
