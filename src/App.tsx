@@ -287,7 +287,7 @@ const App: FC = () => {
             </TouchableWithoutFeedback>
           ))}
 
-          {showLinks && <View style={[styles.tags, {marginTop: '-3%', marginBottom: 60}]}>
+          {showLinks && <View style={[styles.tags, {marginBottom: 60}]}>
             <Button
               onPress={(): void => setLimit(limit + 10) }
               text="show more pictures"
@@ -313,15 +313,15 @@ const App: FC = () => {
         </ScrollView>
         )}
 
-        {!query && <View style={[{paddingLeft: 10, paddingRight: 10, marginTop: '20%', maxWidth: 400, alignSelf: 'center'}]}>
-          <View><Text style={{color: '#666', fontSize: 24}}>welcome to mediaViewer</Text></View>
-          <View><Text style={{color: '#666', fontSize: 13, marginTop: 14}}>this app is dedicated to my son, Oscar</Text></View>
-          <View><Text style={{color: '#666', fontSize: 13}}>made as a reference for my portfolio</Text></View>
-          <View><Text style={{color: '#666', fontSize: 13}}>build with react native & typescript. works on web, android and ios</Text></View>
-          <View><Text style={{color: '#666', fontSize: 13, marginTop: 14}}>you can change resolution, theme and language in footer</Text></View>
-          <View><Text style={{color: '#666', fontSize: 13}}>double click on images to show context menu actions</Text></View>
-          <View><Text style={{color: '#666', fontSize: 13}}>click 5 times on mediaViewer in footer to access settings</Text></View>
-          <View><Text style={{color: '#666', fontSize: 13}}>by sercan ;)</Text></View>
+        {!query && <View style={styles.textHolder}>
+          <View><Text style={[styles.text, {fontSize: 24}]}>mediaViewer</Text></View>
+          <View><Text style={[styles.text, {marginTop: 14}]}>-this app is dedicated to my son</Text></View>
+          <View><Text style={styles.text}>-made for hobby to learn and teach</Text></View>
+          <View><Text style={styles.text}>-build with react native & typescript. works on web, android and ios</Text></View>
+          <View><Text style={styles.text}>-you can change theme, resolution and language in the footer</Text></View>
+          <View><Text style={styles.text}>-double click on images to show menu items</Text></View>
+          <View><Text style={styles.text}>-click 5 times on mediaViewer in footer to access settings</Text></View>
+          <View><Text style={[styles.text, {marginTop: 14}]}>- sercan ;)</Text></View>
         </View>}
 
         {settingsCounter > 4 && <View style={[styles.footer, { bottom: 46 }]}>

@@ -1,8 +1,8 @@
-//import { Platform } from 'react-native'
-//import AsyncStorage from '@react-native-community/async-storage'
+import { Platform } from 'react-native'
+import { AsyncStorage } from 'react-native';
 
 const storage = localStorage
-//const storage = Platform.OS === 'web' ? window.localstorage : AsyncStorage
+//const storage = Platform.OS === 'web' ? localStorage : AsyncStorage
 
 import { TAGS, SETTINGS } from './constants'
 

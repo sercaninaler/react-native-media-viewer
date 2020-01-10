@@ -123,6 +123,18 @@ export const getStyles = (theme: string) => {
       flexDirection: 'row',
       alignSelf: 'center',
     } as ViewStyle,
+    textHolder: {
+      paddingLeft: 10,
+      paddingRight: 10,
+      marginTop: '20%',
+      maxWidth: 320,
+      alignSelf: 'center'
+    } as TextStyle,
+    text: {
+      color: '#666',
+      fontSize: 14,
+      fontFamily: 'Ubuntu Mono',
+    } as TextStyle,
   }
 
   if (theme === 'dark') {
