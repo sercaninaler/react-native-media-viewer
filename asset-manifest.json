@@ -1,6 +1,6 @@
 {
-  "app.js": "/react-native-media-viewer/static/js/app.1cc3a7bd.chunk.js",
-  "app.1a57c80da428683a5142.map": "/react-native-media-viewer/1a57c80da428683a5142.map",
+  "app.js": "/react-native-media-viewer/static/js/app.70c4d69c.chunk.js",
+  "app.374943dc246c312b83ca.map": "/react-native-media-viewer/374943dc246c312b83ca.map",
   "runtime~app.js": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js",
   "runtime~app.b651ec6ee3f07fc88480.map": "/react-native-media-viewer/b651ec6ee3f07fc88480.map",
   "static/js/2.c4bb97c9.chunk.js": "/react-native-media-viewer/static/js/2.c4bb97c9.chunk.js",
@@ -11,11 +11,11 @@
   "favicon.ico": "/react-native-media-viewer/favicon.ico",
   "index.html": "/react-native-media-viewer/index.html",
   "manifest.json": "/react-native-media-viewer/manifest.json",
-  "precache-manifest.186b74a51501e58dc3a07463484e79cd.js": "/react-native-media-viewer/precache-manifest.186b74a51501e58dc3a07463484e79cd.js",
+  "precache-manifest.6abd165f9700aa0ea3f22e146c0d22cd.js": "/react-native-media-viewer/precache-manifest.6abd165f9700aa0ea3f22e146c0d22cd.js",
   "register-service-worker.js": "/react-native-media-viewer/register-service-worker.js",
   "serve.json": "/react-native-media-viewer/serve.json",
   "service-worker.js": "/react-native-media-viewer/service-worker.js",
   "static/js/2.c4bb97c9.chunk.js.gz": "/react-native-media-viewer/static/js/2.c4bb97c9.chunk.js.gz",
-  "static/js/app.1cc3a7bd.chunk.js.gz": "/react-native-media-viewer/static/js/app.1cc3a7bd.chunk.js.gz",
+  "static/js/app.70c4d69c.chunk.js.gz": "/react-native-media-viewer/static/js/app.70c4d69c.chunk.js.gz",
   "static/js/runtime~app.f99f8593.js.gz": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js.gz"
 }
