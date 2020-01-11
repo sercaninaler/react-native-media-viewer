@@ -16,16 +16,16 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/./fonts/UbuntuMono-R.ttf"
   },
   {
-    "revision": "7a7bc7ead25db795e58b336f04d2624c",
-    "url": "/react-native-media-viewer/favicon.ico"
-  },
-  {
     "revision": "d0c694b562b2208635f250762cd7fc79",
     "url": "/react-native-media-viewer/serve.json"
   },
   {
     "revision": "5e695e96a003a79f7f97060bf49409a9",
     "url": "/react-native-media-viewer/expo-service-worker.js"
+  },
+  {
+    "revision": "7a7bc7ead25db795e58b336f04d2624c",
+    "url": "/react-native-media-viewer/favicon.ico"
   },
   {
     "revision": "020fd499a2d2bc45c4c3b6021e472b43",
