@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "a168832fbe32509a0db8",
-    "url": "/react-native-media-viewer/static/js/app.fb5e044f.chunk.js"
+    "revision": "bbffac76451ecb374fbf",
+    "url": "/react-native-media-viewer/static/js/app.ba6d3816.chunk.js"
   },
   {
     "revision": "b651ec6ee3f07fc88480",
@@ -20,12 +20,12 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/./fonts/UbuntuMono-R.ttf"
   },
   {
-    "revision": "d0c694b562b2208635f250762cd7fc79",
-    "url": "/react-native-media-viewer/serve.json"
-  },
-  {
     "revision": "7a7bc7ead25db795e58b336f04d2624c",
     "url": "/react-native-media-viewer/favicon.ico"
+  },
+  {
+    "revision": "d0c694b562b2208635f250762cd7fc79",
+    "url": "/react-native-media-viewer/serve.json"
   },
   {
     "revision": "5e695e96a003a79f7f97060bf49409a9",
@@ -40,16 +40,16 @@ self.__precacheManifest = [
     "url": "/react-native-media-viewer/manifest.json"
   },
   {
-    "revision": "3fffc9f9250885927d98b165e90e4e2e",
+    "revision": "f2716e59d1d85ea0b2fe960cdb5931f1",
     "url": "/react-native-media-viewer/index.html"
-  },
-  {
-    "revision": "2e716194442fd411179c28e19378a3ac",
-    "url": "/react-native-media-viewer/static/js/app.fb5e044f.chunk.js.gz"
   },
   {
     "revision": "1e4ea387a53522007dc7c24cc22f6986",
     "url": "/react-native-media-viewer/static/js/runtime~app.f99f8593.js.gz"
+  },
+  {
+    "revision": "d6dfde9fbe509d19d7cf1bae6b901225",
+    "url": "/react-native-media-viewer/static/js/app.ba6d3816.chunk.js.gz"
   },
   {
     "revision": "bd56db0844d50841ee6e0b69eb5e794d",
