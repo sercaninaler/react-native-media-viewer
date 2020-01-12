@@ -1,10 +1,10 @@
-export type ApiResults = {
+export type ApiResultsType = {
   webformatURL: string;
   largeImageURL: string;
   tags: string;
 }
 
-export type Settings = {
+export type SettingsType = {
   theme: string;
   language: string;
   suggestions: boolean;

@@ -6,13 +6,14 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   ActivityIndicator,
+  Linking,
   Dimensions,
 } from 'react-native'
 import axios from 'axios'
 import { pixabayApi, SETTINGS } from './constants'
 import { initLocalStorage, getData, setData } from './helpers'
 import { Button } from './components'
-import { ApiResults, PictureType, Settings } from './types'
+import { ApiResultsType, PictureType, SettingsType } from './types'
 import Image from 'react-native-scalable-image'
 
 import { getStyles } from './styles'
@@ -30,7 +31,7 @@ const App: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [showLinks, setShowLinks] = useState<boolean>(false)
   const [limit, setLimit] = useState<number>(10)
-  const [settings, setSettings] = useState<Settings>(SETTINGS)
+  const [settings, setSettings] = useState<SettingsType>(SETTINGS)
   const [tags, setTags] = useState<string[]>([])
 
   const width = Dimensions.get('window').width
@@ -98,7 +99,7 @@ const App: FC = () => {
 
         const newPictures: PictureType[] = []
 
-        data.forEach((item: ApiResults) => {
+        data.forEach((item: ApiResultsType) => {
           newPictures.push({
             image: item.webformatURL,
             imageBig: item.largeImageURL,
@@ -265,7 +266,7 @@ const App: FC = () => {
               //onLongPress={(): void => handleToggleInfo(index)}
               onPress={(): void => handleDoubleTap(index)}
             >
-              <View style={styles.pictureHolder} >
+              <View style={styles.pictureHolder}>
                 <Image
                   style={styles.picture}
                   source={{uri: resolution === 640 ? picture.image : picture.imageBig}}
@@ -322,6 +323,19 @@ const App: FC = () => {
           <View><Text style={styles.text}>-double click on images to show menu items</Text></View>
           <View><Text style={styles.text}>-click 5 times on mediaViewer in footer to access settings</Text></View>
           <View><Text style={[styles.text, {marginTop: 14}]}>- sercan ;)</Text></View>
+          <View style={{width: 70}}>
+            <Image
+              style={{marginTop: 12}}
+              source={{uri: require('../assets/favicon.png')}}
+              width={70}
+            />
+            <Image
+              style={{marginTop: 12, marginBottom: 12, marginLeft: 3}}
+              source={{uri: require('../assets/pixabay.png')}}
+              width={60}
+              onPress={(): Promise<void> => Linking.openURL('http://pixabay.com')}
+            />
+          </View>
         </View>}
 
         {settingsCounter > 4 && <View style={[styles.footer, { bottom: 46 }]}>
