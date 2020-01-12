@@ -126,7 +126,7 @@ export const getStyles = (theme: string) => {
     textHolder: {
       paddingLeft: 10,
       paddingRight: 10,
-      marginTop: '17%',
+      marginTop: '14%',
       maxWidth: 320,
       alignSelf: 'center'
     } as TextStyle,
