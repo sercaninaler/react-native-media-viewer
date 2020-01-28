@@ -52,7 +52,7 @@ export const getStyles = (theme: string) => {
       fontFamily: 'Ubuntu Mono',
       color: '#000',
       //outline: 'none',
-    },
+    } as ViewStyle,
     tags: {
       flexDirection: 'row',
       flexWrap: 'wrap',

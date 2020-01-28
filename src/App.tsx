@@ -202,6 +202,10 @@ const App: FC = () => {
     ))
   }
 
+  const getTagImage = (tag: string): string => {
+    return pictures[tag] ? pictures[tag][0].image : require('../assets/favicon.png')
+  }
+
   const filteredPictures = pictures[query] ? pictures[query].slice(0, limit) : []
 
   const recommendedTags: string[] = []
@@ -230,23 +234,34 @@ const App: FC = () => {
             placeholder="cats, planets, fruits,..."
             selectTextOnFocus
           />
-        </View>
-        <View style={styles.tags}>
           <Button
             text="x"
             onPress={(): void => {
               setQuery('')
             }}
           />
+        </View>
+        <View style={styles.tags}>
           {tags.map((tag) => (
-            <Button
-              key={tag}
-              text={tag}
-              onPress={(): void => {
-                setQuery(tag)
-                getPictures(tag)
-              }}
-            />
+            <View key={tag} style={[{alignItems: 'center'}]}>
+              <Image
+                style={[{margin: 3}]}
+                source={{uri: getTagImage(tag)}}
+                height={50}
+                width={100}
+                onPress={(): void => {
+                  setQuery(tag)
+                  getPictures(tag)
+                }}
+              />
+              <Button
+                text={tag}
+                onPress={(): void => {
+                  setQuery(tag)
+                  getPictures(tag)
+                }}
+              />
+            </View>
           ))}
         </View>
 
