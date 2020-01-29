@@ -1,4 +1,4 @@
-import {Text, TouchableHighlight} from 'react-native'
+import {Text, TouchableHighlight, View} from 'react-native'
 import React, { FC, useContext } from 'react'
 import { getStyles } from './styles'
 import { ThemeContext } from './App'
@@ -14,7 +14,10 @@ export const Button: FC<ButtonType> = (props: ButtonType) => {
       underlayColor={theme === 'dark' ? '#555' : '#ccc'}
       onPress={props.onPress}
     >
-      <Text style={styles.buttonText}>{props.text}</Text>
+      <View>
+        {props.element}
+        <Text style={styles.buttonText}>{props.text}</Text>
+      </View>
     </TouchableHighlight>
   )
 }

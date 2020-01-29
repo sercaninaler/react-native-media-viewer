@@ -234,32 +234,41 @@ const App: FC = () => {
             placeholder="cats, planets, fruits,..."
             selectTextOnFocus
           />
-          <Button
-            text="x"
-            onPress={(): void => {
-              setQuery('')
-            }}
-          />
+          {query ? (
+            <View
+              style={[{position: 'absolute', right: 3}]}
+            >
+              <Button
+                text="x"
+                addStyles={{border: 0, backgroundColor: 'transparent'}}
+                onPress={(): void => {
+                  setQuery('')
+                }}
+              />
+            </View>
+          ) : null}
         </View>
         <View style={styles.tags}>
           {tags.map((tag) => (
             <View key={tag} style={[{alignItems: 'center'}]}>
-              <Image
-                style={[{margin: 3}]}
-                source={{uri: getTagImage(tag)}}
-                height={50}
-                width={100}
-                onPress={(): void => {
-                  setQuery(tag)
-                  getPictures(tag)
-                }}
-              />
               <Button
                 text={tag}
                 onPress={(): void => {
                   setQuery(tag)
                   getPictures(tag)
                 }}
+                element={
+                  <Image
+                    style={[{margin: 3, borderRadius: 5, alignSelf: 'center'}]}
+                    source={{uri: getTagImage(tag)}}
+                    height={70}
+                    width={130}
+                    onPress={(): void => {
+                      setQuery(tag)
+                      getPictures(tag)
+                    }}
+                  />
+                }
               />
             </View>
           ))}

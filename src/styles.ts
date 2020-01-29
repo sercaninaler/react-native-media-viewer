@@ -11,22 +11,25 @@ export const getStyles = (theme: string) => {
     } as ViewStyle,
     button: {
       backgroundColor: '#EEE',
-      paddingLeft: 8,
-      paddingRight: 8,
+      padding: 5,
       borderRadius: 4,
       borderColor: '#DDD',
       borderWidth: 1,
       margin: 3,
       justifyContent: 'center',
-      height: 26,
+      minHeight: 32,
     } as ViewStyle,
     buttonText: {
       fontFamily: 'Ubuntu Mono',
       fontSize: 16,
+      alignSelf: 'center',
     } as TextStyle,
     searchForm: {
       justifyContent: 'center',
       flexDirection: 'row',
+      position: 'relative',
+      width: 260,
+      alignSelf: 'center',
     } as ViewStyle,
     searchButtonView: {
       height: 40,

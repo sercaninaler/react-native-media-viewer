@@ -23,4 +23,5 @@ export type ButtonType = {
   text: string;
   addStyles?: object;
   onPress: () => void;
+  element?: any;
 }
