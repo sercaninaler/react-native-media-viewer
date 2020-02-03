@@ -206,6 +206,11 @@ const App: FC = () => {
     return pictures[tag] ? pictures[tag][0].image : require('../assets/favicon.png')
   }
 
+  const resetTagImage = (tag: string): void => {
+    pictures[tag][0].image = require('../assets/favicon.png')
+    setPictures({...pictures})
+  }
+
   const filteredPictures = pictures[query] ? pictures[query].slice(0, limit) : []
 
   const recommendedTags: string[] = []
@@ -259,14 +264,15 @@ const App: FC = () => {
                 }}
                 element={
                   <Image
-                    style={[{margin: 3, borderRadius: 5, alignSelf: 'center'}]}
+                    style={[{borderRadius: 5, alignSelf: 'center'}]}
                     source={{uri: getTagImage(tag)}}
-                    height={70}
-                    width={130}
+                    height={60}
+                    width={106}
                     onPress={(): void => {
                       setQuery(tag)
                       getPictures(tag)
                     }}
+                    onError={() => resetTagImage(tag)}
                   />
                 }
               />

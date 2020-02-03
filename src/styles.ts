@@ -11,8 +11,8 @@ export const getStyles = (theme: string) => {
     } as ViewStyle,
     button: {
       backgroundColor: '#EEE',
-      padding: 5,
-      borderRadius: 4,
+      padding: 2,
+      borderRadius: 5,
       borderColor: '#DDD',
       borderWidth: 1,
       margin: 3,
@@ -21,8 +21,12 @@ export const getStyles = (theme: string) => {
     } as ViewStyle,
     buttonText: {
       fontFamily: 'Ubuntu Mono',
-      fontSize: 16,
+      fontSize: 15,
       alignSelf: 'center',
+      marginTop: 2,
+      marginBottom: 2,
+      marginLeft: 4,
+      marginRight: 4,
     } as TextStyle,
     searchForm: {
       justifyContent: 'center',
@@ -55,7 +59,7 @@ export const getStyles = (theme: string) => {
       fontFamily: 'Ubuntu Mono',
       color: '#000',
       //outline: 'none',
-    } as ViewStyle,
+    } as TextStyle,
     tags: {
       flexDirection: 'row',
       flexWrap: 'wrap',
@@ -155,7 +159,7 @@ export const getStyles = (theme: string) => {
         ...styles.searchInput,
         backgroundColor: '#333',
         borderColor: '#525252',
-        color: '#DDDDDD',
+        color: '#DDD',
       },
       button: {
         ...styles.button,
