@@ -244,8 +244,8 @@ const App: FC = () => {
               style={[{position: 'absolute', right: 3}]}
             >
               <Button
-                text="x"
-                addStyles={{border: 0, backgroundColor: 'transparent'}}
+                text="X"
+                addStyles={{border: 0, backgroundColor: 'transparent', margin: 2}}
                 onPress={(): void => {
                   setQuery('')
                 }}
@@ -264,7 +264,7 @@ const App: FC = () => {
                 }}
                 element={
                   <Image
-                    style={[{borderRadius: 5, alignSelf: 'center'}]}
+                    style={[{borderRadius: 5, alignSelf: 'center', marginTop: 2}]}
                     source={{uri: getTagImage(tag)}}
                     height={60}
                     width={106}
@@ -318,14 +318,15 @@ const App: FC = () => {
             </TouchableWithoutFeedback>
           ))}
 
-          {showLinks && <View style={[styles.tags, {marginBottom: 60}]}>
+          {showLinks && <View style={[{marginBottom: 20, width: 120, alignSelf: 'center'}]}>
             <Button
               onPress={(): void => setLimit(limit + 10) }
-              text="show more pictures"
+              text="more pictures"
             />
             <Button
+              addStyles={{marginTop: 100}}
               onPress={(): void => updateSettings('suggestions', !suggestions) }
-              text="show more tags"
+              text="more tags"
             />
           </View>}
 

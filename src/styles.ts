@@ -19,9 +19,12 @@ export const getStyles = (theme: string) => {
       justifyContent: 'center',
       minHeight: 32,
     } as ViewStyle,
+    ':hover': {
+      backgroundColor: '#000',
+    } as ViewStyle,
     buttonText: {
       fontFamily: 'Ubuntu Mono',
-      fontSize: 15,
+      fontSize: 14,
       alignSelf: 'center',
       marginTop: 2,
       marginBottom: 2,
