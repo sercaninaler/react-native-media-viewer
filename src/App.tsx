@@ -264,7 +264,7 @@ const App: FC = () => {
                 }}
                 element={
                   <Image
-                    style={[{borderRadius: 5, alignSelf: 'center', marginTop: 2}]}
+                    style={[{borderRadius: 5, alignSelf: 'center'}]}
                     source={{uri: getTagImage(tag)}}
                     height={60}
                     width={106}
@@ -347,8 +347,7 @@ const App: FC = () => {
 
         {!query && <View style={styles.textHolder}>
           <View><Text style={[styles.text, {fontSize: 24}]}>mediaViewer</Text></View>
-          <View><Text style={[styles.text, {marginTop: 14}]}>-this app is dedicated to my son</Text></View>
-          <View><Text style={styles.text}>-made for hobby to learn and teach</Text></View>
+          <View><Text style={[styles.text, {marginTop: 14}]}>-made as hobby to learn and teach</Text></View>
           <View><Text style={styles.text}>-build with react native & typescript. works on web, android and ios</Text></View>
           <View><Text style={styles.text}>-you can change theme, resolution and language in the footer</Text></View>
           <View><Text style={styles.text}>-double click on images to show menu items</Text></View>
