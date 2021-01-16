@@ -14,14 +14,13 @@ import { initLocalStorage, getData, setData } from './helpers'
 import { Button } from './components'
 import { ApiResultsType, PictureType, SettingsType } from './types'
 import Image from 'react-native-scalable-image'
+import * as Speech from 'expo-speech'
 
 import { getStyles } from './styles'
 
 export const ThemeContext = React.createContext('light');
 
 const App: FC = () => {
-  initLocalStorage()
-
   const [pictures, setPictures] = useState<PictureType[]>([])
   /* const [sounds, setSounds] = useState([]) */
   const [query, setQuery] = useState<string>('')
@@ -38,6 +37,7 @@ const App: FC = () => {
   const styles = getStyles(theme)
 
   useEffect( () => {
+    initLocalStorage()
     getData('settings').then((settings) => {
       if (settings) {
         setSettings(JSON.parse(settings))
@@ -59,6 +59,7 @@ const App: FC = () => {
       console.log(e.window);
     });
     */
+    Speech.speak('welcome to react native media viewer')
   }, [])
 
   const updateSettings = (key: string, value: string | boolean | number): void => {
@@ -80,6 +81,7 @@ const App: FC = () => {
 
   const getPictures = async (tag: string): Promise<void> => {
     const keyword = tag.trim()
+    Speech.speak(keyword)
     setMessage(null)
     setLimit(10)
     setIsLoading(true)
