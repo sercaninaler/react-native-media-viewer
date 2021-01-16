@@ -194,10 +194,10 @@ const App: FC = () => {
       <Button
         onPress={(): void => {
           setQuery(tag.trim())
-          getPictures(tag)
+          getPictures(tag.trim())
         }}
-        text={tag}
-        key={tag}
+        text={tag.trim()}
+        key={tag.trim()}
       />
     ))
   }
@@ -219,9 +219,8 @@ const App: FC = () => {
     if (picture.tags) {
       const tags = picture.tags.split(',')
       tags.forEach((tag) => {
-        tag = tag.trim()
-        if (recommendedTags.indexOf(tag) === -1) {
-          recommendedTags.push(tag)
+        if (recommendedTags.indexOf(tag.trim()) === -1) {
+          recommendedTags.push(tag.trim())
         }
       })
     }
@@ -303,7 +302,6 @@ const App: FC = () => {
                   width={width > resolution ? resolution : width}
                 />
 
-                {picture.showInfo && (
                   <View style={styles.pictureInfo}>
                     <Button
                       onPress={(): void => deletePicture(index)}
@@ -313,7 +311,6 @@ const App: FC = () => {
 
                     {renderPictureTags(picture.tags)}
                   </View>
-                )}
               </View>
             </TouchableWithoutFeedback>
           ))}
@@ -324,7 +321,7 @@ const App: FC = () => {
               text="more pictures"
             />
             <Button
-              addStyles={{marginTop: 100}}
+              addStyles={{marginTop: 20}}
               onPress={(): void => updateSettings('suggestions', !suggestions) }
               text="more tags"
             />
@@ -347,11 +344,8 @@ const App: FC = () => {
 
         {!query && <View style={styles.textHolder}>
           <View><Text style={[styles.text, {fontSize: 24}]}>mediaViewer</Text></View>
-          <View><Text style={[styles.text, {marginTop: 14}]}>-made as hobby to learn and teach</Text></View>
-          <View><Text style={styles.text}>-build with react native & typescript. works on web, android and ios</Text></View>
-          <View><Text style={styles.text}>-you can change theme, resolution and language in the footer</Text></View>
-          <View><Text style={styles.text}>-double click on images to show menu items</Text></View>
-          <View><Text style={styles.text}>-click 5 times on mediaViewer in footer to access settings</Text></View>
+          <View><Text style={styles.text}>- made with react native & typescript. works on web, android and ios</Text></View>
+          <View><Text style={styles.text}>- you can change theme, resolution and language in footer</Text></View>
           <View><Text style={[styles.text, {marginTop: 14}]}>- sercan ;)</Text></View>
           <View style={{width: 70}}>
             <Image

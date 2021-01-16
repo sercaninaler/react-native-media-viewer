@@ -10,7 +10,7 @@ export const pixabayApi = (query: string, lang: string): string => `${PIXABAY_AP
 export const freesoundApi = (query: string): string => `${FREESOUND_API_URL}?query=${query}&token=${FREESOUND_API_KEY}
 &normalized=true&fields=previews,description&sort=downloads_desc&filter=duration:[1 TO 5]`
 
-export const TAGS = ['animals', 'fruits', 'planets']
+export const TAGS = []
 export const SETTINGS = {
   language: 'en',
   resolution: 640,
