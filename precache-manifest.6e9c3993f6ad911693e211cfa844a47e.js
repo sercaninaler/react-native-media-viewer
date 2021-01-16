@@ -1,30 +1,26 @@
 self.__precacheManifest = [
   {
-    "revision": "a24f2744b49679e26fc7",
-    "url": "/react-native-media-viewer/static/js/app.2b969f6a.chunk.js"
+    "revision": "e1ba3f76a876fae3a360",
+    "url": "/react-native-media-viewer/static/js/app.da13ef85.chunk.js"
   },
   {
     "revision": "0648f5122868ab37e4ad",
     "url": "/react-native-media-viewer/static/js/runtime~app.32f6004e.js"
   },
   {
-    "revision": "6a05b3b384d380058f5f",
-    "url": "/react-native-media-viewer/static/js/2.4cf086e6.chunk.js"
+    "revision": "a806df2aefb4dea30368",
+    "url": "/react-native-media-viewer/static/js/2.04a4aab8.chunk.js"
   },
   {
     "revision": "a48e2f0222ff0ab41d71271d9c5afb58",
     "url": "/react-native-media-viewer/static/media/favicon.cadf7e0b.png"
   },
   {
-    "revision": "0722ed81faa9edd0d824fb707ac21c91",
-    "url": "/react-native-media-viewer/static/media/pixabay.0ec9e151.png"
-  },
-  {
     "revision": "9383f4b0bc1d264a5a7e094eb1ed0c0b",
     "url": "/react-native-media-viewer/./fonts/UbuntuMono-R.ttf"
   },
   {
-    "revision": "2883c5cb78c8feb35359d904e973654b",
+    "revision": "e67d0159ff34c1bcfcc4d008db5ebcac",
     "url": "/react-native-media-viewer/index.html"
   },
   {
@@ -41,7 +37,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "f5fc2afae58c4ffc30c6148864765d4b",
-    "url": "/react-native-media-viewer/static/js/2.4cf086e6.chunk.js.LICENSE.txt"
+    "url": "/react-native-media-viewer/static/js/2.04a4aab8.chunk.js.LICENSE.txt"
   },
   {
     "revision": "411bc0032c710fc0ae4a36f38d668bb8",

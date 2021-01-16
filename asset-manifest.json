@@ -1,24 +1,23 @@
 {
   "files": {
-    "app.js": "/react-native-media-viewer/static/js/app.2b969f6a.chunk.js",
-    "app.js.map": "/react-native-media-viewer/static/js/app.2b969f6a.chunk.js.map",
+    "app.js": "/react-native-media-viewer/static/js/app.da13ef85.chunk.js",
+    "app.js.map": "/react-native-media-viewer/static/js/app.da13ef85.chunk.js.map",
     "runtime~app.js": "/react-native-media-viewer/static/js/runtime~app.32f6004e.js",
     "runtime~app.js.map": "/react-native-media-viewer/static/js/runtime~app.32f6004e.js.map",
-    "static/js/2.4cf086e6.chunk.js": "/react-native-media-viewer/static/js/2.4cf086e6.chunk.js",
-    "static/js/2.4cf086e6.chunk.js.map": "/react-native-media-viewer/static/js/2.4cf086e6.chunk.js.map",
+    "static/js/2.04a4aab8.chunk.js": "/react-native-media-viewer/static/js/2.04a4aab8.chunk.js",
+    "static/js/2.04a4aab8.chunk.js.map": "/react-native-media-viewer/static/js/2.04a4aab8.chunk.js.map",
     "fonts/UbuntuMono-R.ttf": "/react-native-media-viewer/./fonts/UbuntuMono-R.ttf",
     "favicon-16.png": "/react-native-media-viewer/favicon-16.png",
     "favicon-32.png": "/react-native-media-viewer/favicon-32.png",
     "favicon.ico": "/react-native-media-viewer/favicon.ico",
     "index.html": "/react-native-media-viewer/index.html",
     "serve.json": "/react-native-media-viewer/serve.json",
-    "static/js/2.4cf086e6.chunk.js.LICENSE.txt": "/react-native-media-viewer/static/js/2.4cf086e6.chunk.js.LICENSE.txt",
-    "static/media/favicon.png": "/react-native-media-viewer/static/media/favicon.cadf7e0b.png",
-    "static/media/pixabay.png": "/react-native-media-viewer/static/media/pixabay.0ec9e151.png"
+    "static/js/2.04a4aab8.chunk.js.LICENSE.txt": "/react-native-media-viewer/static/js/2.04a4aab8.chunk.js.LICENSE.txt",
+    "static/media/favicon.png": "/react-native-media-viewer/static/media/favicon.cadf7e0b.png"
   },
   "entrypoints": [
     "static/js/runtime~app.32f6004e.js",
-    "static/js/2.4cf086e6.chunk.js",
-    "static/js/app.2b969f6a.chunk.js"
+    "static/js/2.04a4aab8.chunk.js",
+    "static/js/app.da13ef85.chunk.js"
   ]
 }
