@@ -6,7 +6,6 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   ActivityIndicator,
-  Linking,
   Dimensions,
 } from 'react-native'
 import axios from 'axios'
@@ -315,18 +314,6 @@ const App: FC = () => {
             </TouchableWithoutFeedback>
           ))}
 
-          {showLinks && <View style={[{marginBottom: 20, width: 120, alignSelf: 'center'}]}>
-            <Button
-              onPress={(): void => setLimit(limit + 10) }
-              text="more pictures"
-            />
-            <Button
-              addStyles={{marginTop: 20}}
-              onPress={(): void => updateSettings('suggestions', !suggestions) }
-              text="more tags"
-            />
-          </View>}
-
           {suggestions && <View style={styles.tags}>
             {recommendedTags.map((tag) => (
               <Button
@@ -339,27 +326,26 @@ const App: FC = () => {
               />
             ))}
           </View>}
+
+          {showLinks && <View style={[{marginBottom: 20, width: 150, alignSelf: 'center'}]}>
+            <Button
+              onPress={(): void => setLimit(limit + 10) }
+              text="show more pictures"
+            />
+            <Button
+              addStyles={{marginTop: 20}}
+              onPress={(): void => updateSettings('suggestions', !suggestions) }
+              text="show more tags"
+            />
+          </View>}
         </ScrollView>
         )}
 
         {!query && <View style={styles.textHolder}>
-          <View><Text style={[styles.text, {fontSize: 24}]}>mediaViewer</Text></View>
+          <View><Text style={[styles.text, {fontSize: 24, marginBottom: 14}]}>react native media viewer</Text></View>
           <View><Text style={styles.text}>- made with react native & typescript. works on web, android and ios</Text></View>
           <View><Text style={styles.text}>- you can change theme, resolution and language in footer</Text></View>
-          <View><Text style={[styles.text, {marginTop: 14}]}>- sercan ;)</Text></View>
-          <View style={{width: 70}}>
-            <Image
-              style={{marginTop: 12}}
-              source={{uri: require('../assets/favicon.png')}}
-              width={70}
-            />
-            <Image
-              style={{marginTop: 12, marginBottom: 12, marginLeft: 3}}
-              source={{uri: require('../assets/pixabay.png')}}
-              width={60}
-              onPress={(): Promise<void> => Linking.openURL('http://pixabay.com')}
-            />
-          </View>
+          <View><Text style={[styles.text, {marginTop: 14}]}>sercan ;)</Text></View>
         </View>}
 
         {settingsCounter > 4 && <View style={[styles.footer, { bottom: 46 }]}>

@@ -121,6 +121,7 @@ export const getStyles = (theme: string) => {
       flexDirection: 'column',
       position: 'relative',
       maxWidth: 1280,
+      minHeight: 300,
       alignSelf: 'center',
     } as ViewStyle,
     picture: {
